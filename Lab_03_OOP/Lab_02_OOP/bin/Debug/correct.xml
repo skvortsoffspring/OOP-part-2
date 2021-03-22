@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<ArrayOfScore xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <score>
+    <Owner xmlns="classScore">
+      <firstName>Василий</firstName>
+      <lastName>Иванов</lastName>
+      <patrymonic>Петрович</patrymonic>
+      <birthday>0001-01-01T00:00:00</birthday>
+      <seriesPassport>kb</seriesPassport>
+      <numberPassport>1882992</numberPassport>
+    </Owner>
+    <number xmlns="classScore">84848</number>
+    <typeDeposit xmlns="classScore">LongTerm</typeDeposit>
+    <balance xmlns="classScore">38839</balance>
+    <date_x0020_opened xmlns="classScore">1995-03-09T11:59:46</date_x0020_opened>
+    <SMS xmlns="classScore">true</SMS>
+    <banking xmlns="classScore">true</banking>
+  </score>
+  <score>
+    <Owner xmlns="classScore">
+      <firstName>Иван</firstName>
+      <lastName>Петров</lastName>
+      <patrymonic>Афанасьевич</patrymonic>
+      <birthday>0001-01-01T00:00:00</birthday>
+      <seriesPassport>kb</seriesPassport>
+      <numberPassport>1231233</numberPassport>
+    </Owner>
+    <number xmlns="classScore">737377</number>
+    <typeDeposit xmlns="classScore">shortTerm</typeDeposit>
+    <balance xmlns="classScore">123123</balance>
+    <date_x0020_opened xmlns="classScore">1989-03-02T12:03:25</date_x0020_opened>
+    <SMS xmlns="classScore">true</SMS>
+    <banking xmlns="classScore">true</banking>
+  </score>
+  <score>
+    <Owner xmlns="classScore">
+      <firstName>Вадим</firstName>
+      <lastName>Евсеев</lastName>
+      <patrymonic>Петрович</patrymonic>
+      <birthday>0001-01-01T00:00:00</birthday>
+      <seriesPassport>bm</seriesPassport>
+      <numberPassport>7578839</numberPassport>
+    </Owner>
+    <number xmlns="classScore">8883883</number>
+    <typeDeposit xmlns="classScore">LongTerm</typeDeposit>
+    <balance xmlns="classScore">123</balance>
+    <date_x0020_opened xmlns="classScore">2021-02-23T14:01:36.959205+03:00</date_x0020_opened>
+    <SMS xmlns="classScore">false</SMS>
+    <banking xmlns="classScore">true</banking>
+  </score>
+  <score>
+    <Owner xmlns="classScore">
+      <firstName>Вадим</firstName>
+      <lastName>Веснянкин</lastName>
+      <patrymonic>Петрович</patrymonic>
+      <birthday>0001-01-01T00:00:00</birthday>
+      <seriesPassport>kb</seriesPassport>
+      <numberPassport>3443333</numberPassport>
+    </Owner>
+    <number xmlns="classScore">123312</number>
+    <typeDeposit xmlns="classScore">LongTerm</typeDeposit>
+    <balance xmlns="classScore">2354</balance>
+    <date_x0020_opened xmlns="classScore">2020-09-07T13:45:36</date_x0020_opened>
+    <SMS xmlns="classScore">true</SMS>
+    <banking xmlns="classScore">true</banking>
+  </score>
+  <score>
+    <Owner xmlns="classScore">
+      <firstName>Петр</firstName>
+      <lastName>Ярославин</lastName>
+      <patrymonic>Петрович</patrymonic>
+      <birthday>0001-01-01T00:00:00</birthday>
+      <seriesPassport>kb</seriesPassport>
+      <numberPassport>2334234</numberPassport>
+    </Owner>
+    <number xmlns="classScore">1231232</number>
+    <typeDeposit xmlns="classScore">Indefinite</typeDeposit>
+    <balance xmlns="classScore">32113</balance>
+    <date_x0020_opened xmlns="classScore">2020-09-07T13:45:36</date_x0020_opened>
+    <SMS xmlns="classScore">true</SMS>
+    <banking xmlns="classScore">false</banking>
+  </score>
+</ArrayOfScore>

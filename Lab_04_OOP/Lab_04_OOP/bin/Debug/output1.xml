@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<ArrayOfScore xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <score>
+    <Owner xmlns="classScore">
+      <firstName>Иван</firstName>
+      <lastName>Иванов</lastName>
+      <patrymonic>Иванович</patrymonic>
+      <birthday>0001-01-01T00:00:00</birthday>
+      <seriesPassport>kd</seriesPassport>
+      <numberPassport>7474747</numberPassport>
+    </Owner>
+    <number xmlns="classScore">9698394</number>
+
+    <Owner xmlns="classScore">
+      <firstName>Петр</firstName>
+      <lastName>Петров</lastName>
+      <patrymonic>Петрович</patrymonic>
+      <birthday>0001-01-01T00:00:00</birthday>
+      <seriesPassport>kd</seriesPassport>
+      <numberPassport>934509</numberPassport>
+    </Owner>
+    <number xmlns="classScore">8488</number>
+    <typeDeposit xmlns="classScore">Indefinite</typeDeposit>
+    <balance xmlns="classScore">4884</balance>
+    <date_x0020_opened xmlns="classScore">1999-12-02T14:38:50</date_x0020_opened>
+    <SMS xmlns="classScore">true</SMS>
+    <banking xmlns="classScore">true</banking>
+  </score>
+</ArrayOfScore>

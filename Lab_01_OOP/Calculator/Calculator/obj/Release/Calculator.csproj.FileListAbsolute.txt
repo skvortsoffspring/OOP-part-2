@@ -1,0 +1,10 @@
+D:\University\Labs\OOP part 2\Lab_01_OOP\Calculator\Calculator\bin\Release\Calculator.exe.config
+D:\University\Labs\OOP part 2\Lab_01_OOP\Calculator\Calculator\bin\Release\Calculator.exe
+D:\University\Labs\OOP part 2\Lab_01_OOP\Calculator\Calculator\bin\Release\Calculator.pdb
+D:\University\Labs\OOP part 2\Lab_01_OOP\Calculator\Calculator\obj\Release\Calculator.csprojAssemblyReference.cache
+D:\University\Labs\OOP part 2\Lab_01_OOP\Calculator\Calculator\obj\Release\Calculator.Form1.resources
+D:\University\Labs\OOP part 2\Lab_01_OOP\Calculator\Calculator\obj\Release\Calculator.Properties.Resources.resources
+D:\University\Labs\OOP part 2\Lab_01_OOP\Calculator\Calculator\obj\Release\Calculator.csproj.GenerateResource.cache
+D:\University\Labs\OOP part 2\Lab_01_OOP\Calculator\Calculator\obj\Release\Calculator.csproj.CoreCompileInputs.cache
+D:\University\Labs\OOP part 2\Lab_01_OOP\Calculator\Calculator\obj\Release\Calculator.exe
+D:\University\Labs\OOP part 2\Lab_01_OOP\Calculator\Calculator\obj\Release\Calculator.pdb

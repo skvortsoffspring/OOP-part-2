@@ -1,0 +1,11 @@
+D:\University\Labs\OOP part 2\Lab_02_OOP\Lab_02_OOP\obj\Debug\Lab_02_OOP.csprojAssemblyReference.cache
+D:\University\Labs\OOP part 2\Lab_02_OOP\Lab_02_OOP\obj\Debug\Lab_02_OOP.Resources.resources
+D:\University\Labs\OOP part 2\Lab_02_OOP\Lab_02_OOP\obj\Debug\Lab_02_OOP.csproj.GenerateResource.cache
+D:\University\Labs\OOP part 2\Lab_02_OOP\Lab_02_OOP\obj\Debug\Lab_02_OOP.csproj.CoreCompileInputs.cache
+D:\University\Labs\OOP part 2\Lab_02_OOP\Lab_02_OOP\bin\Debug\Lab_02_OOP.exe.config
+D:\University\Labs\OOP part 2\Lab_02_OOP\Lab_02_OOP\bin\Debug\Lab_02_OOP.exe
+D:\University\Labs\OOP part 2\Lab_02_OOP\Lab_02_OOP\bin\Debug\Lab_02_OOP.pdb
+D:\University\Labs\OOP part 2\Lab_02_OOP\Lab_02_OOP\obj\Debug\Lab_02_OOP.exe
+D:\University\Labs\OOP part 2\Lab_02_OOP\Lab_02_OOP\obj\Debug\Lab_02_OOP.pdb
+D:\University\Labs\OOP part 2\Lab_02_OOP\Lab_02_OOP\obj\Debug\Lab_02_OOP.Form1.resources
+D:\University\Labs\OOP part 2\Lab_02_OOP\Lab_02_OOP\obj\Debug\Lab_02_OOP.TableOutput.resources
