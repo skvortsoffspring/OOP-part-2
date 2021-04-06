@@ -3,7 +3,7 @@
   <score>
     <Owner xmlns="classScore">
       <firstName>Василий</firstName>
-      <lastName>Иванов</lastName>
+      <LastName>Иванов</LastName>
       <patrymonic>Петрович</patrymonic>
       <birthday>0001-01-01T00:00:00</birthday>
       <seriesPassport>kb</seriesPassport>
@@ -19,7 +19,7 @@
   <score>
     <Owner xmlns="classScore">
       <firstName>Иван</firstName>
-      <lastName>Петров</lastName>
+      <LastName>Петров</LastName>
       <patrymonic>Афанасьевич</patrymonic>
       <birthday>0001-01-01T00:00:00</birthday>
       <seriesPassport>kb</seriesPassport>
@@ -35,7 +35,7 @@
   <score>
     <Owner xmlns="classScore">
       <firstName>Вадим</firstName>
-      <lastName>Евсеев</lastName>
+      <LastName>Евсеев</LastName>
       <patrymonic>Петрович</patrymonic>
       <birthday>0001-01-01T00:00:00</birthday>
       <seriesPassport>bm</seriesPassport>
@@ -51,7 +51,7 @@
   <score>
     <Owner xmlns="classScore">
       <firstName>Вадим</firstName>
-      <lastName>Веснянкин</lastName>
+      <LastName>Веснянкин</LastName>
       <patrymonic>Петрович</patrymonic>
       <birthday>0001-01-01T00:00:00</birthday>
       <seriesPassport>kb</seriesPassport>
@@ -67,7 +67,7 @@
   <score>
     <Owner xmlns="classScore">
       <firstName>Петр</firstName>
-      <lastName>Ярославин</lastName>
+      <LastName>Ярославин</LastName>
       <patrymonic>Петрович</patrymonic>
       <birthday>0001-01-01T00:00:00</birthday>
       <seriesPassport>kb</seriesPassport>

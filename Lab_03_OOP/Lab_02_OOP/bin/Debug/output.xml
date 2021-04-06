@@ -3,23 +3,20 @@
   <score>
     <Owner xmlns="classScore">
       <firstName>Иван</firstName>
-      <lastName>Иванов</lastName>
+      <LastName>Иванов</LastName>
       <patrymonic>Иванович</patrymonic>
       <birthday>0001-01-01T00:00:00</birthday>
-      <seriesPassport>kd</seriesPassport>
-      <numberPassport>7474747</numberPassport>
+      <seriesPassport>KB</seriesPassport>
+      <numberPassport>88383399</numberPassport>
     </Owner>
-    <number xmlns="classScore">9698394</number>
-
-    <Owner xmlns="classScore">
-      <firstName>Петр</firstName>
-      <lastName>Петров</lastName>
-      <patrymonic>Петрович</patrymonic>
-      <birthday>0001-01-01T00:00:00</birthday>
-      <seriesPassport>kd</seriesPassport>
-      <numberPassport>934509</numberPassport>
-    </Owner>
-    <number xmlns="classScore">8488</number>
+    <number xmlns="classScore">12333123</number>
+    <typeDeposit xmlns="classScore">LongTerm</typeDeposit>
+    <balance xmlns="classScore">13</balance>
+    <date_x0020_opened xmlns="classScore">2021-04-01T17:06:48.1794413+03:00</date_x0020_opened>
+    <SMS xmlns="classScore">true</SMS>
+    <banking xmlns="classScore">true</banking>
+  </score>
+</ArrayOfScore>number xmlns="classScore">8488</number>
     <typeDeposit xmlns="classScore">Indefinite</typeDeposit>
     <balance xmlns="classScore">4884</balance>
     <date_x0020_opened xmlns="classScore">1999-12-02T14:38:50</date_x0020_opened>
