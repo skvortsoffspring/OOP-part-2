@@ -37,11 +37,6 @@ namespace Lab_02_OOP
             Form1._sending.OutBox.Text += $"Сообщение \"{msgNormal}\" отправлено посредством SMS сервиса клиенту" + Environment.NewLine;;
         }
 
-        public interface INotice
-        {
-            void SendEmail();
-            void SendSms();
-        }
     }
 
 }

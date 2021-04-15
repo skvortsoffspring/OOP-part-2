@@ -22,7 +22,7 @@ namespace Lab_02_OOP
             if (filename.Substring(filename.Length - 4).Equals(".xml"))
                 Form1.Scores = XmlSerializeWrapper.Deserialize<List<Score>>(filename);
         }
-
+        
         public void Save()
         {
             var saveFileDialog = new SaveFileDialog {Filter = @"xml files (*.xml)|*.xml", FilterIndex = 1};

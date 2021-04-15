@@ -3,36 +3,16 @@ using System.Windows.Input;
 
 namespace Lab_06_07_OOP.UI
 {
-    public class CustomCommandSample : Window
+    using System.Windows.Input;
+ 
+    public class WindowCommands
     {
-        private void ExitCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        static WindowCommands()
         {
-            e.CanExecute = true;
+            Add = new RoutedCommand("Add", typeof(MainWindow));
+            Info = new RoutedCommand("Info", typeof(MainWindow));
         }
-
-        private void ExitCommand_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-    }
-
-    public static class CustomCommands
-    {
-        public static readonly RoutedUICommand Info = new RoutedUICommand
-        (
-            "Info",
-            "Info",
-            typeof(CustomCommands)
-        );
-        
-        public static readonly RoutedUICommand ADd = new RoutedUICommand
-        (
-            "Add",
-            "Add",
-            typeof(CustomCommands)
-        );
-
-
-        //Define more commands here, just like the one above
+        public static RoutedCommand Add { get; set; }
+        public static RoutedCommand Info { get; set; }
     }
 }

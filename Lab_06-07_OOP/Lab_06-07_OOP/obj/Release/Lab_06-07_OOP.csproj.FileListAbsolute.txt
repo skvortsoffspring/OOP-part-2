@@ -1,0 +1,16 @@
+D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\bin\Release\Lab_06-07_OOP.exe.config
+D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\bin\Release\Lab_06-07_OOP.exe
+D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\bin\Release\Lab_06-07_OOP.pdb
+D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\obj\Release\MainWindow.g.cs
+D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\obj\Release\App.g.cs
+D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\obj\Release\Lab_06-07_OOP_MarkupCompile.cache
+D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\obj\Release\Lab_06-07_OOP_MarkupCompile.lref
+D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\obj\Release\MainWindow.baml
+D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\obj\Release\Lab_06-07_OOP.g.resources
+D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\obj\Release\Lab_06_07_OOP.Properties.Resources.resources
+D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\obj\Release\Lab_06-07_OOP.csproj.GenerateResource.cache
+D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\obj\Release\Lab_06-07_OOP.csproj.CoreCompileInputs.cache
+D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\obj\Release\Lab_06-07_OOP.exe
+D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\obj\Release\Lab_06-07_OOP.pdb
+D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\obj\Release\Lab_06-07_OOP.csprojAssemblyReference.cache
+D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\obj\Release\Dictionary1.baml

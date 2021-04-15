@@ -1,0 +1,14 @@
+D:\University\Labs\OOP part 2\Lab_05_OOP\Lab_05_OOP\bin\Debug\Lab_02_OOP.exe.config
+D:\University\Labs\OOP part 2\Lab_05_OOP\Lab_05_OOP\bin\Debug\Lab_02_OOP.exe
+D:\University\Labs\OOP part 2\Lab_05_OOP\Lab_05_OOP\bin\Debug\Lab_02_OOP.pdb
+D:\University\Labs\OOP part 2\Lab_05_OOP\Lab_05_OOP\obj\Debug\Lab_05_OOP.csprojAssemblyReference.cache
+D:\University\Labs\OOP part 2\Lab_05_OOP\Lab_05_OOP\obj\Debug\Lab_02_OOP.Form1.resources
+D:\University\Labs\OOP part 2\Lab_05_OOP\Lab_05_OOP\obj\Debug\Lab_02_OOP.Founding.resources
+D:\University\Labs\OOP part 2\Lab_05_OOP\Lab_05_OOP\obj\Debug\Lab_02_OOP.Resources.resources
+D:\University\Labs\OOP part 2\Lab_05_OOP\Lab_05_OOP\obj\Debug\Lab_02_OOP.TableOutput.resources
+D:\University\Labs\OOP part 2\Lab_05_OOP\Lab_05_OOP\obj\Debug\Lab_05_OOP.csproj.GenerateResource.cache
+D:\University\Labs\OOP part 2\Lab_05_OOP\Lab_05_OOP\obj\Debug\Lab_05_OOP.csproj.CoreCompileInputs.cache
+D:\University\Labs\OOP part 2\Lab_05_OOP\Lab_05_OOP\obj\Debug\Lab_02_OOP.exe
+D:\University\Labs\OOP part 2\Lab_05_OOP\Lab_05_OOP\obj\Debug\Lab_02_OOP.pdb
+D:\University\Labs\OOP part 2\Lab_05_OOP\Lab_05_OOP\obj\Debug\Lab_02_OOP.Sending.resources
+D:\University\Labs\OOP part 2\Lab_05_OOP\Lab_05_OOP\obj\Debug\Lab_02_OOP.TreeOutput.resources
