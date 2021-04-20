@@ -48,6 +48,12 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Drawing\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -69,7 +75,44 @@
     <Compile Include="AddProduct.xaml.cs">
       <DependentUpon>AddProduct.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Market.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Market.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Market.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Market.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Market.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Market.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="option.cs">
+      <DependentUpon>Market.tt</DependentUpon>
+    </Compile>
+    <Compile Include="order.cs">
+      <DependentUpon>Market.tt</DependentUpon>
+    </Compile>
+    <Compile Include="orderdetail.cs">
+      <DependentUpon>Market.tt</DependentUpon>
+    </Compile>
+    <Compile Include="product.cs">
+      <DependentUpon>Market.tt</DependentUpon>
+    </Compile>
+    <Compile Include="productcategory.cs">
+      <DependentUpon>Market.tt</DependentUpon>
+    </Compile>
+    <Compile Include="productoption.cs">
+      <DependentUpon>Market.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="UI\commands.cs" />
+    <Compile Include="user.cs">
+      <DependentUpon>Market.tt</DependentUpon>
+    </Compile>
     <Page Include="AddProduct.xaml" />
     <Page Include="Dictionary1.xaml">
       <SubType>Designer</SubType>
@@ -107,6 +150,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="Market.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Market.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Market.edmx.diagram">
+      <DependentUpon>Market.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -131,6 +181,17 @@
     <Resource Include="img\laptop\Dell\e.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="img\interface\delete.png" />
+    <Content Include="Market.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Market.edmx</DependentUpon>
+      <LastGenOutput>Market.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Market.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Market.edmx</DependentUpon>
+      <LastGenOutput>Market.cs</LastGenOutput>
+    </Content>
     <Resource Include="favorite.png" />
     <Content Include="img\laptop\Dell\e.jpg" />
     <Content Include="img\laptop\Dell\e6440-1.jpg" />
@@ -141,6 +202,9 @@
     <Content Include="img\laptop\Dell\e6440\E6440-3.jpg" />
     <Content Include="img\laptop\Dell\e6440\preview.jpg" />
     <Content Include="img\laptop\Dell\preview.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -8,6 +8,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("img/interface/delete.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("market.context.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("market.tt")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("img/laptop/dell/e.jpg")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("img/laptop/dell/e6440-1.jpg")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("img/laptop/dell/e6440-2.jpg")]

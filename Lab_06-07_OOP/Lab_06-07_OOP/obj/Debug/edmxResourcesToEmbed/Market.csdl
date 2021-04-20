@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MarketModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="option">
+    <Key>
+      <PropertyRef Name="OptionID" />
+    </Key>
+    <Property Name="OptionID" Type="Int32" Nullable="false" />
+    <Property Name="OptionName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="productoptions" Relationship="Self.ProductOptionsOptionsFK" FromRole="options" ToRole="productoptions" />
+  </EntityType>
+  <EntityType Name="orderdetail">
+    <Key>
+      <PropertyRef Name="DetailsID" />
+    </Key>
+    <Property Name="DetailsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DetailsOrderID" Type="Int32" />
+    <Property Name="DetailsProductID" Type="Int32" />
+    <NavigationProperty Name="order" Relationship="Self.DetailsOrderFK" FromRole="orderdetails" ToRole="orders" />
+    <NavigationProperty Name="product" Relationship="Self.DetailsProductFK" FromRole="orderdetails" ToRole="products" />
+  </EntityType>
+  <EntityType Name="order">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderUserID" Type="Int32" />
+    <Property Name="OrderCountry" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="OrderCity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OrderAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OrderZip" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+    <Property Name="OrderDate" Type="DateTime" Precision="0" />
+    <Property Name="OrderTrackingNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="OrderAmount" Type="Double" />
+    <NavigationProperty Name="orderdetails" Relationship="Self.DetailsOrderFK" FromRole="orders" ToRole="orderdetails" />
+    <NavigationProperty Name="user" Relationship="Self.OrdersUsersFK" FromRole="orders" ToRole="users" />
+  </EntityType>
+  <EntityType Name="productcategory">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="products" Relationship="Self.ProductCategoriesFK" FromRole="productcategories" ToRole="products" />
+  </EntityType>
+  <EntityType Name="productoption">
+    <Key>
+      <PropertyRef Name="ProductOptionID" />
+    </Key>
+    <Property Name="ProductOptionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductID" Type="Int32" />
+    <Property Name="OptionID" Type="Int32" />
+    <NavigationProperty Name="option" Relationship="Self.ProductOptionsOptionsFK" FromRole="productoptions" ToRole="options" />
+    <NavigationProperty Name="product" Relationship="Self.ProductOptionsProductsFK" FromRole="productoptions" ToRole="products" />
+  </EntityType>
+  <EntityType Name="product">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductCategory" Type="Int32" />
+    <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ProductWeight" Type="Int32" />
+    <Property Name="ProductShortDesc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ProductLongDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ProductDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ProductThumb" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="ProductImageF" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="ProductImageS" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="ProductImageT" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="ProductStock" Type="Int32" />
+    <Property Name="ProductPrice" Type="Double" />
+    <NavigationProperty Name="orderdetails" Relationship="Self.DetailsProductFK" FromRole="products" ToRole="orderdetails" />
+    <NavigationProperty Name="productcategory1" Relationship="Self.ProductCategoriesFK" FromRole="products" ToRole="productcategories" />
+    <NavigationProperty Name="productoptions" Relationship="Self.ProductOptionsProductsFK" FromRole="products" ToRole="productoptions" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="UserPassword" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="UserFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserMiddleNAme" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserRegistrationDate" Type="DateTime" Precision="0" />
+    <Property Name="UserCountry" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="UserCity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserZip" Type="Decimal" Precision="6" Scale="0" />
+    <Property Name="UserPhone" Type="Decimal" Precision="12" Scale="0" />
+    <NavigationProperty Name="orders" Relationship="Self.OrdersUsersFK" FromRole="users" ToRole="orders" />
+  </EntityType>
+  <Association Name="ProductOptionsOptionsFK">
+    <End Role="options" Type="Self.option" Multiplicity="0..1" />
+    <End Role="productoptions" Type="Self.productoption" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="options">
+        <PropertyRef Name="OptionID" />
+      </Principal>
+      <Dependent Role="productoptions">
+        <PropertyRef Name="OptionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DetailsOrderFK">
+    <End Role="orders" Type="Self.order" Multiplicity="0..1" />
+    <End Role="orderdetails" Type="Self.orderdetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="orders">
+        <PropertyRef Name="OrderID" />
+      </Principal>
+      <Dependent Role="orderdetails">
+        <PropertyRef Name="DetailsOrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DetailsProductFK">
+    <End Role="products" Type="Self.product" Multiplicity="0..1" />
+    <End Role="orderdetails" Type="Self.orderdetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="orderdetails">
+        <PropertyRef Name="DetailsProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OrdersUsersFK">
+    <End Role="users" Type="Self.user" Multiplicity="0..1" />
+    <End Role="orders" Type="Self.order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="orders">
+        <PropertyRef Name="OrderUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProductCategoriesFK">
+    <End Role="productcategories" Type="Self.productcategory" Multiplicity="0..1" />
+    <End Role="products" Type="Self.product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="productcategories">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="products">
+        <PropertyRef Name="ProductCategory" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProductOptionsProductsFK">
+    <End Role="products" Type="Self.product" Multiplicity="0..1" />
+    <End Role="productoptions" Type="Self.productoption" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="productoptions">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="options" EntityType="Self.option" />
+    <EntitySet Name="orderdetails" EntityType="Self.orderdetail" />
+    <EntitySet Name="orders" EntityType="Self.order" />
+    <EntitySet Name="productcategories" EntityType="Self.productcategory" />
+    <EntitySet Name="productoptions" EntityType="Self.productoption" />
+    <EntitySet Name="products" EntityType="Self.product" />
+    <EntitySet Name="users" EntityType="Self.user" />
+    <AssociationSet Name="ProductOptionsOptionsFK" Association="Self.ProductOptionsOptionsFK">
+      <End Role="options" EntitySet="options" />
+      <End Role="productoptions" EntitySet="productoptions" />
+    </AssociationSet>
+    <AssociationSet Name="DetailsOrderFK" Association="Self.DetailsOrderFK">
+      <End Role="orders" EntitySet="orders" />
+      <End Role="orderdetails" EntitySet="orderdetails" />
+    </AssociationSet>
+    <AssociationSet Name="DetailsProductFK" Association="Self.DetailsProductFK">
+      <End Role="products" EntitySet="products" />
+      <End Role="orderdetails" EntitySet="orderdetails" />
+    </AssociationSet>
+    <AssociationSet Name="OrdersUsersFK" Association="Self.OrdersUsersFK">
+      <End Role="users" EntitySet="users" />
+      <End Role="orders" EntitySet="orders" />
+    </AssociationSet>
+    <AssociationSet Name="ProductCategoriesFK" Association="Self.ProductCategoriesFK">
+      <End Role="productcategories" EntitySet="productcategories" />
+      <End Role="products" EntitySet="products" />
+    </AssociationSet>
+    <AssociationSet Name="ProductOptionsProductsFK" Association="Self.ProductOptionsProductsFK">
+      <End Role="products" EntitySet="products" />
+      <End Role="productoptions" EntitySet="productoptions" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

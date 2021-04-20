@@ -11,8 +11,10 @@ namespace Lab_06_07_OOP.UI
         {
             Add = new RoutedCommand("Add", typeof(MainWindow));
             Info = new RoutedCommand("Info", typeof(MainWindow));
+            Del = new RoutedCommand("Del", typeof(MainWindow));
         }
         public static RoutedCommand Add { get; set; }
         public static RoutedCommand Info { get; set; }
+        public static RoutedCommand Del { get; set; }
     }
 }

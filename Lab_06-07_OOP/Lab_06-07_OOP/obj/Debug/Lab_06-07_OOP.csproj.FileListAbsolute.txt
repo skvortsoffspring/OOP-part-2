@@ -22,3 +22,4 @@ D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\bin\Debug\EntityFramew
 D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\bin\Debug\EntityFramework.xml
 D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\bin\Debug\EntityFramework.SqlServer.xml
 D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\obj\Debug\Lab_06-07_OOP.csproj.CopyComplete
+D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\bin\Debug\System.Drawing.dll

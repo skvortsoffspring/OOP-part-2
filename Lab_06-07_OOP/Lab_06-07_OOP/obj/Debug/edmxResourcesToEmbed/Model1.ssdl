@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MarketModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Market.dbo.images' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="images">
+    <Key>
+      <PropertyRef Name="Image" />
+    </Key>
+    <Property Name="ImageID" Type="int" />
+    <Property Name="Image" Type="varbinary" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <EntityType Name="options">
+    <Key>
+      <PropertyRef Name="OptionID" />
+    </Key>
+    <Property Name="OptionID" Type="int" Nullable="false" />
+    <Property Name="OptionName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="orderdetails">
+    <Key>
+      <PropertyRef Name="DetailsID" />
+    </Key>
+    <Property Name="DetailsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DetailsOrderID" Type="int" />
+    <Property Name="DetailsProductID" Type="int" />
+  </EntityType>
+  <EntityType Name="orders">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderUserID" Type="int" />
+    <Property Name="OrderCountry" Type="varchar" MaxLength="20" />
+    <Property Name="OrderCity" Type="varchar" MaxLength="50" />
+    <Property Name="OrderAddress" Type="varchar" MaxLength="50" />
+    <Property Name="OrderZip" Type="char" MaxLength="6" />
+    <Property Name="OrderDate" Type="date" />
+    <Property Name="OrderTrackingNumber" Type="varchar" MaxLength="30" />
+    <Property Name="OrderAmount" Type="float" />
+  </EntityType>
+  <EntityType Name="productcategories">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="productoptions">
+    <Key>
+      <PropertyRef Name="ProductOptionID" />
+    </Key>
+    <Property Name="ProductOptionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductID" Type="int" />
+    <Property Name="OptionID" Type="int" />
+  </EntityType>
+  <EntityType Name="products">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductCategory" Type="int" />
+    <Property Name="ProductSKU" Type="varchar" MaxLength="50" />
+    <Property Name="ProductName" Type="varchar" MaxLength="50" />
+    <Property Name="ProductWeight" Type="float" />
+    <Property Name="ProductShortDesc" Type="varchar" MaxLength="100" />
+    <Property Name="ProductLongtDesc" Type="varchar(max)" />
+    <Property Name="ProductThumb" Type="varbinary" MaxLength="1" />
+    <Property Name="ProductStock" Type="int" />
+    <Property Name="ProductUnlimited" Type="tinyint" />
+    <Property Name="ProductPrice" Type="float" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserEmail" Type="varchar" MaxLength="100" />
+    <Property Name="UserPassword" Type="varchar" MaxLength="30" />
+    <Property Name="UserFirstName" Type="varchar" MaxLength="50" />
+    <Property Name="UserLastName" Type="varchar" MaxLength="50" />
+    <Property Name="UserMiddleNAme" Type="varchar" MaxLength="50" />
+    <Property Name="UserRegistrationDate" Type="date" />
+    <Property Name="UserCountry" Type="varchar" MaxLength="20" />
+    <Property Name="UserCity" Type="varchar" MaxLength="50" />
+    <Property Name="UserAddress" Type="varchar" MaxLength="50" />
+    <Property Name="UserZip" Type="numeric" Precision="6" Scale="0" />
+    <Property Name="UserPhone" Type="numeric" Precision="12" Scale="0" />
+  </EntityType>
+  <Association Name="DetailsOrderFK">
+    <End Role="orders" Type="Self.orders" Multiplicity="0..1" />
+    <End Role="orderdetails" Type="Self.orderdetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="orders">
+        <PropertyRef Name="OrderID" />
+      </Principal>
+      <Dependent Role="orderdetails">
+        <PropertyRef Name="DetailsOrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DetailsProductFK">
+    <End Role="products" Type="Self.products" Multiplicity="0..1" />
+    <End Role="orderdetails" Type="Self.orderdetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="orderdetails">
+        <PropertyRef Name="DetailsProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ImageIDFK">
+    <End Role="products" Type="Self.products" Multiplicity="0..1" />
+    <End Role="images" Type="Self.images" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="images">
+        <PropertyRef Name="ImageID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OrdersUsersFK">
+    <End Role="users" Type="Self.users" Multiplicity="0..1" />
+    <End Role="orders" Type="Self.orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="orders">
+        <PropertyRef Name="OrderUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProductCategoriesFK">
+    <End Role="productcategories" Type="Self.productcategories" Multiplicity="0..1" />
+    <End Role="products" Type="Self.products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="productcategories">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="products">
+        <PropertyRef Name="ProductCategory" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProductOptionsOptionsFK">
+    <End Role="options" Type="Self.options" Multiplicity="0..1" />
+    <End Role="productoptions" Type="Self.productoptions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="options">
+        <PropertyRef Name="OptionID" />
+      </Principal>
+      <Dependent Role="productoptions">
+        <PropertyRef Name="OptionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProductOptionsProductsFK">
+    <End Role="products" Type="Self.products" Multiplicity="0..1" />
+    <End Role="productoptions" Type="Self.productoptions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="productoptions">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MarketModelStoreContainer">
+    <EntitySet Name="options" EntityType="Self.options" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="orderdetails" EntityType="Self.orderdetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="orders" EntityType="Self.orders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="productcategories" EntityType="Self.productcategories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="productoptions" EntityType="Self.productoptions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="images" EntityType="Self.images" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [images].[ImageID] AS [ImageID], 
+    [images].[Image] AS [Image]
+    FROM [dbo].[images] AS [images]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="DetailsOrderFK" Association="Self.DetailsOrderFK">
+      <End Role="orders" EntitySet="orders" />
+      <End Role="orderdetails" EntitySet="orderdetails" />
+    </AssociationSet>
+    <AssociationSet Name="DetailsProductFK" Association="Self.DetailsProductFK">
+      <End Role="products" EntitySet="products" />
+      <End Role="orderdetails" EntitySet="orderdetails" />
+    </AssociationSet>
+    <AssociationSet Name="ImageIDFK" Association="Self.ImageIDFK">
+      <End Role="products" EntitySet="products" />
+      <End Role="images" EntitySet="images" />
+    </AssociationSet>
+    <AssociationSet Name="OrdersUsersFK" Association="Self.OrdersUsersFK">
+      <End Role="users" EntitySet="users" />
+      <End Role="orders" EntitySet="orders" />
+    </AssociationSet>
+    <AssociationSet Name="ProductCategoriesFK" Association="Self.ProductCategoriesFK">
+      <End Role="productcategories" EntitySet="productcategories" />
+      <End Role="products" EntitySet="products" />
+    </AssociationSet>
+    <AssociationSet Name="ProductOptionsOptionsFK" Association="Self.ProductOptionsOptionsFK">
+      <End Role="options" EntitySet="options" />
+      <End Role="productoptions" EntitySet="productoptions" />
+    </AssociationSet>
+    <AssociationSet Name="ProductOptionsProductsFK" Association="Self.ProductOptionsProductsFK">
+      <End Role="products" EntitySet="products" />
+      <End Role="productoptions" EntitySet="productoptions" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
