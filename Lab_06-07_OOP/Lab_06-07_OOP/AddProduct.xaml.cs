@@ -5,9 +5,12 @@ using System.Data.Entity;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Diagnostics;
 using System.Windows.Documents;
+using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -25,12 +28,13 @@ namespace Lab_06_07_OOP
         public AddProduct()
         {
             InitializeComponent();
+            Resources.MergedDictionaries.Add(MainWindow.Dictionary);
             InitCategories();
         }
 
         private void ButtonUploadImage_Click(object sender, RoutedEventArgs e)
         {
-            var openFileDialog = new OpenFileDialog {Filter = @"Image files (*.jpg)|*.jpg|PNG files (*.png)|*.png"};
+            var openFileDialog = new OpenFileDialog {Filter = @"Image files (*.jpg,*.png)|*.jpg;*.png"};
             var button = sender as Button;
 
             if (openFileDialog.ShowDialog() == true)

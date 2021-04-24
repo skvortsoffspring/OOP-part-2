@@ -109,10 +109,12 @@
       <DependentUpon>Market.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="ServicesClasses\Convert.cs" />
     <Compile Include="UI\commands.cs" />
     <Compile Include="user.cs">
       <DependentUpon>Market.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\MVVM.cs" />
     <Page Include="AddProduct.xaml" />
     <Page Include="Dictionary1.xaml">
       <SubType>Designer</SubType>
@@ -130,9 +132,13 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Resources\Resources.en-US.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Resources.ru-RU.xaml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="objects\laptop.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

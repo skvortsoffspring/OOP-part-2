@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using Lab_06_07_OOP.UI;
+using Lab_06_07_OOP.ViewModel;
 using Brushes = System.Windows.Media.Brushes;
 using Image = System.Windows.Controls.Image;
 using Path = System.IO.Path;
@@ -19,10 +20,14 @@ namespace Lab_06_07_OOP
     public partial class MainWindow : Window
     {
         public static Entities Market = new Entities();
+        private bool test = true;
+        public static ResourceDictionary Dictionary = new ResourceDictionary();
         public MainWindow()
         {
-            InitializeComponent(); 
-            AddContent(null,null);
+            this.SetLanguageDictionary(null,null);
+            InitializeComponent();
+            DataContext = new MVVM();
+            //AddContent(null,null);
         }
 
         private void AddContent(object sender, RoutedEventArgs e)
@@ -33,7 +38,7 @@ namespace Lab_06_07_OOP
                 Source = new BitmapImage(new Uri(@"D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\img\interface\delete.png", UriKind.Absolute))
             };
 
-            GridContent.Children.Clear();
+            //GridContent.Children.Clear();
         
             var wrapPanel = new WrapPanel();
             wrapPanel.HorizontalAlignment = HorizontalAlignment.Center;
@@ -92,14 +97,14 @@ namespace Lab_06_07_OOP
                 wrapPanel.Children.Add(border);
             }
 
-            GridContent.Children.Add(wrapPanel);
+            //GridContent.Children.Add(wrapPanel);
         }
 
         private void Button_Info_Product_OnClick(object sender, RoutedEventArgs e)
         {
             if (sender is Button button)
             {
-                GridContent.Children.Clear();
+                //GridContent.Children.Clear();
                 var name = button.Name;
                 var grid = new Grid();
                 grid.ShowGridLines = true;
@@ -147,7 +152,7 @@ namespace Lab_06_07_OOP
 
                 grid.Children.Add(label);
                 grid.Children.Add(image);
-                GridContent.Children.Add(grid);
+               // GridContent.Children.Add(grid);
             }
         }
 
@@ -183,5 +188,37 @@ namespace Lab_06_07_OOP
             image.Freeze();
             return image;
         }
+                private void SetLanguageDictionary(object sender, RoutedEventArgs routedEventArgs)
+                {
+                    var lang = "ru-RU";
+        
+                    
+                    // switch (lang)//(Thread.CurrentThread.CurrentCulture.ToString())
+                    // {
+                    //     case "en-US":
+                    //         dict.Source = new Uri("..\\Resources\\Resources.en-US.xaml", UriKind.Relative);
+                    //         break;
+                    //     case "ru-RU":
+                    //         dict.Source = new Uri("..\\Resources\\Resources.ru-RU.xaml", UriKind.Relative);
+                    //         break;
+                    // }
+                    // this.Resources.MergedDictionaries.Add(dict);
+                    switch (test)//(Thread.CurrentThread.CurrentCulture.ToString())
+                    {
+                        case true:
+                            Dictionary.Source = new Uri("..\\Resources\\Resources.en-US.xaml", UriKind.Relative);
+                            test = false;
+                            break;
+                        case false:
+                            Dictionary.Source = new Uri("..\\Resources\\Resources.ru-RU.xaml", UriKind.Relative);
+                            test = true;
+                            break;
+                        default :
+                            Dictionary.Source = new Uri("..\\Resources\\Resources.en-US.xaml", UriKind.Relative);
+                            break;
+                    }
+                    Resources.MergedDictionaries.Add(Dictionary);
+                }
+
     }    
 }

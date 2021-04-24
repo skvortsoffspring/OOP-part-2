@@ -3,51 +3,51 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:local="clr-namespace:Lab_06_07_OOP"
+        xmlns:ui="clr-namespace:Lab_06_07_OOP.UI" xmlns:viewmodel="clr-namespace:Lab_06_07_OOP.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:MVVM}"
         mc:Ignorable="d"
-        Title="AddProduct" Height="670" Width="409">
-    <Grid Background="#FFE6E6E6" Margin="0,0,2,-51.334">
+        Title="{DynamicResource NameWindowAddProduct}" Height="637.5" Width="409">
+
+    <Grid Background="#FFE6E6E6">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="25*"/>
-            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Label Content="ADD PRODUCT" HorizontalAlignment="Left" Height="35" Margin="10,10,0,0" VerticalAlignment="Top" Width="170.667"/>
-        <TextBox x:Name="name" Grid.ColumnSpan="2" MaxLength="50"  TextWrapping="NoWrap"  HorizontalAlignment="Left" Height="20" Margin="20.667,79.719,0,0" VerticalAlignment="Top" Width="359.333" UndoLimit="50"/>
 
-        <Label  Content="*Name:" HorizontalAlignment="Left" Height="26" Margin="20.667,54.002,0,0" VerticalAlignment="Top" Width="240" Foreground="#FF555555" Grid.ColumnSpan="2"/>
+        <Label  Content="{DynamicResource Name}" HorizontalAlignment="Left" Height="26" Margin="17,4,0,0" VerticalAlignment="Top" Width="240" Foreground="#FF555555" />
+        <TextBox x:Name="name"  MaxLength="50"  TextWrapping="NoWrap"  HorizontalAlignment="Left" Height="20" Margin="17,30,0,0" VerticalAlignment="Top" Width="359" UndoLimit="50"/>
 
-        <Label Content="*Short desc:" HorizontalAlignment="Left" Height="26" Margin="20.667,99.719,0,0" VerticalAlignment="Top" Width="240" Foreground="#FF555555" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="shortDesc" Grid.ColumnSpan="2" MaxLength="800"  TextWrapping="Wrap"  HorizontalAlignment="Left" Height="60.667" Margin="20.667,121.381,0,0" VerticalAlignment="Top" Width="359.333" UndoLimit="50"/>
+        <Label Content="{DynamicResource ShortDesc}" HorizontalAlignment="Left" Height="26" Margin="17,50,0,0" VerticalAlignment="Top" Width="240" Foreground="#FF555555"/>
+        <TextBox x:Name="shortDesc"  MaxLength="30"  TextWrapping="Wrap"  HorizontalAlignment="Left" Height="61" Margin="17,71,0,0" VerticalAlignment="Top" Width="359" UndoLimit="50"/>
 
-        <Label Content="*Long desc:" HorizontalAlignment="Left" Height="26" Margin="20.667,182.048,0,0" VerticalAlignment="Top" Width="240" Foreground="#FF555555" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="longDesc" Grid.ColumnSpan="2" MaxLength="1500"  TextWrapping="Wrap"  HorizontalAlignment="Left" Height="60.667" Margin="20.667,205.38,0,0" VerticalAlignment="Top" Width="359.333" UndoLimit="50"/>
+        <Label Content="{DynamicResource LongDesc}" HorizontalAlignment="Left" Height="26" Margin="17,132,0,0" VerticalAlignment="Top" Width="240" Foreground="#FF555555"/>
+        <TextBox x:Name="longDesc" MaxLength="1500"  TextWrapping="Wrap"  HorizontalAlignment="Left" Height="61" Margin="17,155,0,0" VerticalAlignment="Top" Width="359" UndoLimit="50"/>
 
-        <Label Content="*Stock:" HorizontalAlignment="Left" Height="26" Margin="21,356.373,0,0" VerticalAlignment="Top" Width="240" Foreground="#FF555555"/>
-        <TextBox  x:Name="stock" Grid.ColumnSpan="2" MaxLength="50"  TextWrapping="NoWrap"  HorizontalAlignment="Left" Height="20" Margin="21,382.373,0,0" VerticalAlignment="Top" Width="359.333" UndoLimit="50"/>
+        <Label Content="{DynamicResource Stock}" HorizontalAlignment="Left" Height="26" Margin="17,306,0,0" VerticalAlignment="Top" Width="240" Foreground="#FF555555"/>
+        <TextBox x:Name="stock" MaxLength="50"  TextWrapping="NoWrap"  HorizontalAlignment="Left" Height="20" Margin="17,332,0,0" VerticalAlignment="Top" Width="360" UndoLimit="50"/>
 
-        <Label Content="*Product category:" HorizontalAlignment="Left" Height="26" Margin="21,402.373,0,0" VerticalAlignment="Top" Width="240" Foreground="#FF555555"/>
-        <ComboBox x:Name="ProductCategory" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="26" Margin="21,427.042,0,0" VerticalAlignment="Top" Width="359.333"/>
+        <Label Content="{DynamicResource ProductCategory}" HorizontalAlignment="Left" Height="26" Margin="17,352,0,0" VerticalAlignment="Top" Width="240" Foreground="#FF555555"/>
+        <ComboBox x:Name="ProductCategory" HorizontalAlignment="Left" Height="26" Margin="17,377,0,0" VerticalAlignment="Top" Width="359"/>
 
-        <Label x:Name="ErrorMaxSize" Content="File more 1MB" HorizontalAlignment="Left" Height="26" Margin="21,410,0,0" VerticalAlignment="Top" Width="240" Foreground="#FFff0000" Visibility="Hidden"  Grid.ColumnSpan="2"/>
+        <Label x:Name="ErrorMaxSize" Content="File more 1MB" HorizontalAlignment="Left" Height="26" Margin="21,410,0,0" VerticalAlignment="Top" Width="240" Foreground="#FFff0000" Visibility="Hidden"/>
 
-        <Label Content="*Price:" HorizontalAlignment="Left" Height="26" Margin="21,453.042,0,0" VerticalAlignment="Top" Width="240" Foreground="#FF555555"/>
+        <Label Content="{DynamicResource Price}" HorizontalAlignment="Left" Height="26" Margin="17,403,0,0" VerticalAlignment="Top" Width="240" Foreground="#FF555555"/>
 
-        <GroupBox x:Name="Images" Header="Images" Visibility="Visible" HorizontalAlignment="Left" Height="94.224" Margin="122.001,518.033,0,0" VerticalAlignment="Top" Width="257.999" BorderBrush="#FFB9B9B9" Grid.ColumnSpan="2">
+        <TextBox  x:Name="price" MaxLength="50"  TextWrapping="NoWrap"  HorizontalAlignment="Left" Height="20" Margin="17,429,0,0" VerticalAlignment="Top" Width="360" UndoLimit="50"/>
+        <Label Content="{DynamicResource Details}" HorizontalAlignment="Left" Height="26" Margin="17,220,0,0" VerticalAlignment="Top" Width="240" Foreground="#FF555555"/>
+        <RichTextBox x:Name="details" HorizontalAlignment="Left" Height="60" Margin="17,243,0,0" VerticalAlignment="Top" Width="360" UndoLimit="50" VerticalScrollBarVisibility="Auto"/>
+
+        <GroupBox x:Name="Images" Header="{DynamicResource Images}" Visibility="Visible" HorizontalAlignment="Left" Height="94" VerticalAlignment="Top" Margin="118,468,0,0"  Width="260" BorderBrush="#FFB9B9B9">
             <DockPanel LastChildFill="True">
-                <Button x:Name="imageFByteArray" Content="+" Click="ButtonUploadImage_Click" Height="45" Width="45" DockPanel.Dock="Left" VerticalAlignment="Center" FontSize="24" Foreground="#FF555555" Margin="11,0,0,0" />
+                <Button x:Name="imageFByteArray" Content="+" Click="ButtonUploadImage_Click" Height="45" Width="45" DockPanel.Dock="Left" VerticalAlignment="Center" FontSize="24" Foreground="#FF555555" Margin="11,0,0,0"  />
                 <Button x:Name="imageSByteArray" Content="+" Click="ButtonUploadImage_Click" Height="45" Width="45" DockPanel.Dock="Left" VerticalAlignment="Center" FontSize="24" Foreground="#FF555555" Margin="35,0,0,0" HorizontalAlignment="Center" />
                 <Button x:Name="imageTByteArray" Content="+" Click="ButtonUploadImage_Click" Height="45" Width="45" DockPanel.Dock="Left" VerticalAlignment="Center" FontSize="24" Foreground="#FF555555" Margin="15,0,0,0" />
             </DockPanel>
         </GroupBox>
 
-        <GroupBox Header="Preview" HorizontalAlignment="Left" Height="94.224" Margin="21,518.033,0,0" VerticalAlignment="Top" Width="81.666">
-            <Button x:Name="imageThumb" Content="+" Click="ButtonUploadImage_Click" HorizontalAlignment="Left" Height="45"  VerticalAlignment="Center" Width="45" FontSize="24" Foreground="#FF555555" Margin="11.334,13.332,0,12.932"/>
+        <GroupBox Header="{DynamicResource Preview}" HorizontalAlignment="Left" Height="94" Margin="17,468,0,0" VerticalAlignment="Top" Width="82">
+            <Button x:Name="imageThumb" Content="+" Click="ButtonUploadImage_Click" HorizontalAlignment="Left" Height="45"  VerticalAlignment="Center" Width="45" FontSize="24" Foreground="#FF555555" Margin="12,13,0,13"/>
         </GroupBox>
 
-        <TextBox  x:Name="price" Grid.ColumnSpan="2" MaxLength="50"  TextWrapping="NoWrap"  HorizontalAlignment="Left" Height="20" Margin="21,479.042,0,0" VerticalAlignment="Top" Width="359.333" UndoLimit="50"/>
-        <Label Content="*Details:" HorizontalAlignment="Left" Height="26" Margin="20.667,270.048,0,0" VerticalAlignment="Top" Width="240" Foreground="#FF555555"/>
-        <RichTextBox x:Name="details" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="60" Margin="20.667,293.38,0,0" VerticalAlignment="Top" Width="360" UndoLimit="50" VerticalScrollBarVisibility="Auto" Block.LineHeight="2"/>
-        <Button Content="Add" Click="AddProduct_Click" HorizontalAlignment="Right" Height="24"  Width="100" FontSize="14" Foreground="#FF555555" Grid.ColumnSpan="2"  Margin="0,0,19,60" VerticalAlignment="Bottom"/>
+        <Button  Content="{DynamicResource ButtonAddProduct}" Click="AddProduct_Click" HorizontalAlignment="Right" Height="24"  Width="100" FontSize="14" Foreground="#FF555555" Margin="0,570,14,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

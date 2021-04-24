@@ -23,3 +23,5 @@ D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\bin\Debug\EntityFramew
 D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\bin\Debug\EntityFramework.SqlServer.xml
 D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\obj\Debug\Lab_06-07_OOP.csproj.CopyComplete
 D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\bin\Debug\System.Drawing.dll
+D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\obj\Debug\Resources\Resources.en-US.baml
+D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\obj\Debug\Resources\Resources.ru-RU.baml

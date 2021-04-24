@@ -1,0 +1,29 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <!-- Main Window -->
+        <!-- First grid -->
+        <system:String x:Key="MyAccount">Мой аккаунт ▽</system:String>
+        <system:String x:Key="AddProduct">Добавить продукт</system:String>
+        <!-- First row grid -->
+        <system:String x:Key="Home">ГЛАВНАЯ</system:String>
+        <system:String x:Key="Shop">ТОВАРЫ</system:String>
+        <system:String x:Key="Warranty">ГАРАНТИЯ И ВОЗВРАТ</system:String>
+        <!-- First row grid -->
+        <system:String x:Key="Categories">КАТЕГОРИИ</system:String>
+    <!-- Add/Create product -->
+        <system:String x:Key="NameWindowAddProduct">Добавить продукт</system:String>
+        <system:String x:Key="Name">*Имя:</system:String>
+        <system:String x:Key="ShortDesc">*Короткое описание:</system:String>
+        <system:String x:Key="LongDesc">*Описание:</system:String>
+        <system:String x:Key="Stock">*Количество:</system:String>
+        <system:String x:Key="Details">*Характеристики:</system:String>
+        <system:String x:Key="ProductCategory">*Категория продукта:</system:String>
+        <system:String x:Key="Price">*Цена:</system:String>
+        <system:String x:Key="ButtonAddProduct">Добавить</system:String>
+        <!-- IMAGES -->
+        <system:String x:Key="Preview">Основная</system:String>
+        <system:String x:Key="Images">Картинки в просмотре товара</system:String>
+    
+
+</ResourceDictionary>

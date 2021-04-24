@@ -9,7 +9,9 @@
 
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Media.Imaging;
 using Lab_06_07_OOP.Annotations;
+using Lab_06_07_OOP.ServicesClasses;
 
 namespace Lab_06_07_OOP
 {
@@ -18,6 +20,11 @@ namespace Lab_06_07_OOP
     
     public partial class product
     {
+        private BitmapImage productThumbBitmapImage;
+        private BitmapImage productImageFBitmapImage;
+        private BitmapImage productImageSBitmapImage;
+        private BitmapImage productImageTBitmapImage;
+        
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public product()
         {
@@ -33,12 +40,33 @@ namespace Lab_06_07_OOP
         public string ProductLongDesc { get; set; }
         public string ProductDetails { get; set; }
         public byte[] ProductThumb { get; set; }
+
+        public BitmapImage ProductThumbBitmapImage
+        {
+            get { return  ServicesConvert.BitmapToImage(ProductThumb); }
+        }
+        public BitmapImage ProductImageFBitmapImage
+        {
+            get { return  ServicesConvert.BitmapToImage(ProductImageF); }
+        }
+        public BitmapImage ProductImageSBitmapImage
+        {
+            get { return  ServicesConvert.BitmapToImage(ProductImageS); }
+        }
+        public BitmapImage ProductImageTBitmapImage
+        {
+            get { return  ServicesConvert.BitmapToImage(ProductImageT); }
+        }
         public byte[] ProductImageF { get; set; }
         public byte[] ProductImageS { get; set; }
         public byte[] ProductImageT { get; set; }
         public Nullable<int> ProductStock { get; set; }
         public Nullable<double> ProductPrice { get; set; }
-    
+        public string GetProductPrice
+        {
+            get {  return "Price: " + ProductPrice + "$"; }
+        }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<orderdetail> orderdetails { get; set; }
         public virtual productcategory productcategory1 { get; set; }
