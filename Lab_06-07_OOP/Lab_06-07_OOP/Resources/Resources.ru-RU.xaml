@@ -19,11 +19,12 @@
         <system:String x:Key="Stock">*Количество:</system:String>
         <system:String x:Key="Details">*Характеристики:</system:String>
         <system:String x:Key="ProductCategory">*Категория продукта:</system:String>
+        <system:String x:Key="ProductSubCategory">*Подкатегория продукта:</system:String>
         <system:String x:Key="Price">*Цена:</system:String>
         <system:String x:Key="ButtonAddProduct">Добавить</system:String>
         <!-- IMAGES -->
-        <system:String x:Key="Preview">Основная</system:String>
-        <system:String x:Key="Images">Картинки в просмотре товара</system:String>
+        <system:String x:Key="Preview">Предпросмотр</system:String>
+        <system:String x:Key="Images">Изображения</system:String>
     
 
 </ResourceDictionary>

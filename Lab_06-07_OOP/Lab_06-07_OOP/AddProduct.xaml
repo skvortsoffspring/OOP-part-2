@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:ui="clr-namespace:Lab_06_07_OOP.UI" xmlns:viewmodel="clr-namespace:Lab_06_07_OOP.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:MVVM}"
+        xmlns:ui="clr-namespace:Lab_06_07_OOP.UI" xmlns:viewmodel="clr-namespace:Lab_06_07_OOP.mvvm" d:DataContext="{d:DesignInstance Type=viewmodel:ViewModel}"
         mc:Ignorable="d"
         Title="{DynamicResource NameWindowAddProduct}" Height="637.5" Width="409">
 
@@ -25,7 +25,8 @@
         <TextBox x:Name="stock" MaxLength="50"  TextWrapping="NoWrap"  HorizontalAlignment="Left" Height="20" Margin="17,332,0,0" VerticalAlignment="Top" Width="360" UndoLimit="50"/>
 
         <Label Content="{DynamicResource ProductCategory}" HorizontalAlignment="Left" Height="26" Margin="17,352,0,0" VerticalAlignment="Top" Width="240" Foreground="#FF555555"/>
-        <ComboBox x:Name="ProductCategory" HorizontalAlignment="Left" Height="26" Margin="17,377,0,0" VerticalAlignment="Top" Width="359"/>
+        <ComboBox x:Name="ProductCategory" SelectedIndex="0" HorizontalAlignment="Left" Height="26" Margin="17,377,0,0" VerticalAlignment="Top" Width="328"/>
+        <Button Width="26" Height="26" Foreground="#FF555555" HorizontalAlignment="Left" Margin="350,377,0,0" VerticalAlignment="Top" Content="+" FontSize="18" Padding="0"></Button>
 
         <Label x:Name="ErrorMaxSize" Content="File more 1MB" HorizontalAlignment="Left" Height="26" Margin="21,410,0,0" VerticalAlignment="Top" Width="240" Foreground="#FFff0000" Visibility="Hidden"/>
 

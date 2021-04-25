@@ -1,11 +1,12 @@
-﻿using System.IO;
+﻿using System.Drawing;
+using System.IO;
 using System.Windows.Media.Imaging;
 
 namespace Lab_06_07_OOP.ServicesClasses
 {
     public static class ServicesConvert
     {
-        public static BitmapImage BitmapToImage(byte[] imageData)
+        public static BitmapImage ByteToBitmapImage(byte[] imageData)
         {
             if (imageData == null || imageData.Length == 0) return null;
             var image = new BitmapImage();
@@ -21,6 +22,12 @@ namespace Lab_06_07_OOP.ServicesClasses
             }
             image.Freeze();
             return image;
+        }
+        
+        public static byte[] ImageToByte(Bitmap bitmap)
+        {
+            ImageConverter converter = new ImageConverter();
+            return (byte[])converter.ConvertTo(bitmap, typeof(byte[]));
         }
     }
 }

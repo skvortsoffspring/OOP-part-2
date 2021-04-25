@@ -19,6 +19,7 @@
         <system:String x:Key="Stock">*Stock:</system:String>
         <system:String x:Key="Details">*Details:</system:String>
         <system:String x:Key="ProductCategory">*Product category:</system:String>
+        <system:String x:Key="ProductSubCategory">*Product subcategory:</system:String>
         <system:String x:Key="Price">*Price:</system:String>
         <system:String x:Key="ButtonAddProduct">Add</system:String>
         <!-- IMAGES -->

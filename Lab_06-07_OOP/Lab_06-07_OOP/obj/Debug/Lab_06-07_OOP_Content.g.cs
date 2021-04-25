@@ -8,6 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("img/interface/1.cur")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("img/interface/cursor-clip-art-54.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("img/interface/delete.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("market.context.tt")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("market.tt")]
