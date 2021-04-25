@@ -24,7 +24,7 @@ namespace Lab_06_07_OOP
         private byte[] _imageFByteArray = null;
         private byte[] _imageSByteArray = null;
         private byte[] _imageTByteArray = null;
-        private product product = new product();
+        private product _product = new product();
         public AddProduct()
         {
             InitializeComponent();
@@ -84,17 +84,17 @@ namespace Lab_06_07_OOP
         private void AddProduct_Click(object sender, RoutedEventArgs e)
         {
             //var image = new image();
-            product.ProductName = name.Text;
-            product.ProductShortDesc = shortDesc.Text;
-            product.ProductLongDesc = longDesc.Text;
-            product.ProductPrice = int.Parse(price.Text);
-            product.ProductStock = int.Parse(stock.Text);
-            product.ProductThumb = _thumbByteArray;
-            product.ProductImageF = _imageFByteArray;
-            product.ProductImageS = _imageSByteArray;
-            product.ProductImageT = _imageTByteArray;
-            product.ProductCategory = MainWindow.Market.productcategories.Where(p=>p.CategoryName == ProductCategory.Text).First().CategoryID;;
-            MainWindow.Market.products.Add(product);
+            _product.ProductName = name.Text;
+            _product.ProductShortDesc = shortDesc.Text;
+            _product.ProductLongDesc = longDesc.Text;
+            _product.ProductPrice = int.Parse(price.Text);
+            _product.ProductStock = int.Parse(stock.Text);
+            _product.ProductThumb = _thumbByteArray;
+            _product.ProductImageF = _imageFByteArray;
+            _product.ProductImageS = _imageSByteArray;
+            _product.ProductImageT = _imageTByteArray;
+            //product.ProductCategory = MainWindow.Market.productcategories.Where(p=>p.CategoryName == ProductCategory.Text).First().CategoryID;
+            MainWindow.Market.products.Add(_product);
             MainWindow.Market.SaveChanges();
             
             var count = MainWindow.Market.products.Count();

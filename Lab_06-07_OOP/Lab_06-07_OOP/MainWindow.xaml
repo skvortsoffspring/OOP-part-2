@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ui="clr-namespace:Lab_06_07_OOP.UI"
         xmlns:add="clr-namespace:Lab_06_07_OOP" 
-        xmlns:viewmodel="clr-namespace:Lab_06_07_OOP.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:MVVM}"
+        xmlns:viewmodel="clr-namespace:Lab_06_07_OOP.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:Mvvm}"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="1160" MinWidth="1060" FontSize="18" FontFamily="Times New Roman" VerticalAlignment="Bottom" HorizontalAlignment="Right" MinHeight="400">
+
     <Window.Resources>
         <ControlTemplate x:Key="LabelPrice" TargetType="Label">
             <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="1"
@@ -39,8 +40,8 @@
 
                     <Image Grid.Row="0" Source="{Binding NotifyOnSourceUpdated=True, Path=ProductThumbBitmapImage}"/>
                     <Label Grid.Row="1" Content="{Binding Path=ProductShortDesc}" BorderBrush="Gray" BorderThickness="0, 1 ,0,1" FontSize="12"/>
-                    <Label Grid.Row="2" HorizontalAlignment="Right" FontSize="14" Content="{Binding Path= GetProductPrice}"></Label>
-                    <Button Grid.Row="3" Content="{Binding Path=ProductName}" Command="ui:WindowCommands.Info"/>
+                    <Label Grid.Row="2" HorizontalAlignment="Right" FontSize="14" Content="{Binding Path=ProductPrice}"></Label>
+                    <Button Grid.Row="3" Content="{Binding Path=ProductName}"/>
                     <Label Grid.Row="3" Content="{Binding Path=ProductID }"/>
                 </Grid>
             </Border>
@@ -50,19 +51,16 @@
 
     </Window.Resources>
     <Window.CommandBindings>
-        <CommandBinding Command="ui:WindowCommands.Info" Executed="Button_Info_Product_OnClick" />
-        <CommandBinding Command="ui:WindowCommands.Add"  Executed="Button_Add_Product_OnClick"  />
-        <CommandBinding Command="ui:WindowCommands.Del"  Executed="Button_Del_Product_OnClick"  />
-        <CommandBinding Command="ui:WindowCommands.ChoseLang"  Executed="SetLanguageDictionary"  />
+        <!-- <CommandBinding Command="ui:WindowCommands.Info" Executed="Button_Info_Product_OnClick" /> -->
     </Window.CommandBindings>
-    <Grid Grid.IsSharedSizeScope="True" Margin="0,0,0,0">
+    <Grid Grid.IsSharedSizeScope="True" ShowGridLines="true">
 
         <!-- split into lines main menu-->
         <Grid.RowDefinitions>
-            <RowDefinition Height="20px"></RowDefinition>
-            <RowDefinition Height="55px"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="55"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="40px"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
         </Grid.RowDefinitions>
 
         <!-- menu account -->
@@ -76,7 +74,7 @@
             
             <Image Grid.Column="1"  VerticalAlignment="Center" Source="img/interface/user.png" />
             <Button Grid.Column="2" Content="{DynamicResource MyAccount}" FontSize="15" Background="White" BorderBrush="White"/>
-            <Button Grid.Column="3" x:Name="ButtonAddProduct" Command="ui:WindowCommands.Add" Content="{DynamicResource AddProduct}" FontSize="14"/>
+            <Button Grid.Column="3" x:Name="ButtonAddProduct" Content="{DynamicResource AddProduct}" FontSize="14"/>
         </Grid>
 
         <!-- navi -->
@@ -90,7 +88,7 @@
             </Grid.ColumnDefinitions>
 
             <Button Grid.Column="0" Content="{DynamicResource Home}" Command="ui:WindowCommands.ChoseLang" Background="#FF166FB0" Foreground="White" Cursor="Hand" BorderBrush="White" RenderTransformOrigin="0.5,0.5" ></Button>
-            <Button Grid.Column="1" Content="{DynamicResource Shop}" Background="#FF166FB0" Foreground="White" Cursor="Hand" BorderBrush="White" Click="AddContent"/>
+            <Button Grid.Column="1" Content="{DynamicResource Shop}" Background="#FF166FB0" Foreground="White" Cursor="Hand" BorderBrush="White"/>
             <Button Grid.Column="2" Content="{DynamicResource Warranty}" Margin="0,0,0.001,0" Background="#FF166FB0" Foreground="White" Cursor="Hand" BorderBrush="White"  />
             <Grid   Grid.Column="3" Background="#FF166FB0" Height="53">
                 <TextBlock Text="" x:Name="outout"></TextBlock>
@@ -110,16 +108,17 @@
         </Grid>
 
         <!-- window contents -->
-        <Grid Grid.Row="2" Margin="0,10,0,0">
+        <Grid Grid.Row="2" ShowGridLines="True" Margin="0,10,0,0">
 
             <!-- category -->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="240"></ColumnDefinition>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition MinWidth="240" Width="*"/>
+                <ColumnDefinition x:Name="ViewDetailProduct" Width="400"/>
                 <ColumnDefinition Width="190"/>
             </Grid.ColumnDefinitions>
             
-            <ListBox Grid.Column="0" ItemsSource="{Binding ProductCategories}" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  ScrollViewer.VerticalScrollBarVisibility="Hidden">
+            <ListBox Grid.Column="0" x:Name="ProductCategories" ItemsSource="{Binding ProductCategories, UpdateSourceTrigger=PropertyChanged}" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  ScrollViewer.VerticalScrollBarVisibility="Hidden">
                 <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Expander MinHeight="30" Width="220" Padding="5" VerticalAlignment="Center" BorderThickness="1" Background="#FF166FB0" Header="{Binding Path=CategoryName}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White">
@@ -129,7 +128,7 @@
                 </ListBox.ItemTemplate>
             </ListBox>
             
-            <ListBox Grid.Row="2" Grid.Column="1" ItemTemplate="{StaticResource ProductTemplate}" ItemsSource="{Binding Products}" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  ScrollViewer.VerticalScrollBarVisibility="Hidden">
+            <ListBox Grid.Column="1" ItemTemplate="{StaticResource ProductTemplate}" ItemsSource="{Binding Products, UpdateSourceTrigger=PropertyChanged }" SelectedItem="{Binding SelectedProduct}" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  ScrollViewer.VerticalScrollBarVisibility="Hidden">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel HorizontalAlignment="Center"/>
@@ -137,10 +136,89 @@
                 </ListBox.ItemsPanel>
             </ListBox>
 
+            <ScrollViewer Grid.Column="2"  HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden" FontSize="14">
+            <Grid>
+                <Grid.ColumnDefinitions > 
+                    <ColumnDefinition  DataContext="{Binding SelectedProduct}"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                
+            <StackPanel  DataContext="{Binding SelectedProduct}">
+                <Label  Content="{DynamicResource Name}" HorizontalAlignment="Left" Height="26" Width="240" Foreground="#FF555555" />
+                <TextBox  x:Name="name" Text="{Binding ProductName, UpdateSourceTrigger=PropertyChanged}"  MaxLength="50"  TextWrapping="NoWrap"  HorizontalAlignment="Left" Height="20"  Width="359" UndoLimit="50"/>
+            
+                <Label Content="{DynamicResource ShortDesc}" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="240" Foreground="#FF555555"/>
+                <TextBox Grid.Column="0"  x:Name="shortDesc" Text="{Binding ProductShortDesc, UpdateSourceTrigger=PropertyChanged}"  MaxLength="30"  TextWrapping="Wrap"  HorizontalAlignment="Left" Height="61" VerticalAlignment="Top" Width="359" UndoLimit="50"/>
 
+                <Label Content="{DynamicResource LongDesc}" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="240" Foreground="#FF555555"/>
+                <TextBox Grid.Column="0"  x:Name="longDesc" Text="{Binding ProductLongDesc, UpdateSourceTrigger=PropertyChanged}"  MaxLength="1500"  TextWrapping="Wrap"  HorizontalAlignment="Left" Height="61" VerticalAlignment="Top" Width="359" UndoLimit="50"/>
 
-        </Grid>
+                <Label Content="{DynamicResource Stock}" HorizontalAlignment="Left" Height="26"  VerticalAlignment="Top" Width="240" Foreground="#FF555555"/>
+                <TextBox Grid.Column="0"  x:Name="stock" Text="{Binding ProductStock, UpdateSourceTrigger=PropertyChanged}" MaxLength="50"  TextWrapping="NoWrap"  HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="360" UndoLimit="50"/>
+
+                
+                <Label Content="{DynamicResource ProductCategory}" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="240" Foreground="#FF555555"/>
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox  SelectedIndex="{Binding ProductCategory, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding ProductCategories, FallbackValue=1, TargetNullValue=1}" IsSynchronizedWithCurrentItem="True"   HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="328">
+                        <ComboBox.ItemTemplate >
+                            <DataTemplate>
+                                <Label Height="26"  FontSize="12" Width="328" Content="{Binding CategoryName}" Padding="0"></Label>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                
+                    <Button Width="26" Height="26" Foreground="#FF555555" HorizontalAlignment="Left"  VerticalAlignment="Top" Content="+" FontSize="18" Padding="0"></Button>
+                </StackPanel>
+                
+                <Label x:Name="ErrorMaxSize" Content="File more 1MB" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="240" Foreground="#FFff0000" Visibility="Hidden"/>
+
+                <Label Content="{DynamicResource Price}" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="240" Foreground="#FF555555"/>
+                <TextBox  x:Name="price" Text="{Binding ProductPrice, UpdateSourceTrigger=PropertyChanged}"  MaxLength="50"  TextWrapping="NoWrap"  HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="360" UndoLimit="50"/>
+                
+                <Label Content="{DynamicResource Details}" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="240" Foreground="#FF555555"/>
+                <TextBox x:Name="details" Text="{Binding ProductDetails, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="60" VerticalAlignment="Top" Width="360" UndoLimit="50" VerticalScrollBarVisibility="Auto"/>
+          
+                <GroupBox x:Name="Images" Header="{DynamicResource Images}" Visibility="Visible" HorizontalAlignment="Left" Height="94" VerticalAlignment="Top" Width="260" BorderBrush="#FFB9B9B9">
+                    <DockPanel LastChildFill="True">
+                        <Button x:Name="imageFByteArray" Content="+" Height="45" Width="45" DockPanel.Dock="Left" VerticalAlignment="Center" FontSize="24" Foreground="#FF555555" Margin="15,0,0,0" >
+                            <Button.Background>
+                                <ImageBrush  ImageSource="{Binding ProductImageFBitmapImage }"></ImageBrush>
+                            </Button.Background>
+                        </Button>
+                        <Button x:Name="imageSByteArray" Content="+" Height="45" Width="45" DockPanel.Dock="Left" VerticalAlignment="Center" FontSize="24" Foreground="#FF555555" Margin="15,0,0,0" >
+                            <Button.Background>
+                                <ImageBrush ImageSource="{Binding ProductImageSBitmapImage }"></ImageBrush>
+                            </Button.Background>
+                        </Button>
+                        <Button x:Name="imageTByteArray" Content="+" Height="45" Width="45" DockPanel.Dock="Left" VerticalAlignment="Center" FontSize="24" Foreground="#FF555555" Margin="15,0,0,0" >
+                            <Button.Background>
+                                <ImageBrush ImageSource="{Binding ProductImageTBitmapImage }"></ImageBrush>
+                            </Button.Background>
+                        </Button>
+                    </DockPanel>
+                </GroupBox>
+
+                <GroupBox Header="{DynamicResource Preview}" HorizontalAlignment="Left" Height="94" Margin="17,468,0,0" VerticalAlignment="Top" Width="82">
+                    <Button x:Name="imageThumb" Content="+" HorizontalAlignment="Center" Height="45"  VerticalAlignment="Center" Width="45" FontSize="24" Foreground="#FF555555">
+                        <Button.Background>
+                            <ImageBrush ImageSource="{Binding ProductThumbBitmapImage }"></ImageBrush>
+                        </Button.Background>
+                    </Button>
+                </GroupBox>
+           
+                
+               
+            </StackPanel>
+                <StackPanel Grid.Row="1" VerticalAlignment="Bottom" Orientation="Horizontal">
+                    <Button Padding="10" Command="{Binding Path=AddCommand}">+</Button>
+                </StackPanel>
+            </Grid>
+                
+            </ScrollViewer>
     </Grid>
-
+    </Grid>
 
 </Window>

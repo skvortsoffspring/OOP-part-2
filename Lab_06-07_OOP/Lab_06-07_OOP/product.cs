@@ -8,6 +8,7 @@
 //------------------------------------------------------------------------------
 
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Media.Imaging;
 using Lab_06_07_OOP.Annotations;
@@ -18,13 +19,23 @@ namespace Lab_06_07_OOP
     using System;
     using System.Collections.Generic;
     
-    public partial class product
+    public partial class product : INotifyPropertyChanged
     {
         private BitmapImage productThumbBitmapImage;
         private BitmapImage productImageFBitmapImage;
         private BitmapImage productImageSBitmapImage;
         private BitmapImage productImageTBitmapImage;
-        
+        private int? _productCategory;
+        private string _productName;
+        private int? _productWeight;
+        private string _productShortDesc;
+        private string _productLongDesc;
+        private string _productDetails;
+        private int? _productStock;
+        private double? _productPrice;
+            
+        public IEnumerable<productcategory> ProductCategories { get; set; } = MainWindow.Market.productcategories.ToList();
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public product()
         {
@@ -33,12 +44,67 @@ namespace Lab_06_07_OOP
         }
     
         public int ProductID { get; set; }
-        public Nullable<int> ProductCategory { get; set; }
-        public string ProductName { get; set; }
-        public Nullable<int> ProductWeight { get; set; }
-        public string ProductShortDesc { get; set; }
-        public string ProductLongDesc { get; set; }
-        public string ProductDetails { get; set; }
+
+        public Nullable<int> ProductCategory
+        {
+            get => _productCategory;
+            set
+            {
+                _productCategory = value;
+                OnPropertyChanged("ProductCategory");
+            }
+        }
+
+        public string ProductName
+        {
+            get => _productName;
+            set
+            {
+                _productName = value;
+                OnPropertyChanged("ProductName");
+            }
+        }
+
+        public Nullable<int> ProductWeight
+        {
+            get => _productWeight;
+            set
+            {
+                _productWeight = value;
+                OnPropertyChanged("ProductWeight");
+            }
+            
+        }
+
+        public string ProductShortDesc
+        {
+            get => _productShortDesc;
+            set { 
+                _productShortDesc = value; 
+                OnPropertyChanged("ProductShortDesc"); 
+            }
+        }
+
+        public string ProductLongDesc
+        {
+            get => _productLongDesc;
+            set
+            {
+                _productLongDesc = value;  
+                OnPropertyChanged("ProductLongDesc");
+            }
+        }
+
+        public string ProductDetails
+        {
+            get => _productDetails;
+            set
+            { 
+                _productDetails = value;
+                OnPropertyChanged("ProductDetails");
+            } 
+        }
+
         public byte[] ProductThumb { get; set; }
 
         public BitmapImage ProductThumbBitmapImage
@@ -60,11 +126,27 @@ namespace Lab_06_07_OOP
         public byte[] ProductImageF { get; set; }
         public byte[] ProductImageS { get; set; }
         public byte[] ProductImageT { get; set; }
-        public Nullable<int> ProductStock { get; set; }
-        public Nullable<double> ProductPrice { get; set; }
-        public string GetProductPrice
+
+        public Nullable<int> ProductStock
         {
-            get {  return "Price: " + ProductPrice + "$"; }
+            get => _productStock;
+            set
+            {
+                _productStock = value;
+                OnPropertyChanged("ProductStock");
+            }
+        }
+
+        public Nullable<double> ProductPrice
+        {
+            get => _productPrice;
+            set
+            {
+
+                _productPrice = value;
+                OnPropertyChanged("ProductPrice");
+
+            }
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -72,5 +154,11 @@ namespace Lab_06_07_OOP
         public virtual productcategory productcategory1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<productoption> productoptions { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

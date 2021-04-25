@@ -110,16 +110,13 @@
     </Compile>
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ServicesClasses\Convert.cs" />
-    <Compile Include="UI\commands.cs" />
+    <Compile Include="UI\Commands.cs" />
+    <Compile Include="UI\ViewModelCommands.cs" />
     <Compile Include="user.cs">
       <DependentUpon>Market.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\MVVM.cs" />
     <Page Include="AddProduct.xaml" />
-    <Page Include="Dictionary1.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
