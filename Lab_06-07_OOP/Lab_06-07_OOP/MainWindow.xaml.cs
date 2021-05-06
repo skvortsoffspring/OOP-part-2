@@ -1,16 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Resources;
 using Lab_06_07_OOP.UI;
 using Lab_06_07_OOP.mvvm;
+using Lab_06_07_OOP.Pages;
+using MaterialDesignThemes.Wpf;
 using Microsoft.Win32;
 using Brushes = System.Windows.Media.Brushes;
 using Image = System.Windows.Controls.Image;
@@ -26,23 +32,35 @@ namespace Lab_06_07_OOP
         public static Entities Market = new();
         public static ViewModel ViewModel = new();
         private bool _test = true;
-        public static ResourceDictionary Dictionary = new ResourceDictionary();
+        private ResourceDictionary resourceDict;
+        public static ResourceDictionary Dictionary = new();
         public MainWindow()
         {
             InitializeComponent();
-            
             DataContext = ViewModel;
+            Market.products.Load();
+            Market.productcategories.Load();
+            Market.productsubcategories.Load();
             SetLanguageDictionary(null,null);
 
             Closed += (sender, args) =>
             {
-                var temp = Market.products.Local;
                 Market.SaveChanges();
             };
-            /*Cursor paintBrush = new Cursor(
-                Application.GetResourceStream(new Uri(@"D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\img\interface\1.cur", UriKind.Absolute)).Stream
-            );*/
 
+            List<string> styles = new List<string> { "Blue", "Dark" };
+            StyleBox.SelectionChanged += ThemeChange;
+            StyleBox.ItemsSource = styles;
+            StyleBox.SelectedItem = "Blue";
+        }
+ 
+        private void ThemeChange(object sender, SelectionChangedEventArgs e)
+        {
+            string style = StyleBox.SelectedItem as string;
+            var uri = new Uri("Resources/" +style + ".xaml", UriKind.Relative);
+            if (resourceDict != null) Application.Current.Resources.Remove(resourceDict);
+            resourceDict = Application.LoadComponent(uri) as ResourceDictionary;
+            Application.Current.Resources.MergedDictionaries.Add(resourceDict);
         }
         private void SetLanguageDictionary(object sender, RoutedEventArgs routedEventArgs)
         {
@@ -76,6 +94,12 @@ namespace Lab_06_07_OOP
             Resources.MergedDictionaries.Add(Dictionary);
                     
             //QuantityProduct.Content = "Products: " + Market.products.Count();
+        }
+
+
+        private void ShowFormLogin(object sender, RoutedEventArgs e)
+        {
+            Logging.Visibility = Visibility.Visible;
         }
     }    
 }

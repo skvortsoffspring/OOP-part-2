@@ -1,14 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="MarketModelStoreContainer" CdmEntityContainer="Entities">
-    <EntitySetMapping Name="options">
-      <EntityTypeMapping TypeName="MarketModel.option">
-        <MappingFragment StoreEntitySet="options">
-          <ScalarProperty Name="OptionID" ColumnName="OptionID" />
-          <ScalarProperty Name="OptionName" ColumnName="OptionName" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="orderdetails">
       <EntityTypeMapping TypeName="MarketModel.orderdetail">
         <MappingFragment StoreEntitySet="orderdetails">
@@ -38,15 +30,7 @@
         <MappingFragment StoreEntitySet="productcategories">
           <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
           <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="productoptions">
-      <EntityTypeMapping TypeName="MarketModel.productoption">
-        <MappingFragment StoreEntitySet="productoptions">
-          <ScalarProperty Name="ProductOptionID" ColumnName="ProductOptionID" />
-          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-          <ScalarProperty Name="OptionID" ColumnName="OptionID" />
+          <ScalarProperty Name="CategoryImage" ColumnName="CategoryImage" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -55,8 +39,8 @@
         <MappingFragment StoreEntitySet="products">
           <ScalarProperty Name="ProductID" ColumnName="ProductID" />
           <ScalarProperty Name="ProductCategory" ColumnName="ProductCategory" />
+          <ScalarProperty Name="ProductSubcategory" ColumnName="ProductSubcategory" />
           <ScalarProperty Name="ProductName" ColumnName="ProductName" />
-          <ScalarProperty Name="ProductWeight" ColumnName="ProductWeight" />
           <ScalarProperty Name="ProductShortDesc" ColumnName="ProductShortDesc" />
           <ScalarProperty Name="ProductLongDesc" ColumnName="ProductLongDesc" />
           <ScalarProperty Name="ProductDetails" ColumnName="ProductDetails" />
@@ -66,6 +50,15 @@
           <ScalarProperty Name="ProductImageT" ColumnName="ProductImageT" />
           <ScalarProperty Name="ProductStock" ColumnName="ProductStock" />
           <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="productsubcategories">
+      <EntityTypeMapping TypeName="MarketModel.productsubcategory">
+        <MappingFragment StoreEntitySet="productsubcategories">
+          <ScalarProperty Name="SubcategoryID" ColumnName="SubcategoryID" />
+          <ScalarProperty Name="SubcategoryCategoryID" ColumnName="SubcategoryCategoryID" />
+          <ScalarProperty Name="SubcategoryName" ColumnName="SubcategoryName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

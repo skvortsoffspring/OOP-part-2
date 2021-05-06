@@ -1,0 +1,46 @@
+﻿<Page x:Class="Lab_06_07_OOP.Pages.PageHome"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:Lab_06_07_OOP.Pages"
+      xmlns:app="clr-namespace:Lab_06_07_OOP"
+      mc:Ignorable="d"
+      Title="Home">
+    <Grid Margin="5">
+        <StackPanel Orientation="Vertical">
+            <Label Content="HOME" FontSize="32" Margin="0,0,0,10">
+                <Label.Background>
+                    <ImageBrush ImageSource="D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\img\interface\square.png" TileMode="Tile"
+                                ViewportUnits="Absolute" Viewport="0 0 5 5"/>
+                </Label.Background>
+            </Label>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Image HorizontalAlignment="Center" VerticalAlignment="Center" Source="D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\img\interface\laptop.jpg"></Image>
+                <StackPanel>
+                    <TextBlock 
+                        FontStyle="Italic"
+                        FontWeight="Bold"
+                        Padding="10" 
+                        Height="Auto" 
+                        TextWrapping="Wrap"
+                        Margin="20" 
+                        FontSize="18" 
+                        OpacityMask="White" 
+                        Text="Our computer equipment and peripherals store offers a wide range of models from leading brands for professionals. &#x0a;&#x0a;All products are licensed and sold with an official manufacturer's warranty."
+                        Opacity="0.6">
+                        <TextBlock.Background>
+                            <SolidColorBrush Color="White"/>
+                        </TextBlock.Background>
+                    </TextBlock>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Page>

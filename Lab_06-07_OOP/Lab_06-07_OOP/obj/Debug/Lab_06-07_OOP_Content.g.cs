@@ -8,19 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("img/interface/1.cur")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("img/interface/cursor-clip-art-54.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("img/interface/delete.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("market.context.tt")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("market.tt")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("img/laptop/dell/e.jpg")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("img/laptop/dell/e6440-1.jpg")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("img/laptop/dell/e6440-2.jpg")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("img/laptop/dell/e6440-3.jpg")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("img/laptop/dell/e6440/e6440-1.jpg")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("img/laptop/dell/e6440/e6440-2.jpg")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("img/laptop/dell/e6440/e6440-3.jpg")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("img/laptop/dell/e6440/preview.jpg")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("img/laptop/dell/preview.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("img/interface/laptop.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("img/interface/square.png")]
 
 

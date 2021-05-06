@@ -3,7 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Lab_06_07_OOP"
              StartupUri="MainWindow.xaml">
-    <Application.Resources>
+             <!--StartupUri="MainWindow.xaml">-->
 
+    <Application.Resources>
+        <ResourceDictionary Source="Resources/OverrideStyles.xaml"></ResourceDictionary>
     </Application.Resources>
+
 </Application>

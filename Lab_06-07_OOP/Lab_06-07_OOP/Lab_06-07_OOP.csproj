@@ -81,54 +81,67 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AddProduct.xaml.cs">
-      <DependentUpon>AddProduct.xaml</DependentUpon>
+    <Compile Include="ForLab8.xaml.cs">
+      <DependentUpon>ForLab8.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Market.Context.cs">
+    <Compile Include="Loging.xaml.cs">
+      <DependentUpon>Loging.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\comment.cs" />
+    <Compile Include="Models\Market.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Market.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Market.cs">
+    <Compile Include="Models\Market.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Market.tt</DependentUpon>
     </Compile>
-    <Compile Include="Market.Designer.cs">
+    <Compile Include="Models\Market1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Market.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="option.cs">
       <DependentUpon>Market.tt</DependentUpon>
     </Compile>
-    <Compile Include="order.cs">
+    <Compile Include="Models\order.cs">
       <DependentUpon>Market.tt</DependentUpon>
     </Compile>
-    <Compile Include="orderdetail.cs">
+    <Compile Include="Models\orderdetail.cs">
       <DependentUpon>Market.tt</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Home.xaml.cs">
-      <DependentUpon>Home.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="product.cs">
+    <Compile Include="Models\product.cs">
       <DependentUpon>Market.tt</DependentUpon>
     </Compile>
-    <Compile Include="productcategory.cs">
+    <Compile Include="Models\productcategory.cs">
       <DependentUpon>Market.tt</DependentUpon>
     </Compile>
-    <Compile Include="productoption.cs">
+    <Compile Include="Models\productsubcategory.cs">
       <DependentUpon>Market.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\user.cs">
+      <DependentUpon>Market.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PageHome.xaml.cs">
+      <DependentUpon>PageHome.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PageProducts.xaml.cs">
+      <DependentUpon>PageProducts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PageShop.xaml.cs">
+      <DependentUpon>PageShop.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PageWaranty.xaml.cs">
+      <DependentUpon>PageWaranty.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ServicesClasses\Convert.cs" />
-    <Compile Include="UI\Commands.cs" />
-    <Compile Include="UI\ViewModelCommands.cs" />
-    <Compile Include="user.cs">
-      <DependentUpon>Market.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModel\ViewModel.cs" />
-    <Page Include="AddProduct.xaml" />
+    <Compile Include="Commands\Commands.cs" />
+    <Compile Include="Commands\ViewModelCommands.cs" />
+    <Compile Include="ViewModel\Preview.cs" />
+    <Compile Include="ViewModel\ViewModelProducts.cs" />
+    <Compile Include="ViewModel\ViewModelMain.cs" />
+    <Page Include="ForLab8.xaml" />
+    <Page Include="Loging.xaml" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -141,7 +154,13 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Pages\Home.xaml" />
+    <Page Include="Pages\PageHome.xaml" />
+    <Page Include="Pages\PageProducts.xaml" />
+    <Page Include="Pages\PageShop.xaml" />
+    <Page Include="Pages\PageWaranty.xaml" />
+    <Page Include="Resources\Blue.xaml" />
+    <Page Include="Resources\Dark.xaml" />
+    <Page Include="Resources\OverrideStyles.xaml" />
     <Page Include="Resources\Resources.en-US.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -170,9 +189,6 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Market.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Market.edmx.diagram">
-      <DependentUpon>Market.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -190,36 +206,13 @@
     <Resource Include="img\interface\user.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="img\laptop\HP\" />
-    <Folder Include="img\laptop\Lenovo\" />
+    <Folder Include="img\laptop\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="img\laptop\Dell\e.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="img\interface\1.cur" />
-    <Content Include="img\interface\cursor-clip-art-54.png" />
     <Content Include="img\interface\delete.png" />
-    <Content Include="Market.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Market.edmx</DependentUpon>
-      <LastGenOutput>Market.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Market.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Market.edmx</DependentUpon>
-      <LastGenOutput>Market.cs</LastGenOutput>
-    </Content>
-    <Resource Include="favorite.png" />
-    <Content Include="img\laptop\Dell\e.jpg" />
-    <Content Include="img\laptop\Dell\e6440-1.jpg" />
-    <Content Include="img\laptop\Dell\e6440-2.jpg" />
-    <Content Include="img\laptop\Dell\E6440-3.jpg" />
-    <Content Include="img\laptop\Dell\e6440\e6440-1.jpg" />
-    <Content Include="img\laptop\Dell\e6440\e6440-2.jpg" />
-    <Content Include="img\laptop\Dell\e6440\E6440-3.jpg" />
-    <Content Include="img\laptop\Dell\e6440\preview.jpg" />
-    <Content Include="img\laptop\Dell\preview.jpg" />
+    <Content Include="img\interface\laptop.jpg" />
+    <Content Include="img\interface\square.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

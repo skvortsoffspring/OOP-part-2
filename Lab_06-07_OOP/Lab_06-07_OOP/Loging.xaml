@@ -1,0 +1,41 @@
+﻿<Window x:Class="Lab_06_07_OOP.Loging"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:Lab_06_07_OOP"
+        mc:Ignorable="d"
+        Title="Logging" Width="250" MaxWidth="250" Height="Auto">
+    <Grid Height="Auto">
+        <TabControl>
+            <TabItem Header="Logging">
+                <StackPanel Margin="20">
+                    <Label>LOGIN or MAIL</Label>
+                    <TextBox MaxLength="100"></TextBox>
+                    
+                    <Label>Password</Label>
+                    <TextBox MaxLength="30"></TextBox>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Registration">
+                <StackPanel Margin="20">
+                    <Label>LOGIN or MAIL</Label>
+                    <TextBox MaxLength="100"></TextBox>
+                    
+                    <Label>Password</Label>
+                    <TextBox MaxLength="30"></TextBox>
+                    <Label>LOGIN or MAIL</Label>
+                    <TextBox MaxLength="100"></TextBox>
+                    
+                    <Label>Password</Label>
+                    <TextBox MaxLength="30"></TextBox>
+                    <Label>LOGIN or MAIL</Label>
+                    <TextBox MaxLength="100"></TextBox>
+                    
+                    <Label>Password</Label>
+                    <TextBox MaxLength="30"></TextBox>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

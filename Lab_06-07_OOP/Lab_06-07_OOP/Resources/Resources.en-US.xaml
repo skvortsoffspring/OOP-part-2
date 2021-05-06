@@ -3,7 +3,7 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
     <!-- Main Window -->
         <!-- First grid -->
-        <system:String x:Key="MyAccount">My account ▽</system:String>
+        <system:String x:Key="MyAccount">My account</system:String>
         <system:String x:Key="AddProduct">Add product</system:String>
         <!-- First row grid -->
         <system:String x:Key="Home">HOME</system:String>
