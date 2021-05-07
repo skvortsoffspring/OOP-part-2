@@ -16,7 +16,7 @@ namespace Lab_06_07_OOP
     public partial class Entities : DbContext
     {
         public Entities()
-            : base("name=MarketEntities")
+            : base("name=Entities")
         {
         }
     
@@ -31,6 +31,5 @@ namespace Lab_06_07_OOP
         public virtual DbSet<product> products { get; set; }
         public virtual DbSet<productsubcategory> productsubcategories { get; set; }
         public virtual DbSet<user> users { get; set; }
-        public virtual DbSet<comment> comments { get; set; }
     }
 }

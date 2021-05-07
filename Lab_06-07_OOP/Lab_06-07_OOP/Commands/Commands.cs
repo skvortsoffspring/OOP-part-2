@@ -10,9 +10,11 @@ namespace Lab_06_07_OOP.UI
         static WindowCommands()
         {
             ChoseLang = new RoutedCommand("ChoseLang", typeof(MainWindow));
+            HiddenLogging = new RoutedCommand("HiddenLogging", typeof(MainWindow));
         }
         
         public static RoutedCommand ChoseLang { get; set; }
+        public static RoutedCommand HiddenLogging { get; set; }
 
 
     }

@@ -77,6 +77,7 @@
           <ScalarProperty Name="UserAddress" ColumnName="UserAddress" />
           <ScalarProperty Name="UserZip" ColumnName="UserZip" />
           <ScalarProperty Name="UserPhone" ColumnName="UserPhone" />
+          <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

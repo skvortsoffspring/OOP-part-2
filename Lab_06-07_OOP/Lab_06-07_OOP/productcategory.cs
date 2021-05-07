@@ -18,6 +18,7 @@ namespace Lab_06_07_OOP
         public productcategory()
         {
             this.products = new HashSet<product>();
+            this.productsubcategories = new HashSet<productsubcategory>();
         }
     
         public int CategoryID { get; set; }
@@ -26,5 +27,7 @@ namespace Lab_06_07_OOP
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<product> products { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<productsubcategory> productsubcategories { get; set; }
     }
 }

@@ -83,7 +83,8 @@ warning 6013: The table/view 'Market.dbo.comments' does not have a primary key d
           <Property Name="UserCity" Type="varchar" MaxLength="50" />
           <Property Name="UserAddress" Type="varchar" MaxLength="50" />
           <Property Name="UserZip" Type="numeric" Precision="6" Scale="0" />
-          <Property Name="UserPhone" Type="numeric" Precision="12" Scale="0" />
+          <Property Name="UserPhone" Type="numeric" Precision="14" Scale="0" />
+          <Property Name="IsAdmin" Type="char" MaxLength="1" />
         </EntityType>
         <!--Errors Found During Generation:
 error 6004: The table 'Market.dbo.comments' is referenced by a relationship, but cannot be found.
@@ -282,7 +283,8 @@ error 6004: The table 'Market.dbo.comments' is referenced by a relationship, but
           <Property Name="UserCity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="UserAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="UserZip" Type="Decimal" Precision="6" Scale="0" />
-          <Property Name="UserPhone" Type="Decimal" Precision="12" Scale="0" />
+          <Property Name="UserPhone" Type="Decimal" Precision="14" Scale="0" />
+          <Property Name="IsAdmin" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="orders" Relationship="Self.OrdersUsersFK" FromRole="users" ToRole="orders" />
         </EntityType>
         <Association Name="DetailsOrderFK">
@@ -471,6 +473,7 @@ error 6004: The table 'Market.dbo.comments' is referenced by a relationship, but
                 <ScalarProperty Name="UserAddress" ColumnName="UserAddress" />
                 <ScalarProperty Name="UserZip" ColumnName="UserZip" />
                 <ScalarProperty Name="UserPhone" ColumnName="UserPhone" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -38,6 +38,7 @@
     </Window.Resources>
     <Window.CommandBindings>
         <CommandBinding Command="ui:WindowCommands.ChoseLang" Executed="SetLanguageDictionary" />
+        <CommandBinding Command="ui:WindowCommands.HiddenLogging" Executed="HideLoggingForm" />
     </Window.CommandBindings>
     
     <Grid Grid.IsSharedSizeScope="True" x:Name="GridMainXaml" Style="{DynamicResource MainGrid}">
@@ -46,7 +47,14 @@
            <Grid.Background>
                <SolidColorBrush Color="Black" Opacity="0.8"/>
            </Grid.Background>
-           <Label Content="{materialDesign:PackIcon Close}" FontSize="50"></Label>
+           <Button 
+               Style="{DynamicResource CloseButton}"
+               Command="ui:WindowCommands.HiddenLogging" 
+               Width="40" Height="40"
+               VerticalAlignment="Top" 
+               HorizontalAlignment="Right" Margin="30" 
+               Content="{materialDesign:PackIcon Close}"
+           />
            <Grid Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center">
                <TabControl FontSize="22">
                    <TabItem Header="Logging" Padding="5">
@@ -55,7 +63,14 @@
                            <TextBox MaxLength="30"></TextBox>
                            <Label>Password</Label>
                            <PasswordBox Margin="5" MaxLength="20"></PasswordBox> 
-                           <Button Style="{DynamicResource StyleButton}" Padding="20" Width="200" Height="40"  Content="LOG IN"></Button>
+                           <Button 
+                               Style="{DynamicResource StyleButton}" 
+                               Padding="20" 
+                               Width="200" Height="40"  
+                               Content="LOG IN"
+                               Command="{Binding GoLogging}"
+                               CommandParameter="Logging"
+                               />
                        </StackPanel>
                    </TabItem>
                    <TabItem Header="Registration" Padding="5">
@@ -65,7 +80,14 @@
                            <Label>Password</Label>
                            <PasswordBox Margin="5" MaxLength="5"></PasswordBox> 
                            <PasswordBox Margin="5" MaxLength="5"></PasswordBox>
-                           <Button Style="{DynamicResource StyleButton}" Padding="20" Width="200" Height="40"  Content="SIG UP"></Button>
+                           <Button 
+                               Style="{DynamicResource StyleButton}" 
+                               Padding="20" 
+                               Width="200" Height="40"  
+                               Content="Register"
+                               Command="{Binding GoLogging}"
+                               CommandParameter="Register"
+                               />
                        </StackPanel>
                    </TabItem>
                </TabControl>

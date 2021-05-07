@@ -64,6 +64,8 @@ namespace Lab_06_07_OOP.mvvm
                 _productCategory = value;
                 SelectedProduct.ProductCategory = _productCategory.CategoryID;
                 SelectSubCategories();
+                if(ProductSubcategories.Count!=0 && SelectedProduct.ProductSubcategory == null)
+                    SelectedProduct.ProductSubcategory = ProductSubcategories.First().SubcategoryID;
                 OnPropertyChanged("ProductCategory");
             }
         }  
@@ -73,7 +75,7 @@ namespace Lab_06_07_OOP.mvvm
             set
             {
                 _productSubcategory = value;
-                SelectedProduct.ProductSubcategory = _productSubcategory.SubcategoryCategoryID;
+                SelectedProduct.ProductSubcategory = ProductSubcategory.SubcategoryID;
                 OnPropertyChanged("ProductSubcategory");
             }
         }
@@ -157,6 +159,11 @@ namespace Lab_06_07_OOP.mvvm
                        {
                            if (_productCategory != null)
                            {
+                               foreach (var productsubcategory in MainWindow.Market.productsubcategories)
+                               {
+                                   if (productsubcategory.SubcategoryCategoryID == _productCategory.CategoryID)
+                                       MainWindow.Market.productsubcategories.Remove(productsubcategory);
+                               }
                                MainWindow.Market.productcategories.Remove(_productCategory);
                                MainWindow.Market.SaveChangesAsync();
                            }
@@ -171,7 +178,7 @@ namespace Lab_06_07_OOP.mvvm
                        (_addSubcategoryCommand = new ViewModelCommands(obj =>
                        {
                            ProductSubcategory = new productsubcategory();
-                           ProductSubcategory.SubcategoryCategoryID = SelectedProduct.productcategory1.CategoryID;
+                           ProductSubcategory.SubcategoryCategoryID = SelectedProduct.ProductCategory.Value;
                            MainWindow.Market.productsubcategories.Add(ProductSubcategory);
                            MainWindow.Market.SaveChangesAsync();
                            SelectSubCategories();
@@ -190,6 +197,11 @@ namespace Lab_06_07_OOP.mvvm
                                MainWindow.Market.productsubcategories.Remove(_productSubcategory);
                                MainWindow.Market.SaveChanges();
                                SelectSubCategories();
+                               /*foreach (var product in  MainWindow.Market.products)
+                               {
+                                   if (product.ProductSubcategory == _productSubcategory.SubcategoryID)
+                                       product.ProductSubcategory = null;
+                               }*/
                            }
                        }));
             }

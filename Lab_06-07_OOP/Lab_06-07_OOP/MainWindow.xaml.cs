@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -38,6 +39,8 @@ namespace Lab_06_07_OOP
         {
             InitializeComponent();
             DataContext = ViewModel;
+            Database.SetInitializer(
+                new DropCreateDatabaseIfModelChanges<Entities>());
             Market.products.Load();
             Market.productcategories.Load();
             Market.productsubcategories.Load();
@@ -100,6 +103,11 @@ namespace Lab_06_07_OOP
         private void ShowFormLogin(object sender, RoutedEventArgs e)
         {
             Logging.Visibility = Visibility.Visible;
+        }
+
+        private void HideLoggingForm(object sender, ExecutedRoutedEventArgs e)
+        {
+            Logging.Visibility = Visibility.Hidden;
         }
     }    
 }

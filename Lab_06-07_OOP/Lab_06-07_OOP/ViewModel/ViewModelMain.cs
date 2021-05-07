@@ -18,6 +18,16 @@ namespace Lab_06_07_OOP.mvvm
 {
     public class ViewModel : INotifyPropertyChanged
     {
+        private string _login = "";
+        private string _password = ""; 
+        private string _passwordRepeat = "";
+
+        public string PasswordRepeat
+        {
+            get => _passwordRepeat;
+            set => _passwordRepeat = value;
+        }
+
         private Page _page;
         private productcategory _productCategory;
         
@@ -37,7 +47,8 @@ namespace Lab_06_07_OOP.mvvm
 
         public ObservableCollection<productcategory> ProductCategories { get; set; } = MainWindow.Market.productcategories.Local;
         private ObservableCollection<productsubcategory> _productSubcategories;
-       
+        private ViewModelCommands _goLogging;
+
         public ObservableCollection<productsubcategory> ProductSubcategories
         {
             get => _productSubcategories;
@@ -65,7 +76,17 @@ namespace Lab_06_07_OOP.mvvm
                 OnPropertyChanged("FramaOpacity");
             } 
         }
+        public string Login
+        {
+            get => _login;
+            set => _login = value;
+        }
 
+        public string Password
+        {
+            get => _password;
+            set => _password = value;
+        }
         public Page PageSelected
         {
             get => _page;
@@ -95,6 +116,17 @@ namespace Lab_06_07_OOP.mvvm
                                    break;
                                    
                            }
+                       }));
+            }
+        }
+        public ViewModelCommands GoLogging
+        {
+            get
+            {
+                return _goLogging ??
+                       (_goLogging = new ViewModelCommands(obj =>
+                       {
+                           
                        }));
             }
         }
