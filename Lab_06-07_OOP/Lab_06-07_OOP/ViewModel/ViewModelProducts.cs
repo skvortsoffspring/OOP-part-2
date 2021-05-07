@@ -19,9 +19,9 @@ namespace Lab_06_07_OOP.mvvm
 {
     public class ViewModelProduct : INotifyPropertyChanged
     {
-        private product _selectedProduct = new product();
-        private productcategory _productCategory;
-        private productsubcategory _productSubcategory;
+        private product _selectedProduct = new();
+        private productcategory _productCategory = new();
+        private productsubcategory _productSubcategory = new();
         
         private string _errorString = "";
         private ViewModelCommands _addProductCommand;
@@ -102,7 +102,7 @@ namespace Lab_06_07_OOP.mvvm
             set
             {
                 _products = value;
-                OnPropertyChanged("Products");
+                OnPropertyChanged("ModelProduct");
             }
         }
 
@@ -144,8 +144,8 @@ namespace Lab_06_07_OOP.mvvm
                 return _addCategoryCommand ??
                        (_addCategoryCommand = new ViewModelCommands(obj =>
                        {
+                           MainWindow.Market.productcategories.Add(ProductCategory);  
                            ProductCategory = new productcategory();
-                           MainWindow.Market.productcategories.Add(ProductCategory);
                            MainWindow.Market.SaveChangesAsync();
                        }));
             }
@@ -177,9 +177,9 @@ namespace Lab_06_07_OOP.mvvm
                 return _addSubcategoryCommand ??
                        (_addSubcategoryCommand = new ViewModelCommands(obj =>
                        {
-                           ProductSubcategory = new productsubcategory();
                            ProductSubcategory.SubcategoryCategoryID = SelectedProduct.ProductCategory.Value;
                            MainWindow.Market.productsubcategories.Add(ProductSubcategory);
+                           ProductSubcategory = new productsubcategory();
                            MainWindow.Market.SaveChangesAsync();
                            SelectSubCategories();
                        }));
@@ -197,11 +197,6 @@ namespace Lab_06_07_OOP.mvvm
                                MainWindow.Market.productsubcategories.Remove(_productSubcategory);
                                MainWindow.Market.SaveChanges();
                                SelectSubCategories();
-                               /*foreach (var product in  MainWindow.Market.products)
-                               {
-                                   if (product.ProductSubcategory == _productSubcategory.SubcategoryID)
-                                       product.ProductSubcategory = null;
-                               }*/
                            }
                        }));
             }
@@ -226,14 +221,8 @@ namespace Lab_06_07_OOP.mvvm
                            if(binArray == null) return;
                            switch (obj as string)
                            {
-                               case "FirstImage":
-                                   SelectedProduct.ProductImageF = binArray;
-                                   break;
-                               case "SecondImage":
-                                   SelectedProduct.ProductImageS = binArray;
-                                   break;
-                               case "ThirdImage":
-                                   SelectedProduct.ProductImageT = binArray;
+                               case "Image":
+                                   SelectedProduct.ProductImage = binArray;
                                    break;
                                default:
                                    SelectedProduct.ProductThumb = binArray;

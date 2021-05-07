@@ -32,7 +32,7 @@ namespace Lab_06_07_OOP
         public string UserAddress { get; set; }
         public Nullable<decimal> UserZip { get; set; }
         public Nullable<decimal> UserPhone { get; set; }
-        public string IsAdmin { get; set; }
+        public Nullable<byte> Role { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<order> orders { get; set; }

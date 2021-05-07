@@ -7,7 +7,7 @@
       xmlns:local="clr-namespace:Lab_06_07_OOP.Pages"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d"
-      Title="Products">
+      Title="ModelProduct">
     <Page.Resources>
         
         <ControlTemplate x:Key="ButtonBorderRadius" TargetType="Button">
@@ -36,10 +36,10 @@
                         <RowDefinition Height="45"/>
                     </Grid.RowDefinitions>
 
-                    <Image Grid.Row="0" Source="{Binding NotifyOnSourceUpdated=True,  Path=ProductThumbBitmapImage}"/>
+                    <Image Grid.Row="0" Source="{Binding NotifyOnSourceUpdated=True,  Path=ProductThumb}"/>
                     <Label Grid.Row="1" Content="{Binding Path=ProductName}" BorderBrush="Gray" BorderThickness="0, 1 ,0,1" FontSize="12" FontWeight="Bold"/>
                     <Label Grid.Row="2" BorderBrush="Gray" BorderThickness="0, 1 ,0,1" FontSize="10">
-                        <AccessText TextWrapping="WrapWithOverflow" Text="{Binding Path=ProductShortDesc}" />
+                        <AccessText TextWrapping="WrapWithOverflow" Text="{Binding Path=ProductDetails}" />
                     </Label>
                     <Label Grid.Row="3" Content="{Binding Path=ProductPrice}" HorizontalAlignment="Right" FontSize="14"></Label>
                     <Button Grid.Row="4" Template="{DynamicResource ButtonBorderRadius}"  />
@@ -86,15 +86,11 @@
                 <Label  Content="{DynamicResource Name}" HorizontalAlignment="Left" Height="26" Width="240" Margin="10,0,10,0" Foreground="#FF555555" />
                 <TextBox Text="{Binding SelectedProduct.ProductName, UpdateSourceTrigger=PropertyChanged}"  MaxLength="50"  TextWrapping="NoWrap"  HorizontalAlignment="Left" Height="20"  Width="360" UndoLimit="50"/>
             
-                <Label Content="{DynamicResource ShortDesc}" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="240" Foreground="#FF555555"/>
-                <TextBox Grid.Column="0" Text="{Binding SelectedProduct.ProductShortDesc, UpdateSourceTrigger=PropertyChanged}"  MaxLength="160"  TextWrapping="Wrap"  HorizontalAlignment="Left" Height="61" VerticalAlignment="Top" Width="359"/>
-
-                <Label Content="{DynamicResource LongDesc}" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="240" Foreground="#FF555555"/>
-                <TextBox Grid.Column="0" Text="{Binding SelectedProduct.ProductLongDesc, UpdateSourceTrigger=PropertyChanged}"  MaxLength="1500"  TextWrapping="Wrap"  HorizontalAlignment="Left" Height="61" VerticalAlignment="Top" Width="359" UndoLimit="50"/>
+                <Label Content="{DynamicResource ShortDetails}" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="240" Foreground="#FF555555"/>
+                <TextBox Grid.Column="0" Text="{Binding SelectedProduct.ProductDetails, UpdateSourceTrigger=PropertyChanged}"  MaxLength="160"  TextWrapping="Wrap"  HorizontalAlignment="Left" Height="61" VerticalAlignment="Top" Width="359"/>
 
                 <Label Content="{DynamicResource Stock}" HorizontalAlignment="Left" Height="26"  VerticalAlignment="Top" Width="240" Foreground="#FF555555"/>
                 <TextBox Grid.Column="0" Text="{Binding SelectedProduct.ProductStock, UpdateSourceTrigger=PropertyChanged}" MaxLength="50"  TextWrapping="NoWrap"  HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="360" UndoLimit="50"/>
-
                 
                 <Label Content="{DynamicResource ProductCategory}" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="240" Foreground="#FF555555"/>
                
@@ -140,34 +136,21 @@
                 <Label Content="{DynamicResource Price}" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="240" Foreground="#FF555555"/>
                 <TextBox Text="{Binding SelectedProduct.ProductPrice, UpdateSourceTrigger=PropertyChanged}"  MaxLength="50"  TextWrapping="NoWrap"  HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="360" UndoLimit="50"/>
                 
-                <Label Content="{DynamicResource Details}" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="240" Foreground="#FF555555"/>
-                <TextBox Text="{Binding SelectedProduct.ProductDetails, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="60" VerticalAlignment="Top" Width="360" UndoLimit="50" VerticalScrollBarVisibility="Auto"/>
-          
             </StackPanel>
                 <StackPanel Grid.Row="1" Orientation="Horizontal">
-                <GroupBox  Header="{DynamicResource Preview}" HorizontalAlignment="Left" Height="94" VerticalAlignment="Top" Margin="0,0,30,0" Width="82">
-                    <Button Command="{Binding AddImageCommand}" CommandParameter="ThumbImage" Content="+" HorizontalAlignment="Center" Height="45"  VerticalAlignment="Center" Width="45" FontSize="24" Foreground="#FF555555">
+                <GroupBox  Header="{DynamicResource Preview}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,30,0" >
+                    <Button Command="{Binding AddImageCommand}" CommandParameter="ThumbImage" Content="+" HorizontalAlignment="Center" Height="45"  VerticalAlignment="Center" Width="45" FontSize="24" Foreground="#FF555555" Margin="15">
                         <Button.Background>
                             <ImageBrush ImageSource="{Binding Mode=TwoWay, Path=SelectedProduct.ProductThumbBitmapImage, UpdateSourceTrigger=PropertyChanged }"></ImageBrush>
                         </Button.Background>
                     </Button>
                 </GroupBox>
                 
-                <GroupBox Header="{DynamicResource Images}" Visibility="Visible" HorizontalAlignment="Left" Height="94" VerticalAlignment="Top" Width="260" BorderBrush="#FFB9B9B9">
+                <GroupBox Header="{DynamicResource Images}" Visibility="Visible" HorizontalAlignment="Left" Height="94" VerticalAlignment="Top" BorderBrush="#FFB9B9B9">
                     <DockPanel LastChildFill="True">
-                        <Button Command="{Binding Path=AddImageCommand}" CommandParameter="FirstImage" Content="+" Height="45" Width="45" DockPanel.Dock="Left" VerticalAlignment="Center" FontSize="24" Foreground="#FF555555" Margin="15,0,0,0" >
+                        <Button Command="{Binding Path=AddImageCommand}" CommandParameter="Image" Content="+" Height="45" Width="45" DockPanel.Dock="Left" VerticalAlignment="Center" FontSize="24" Foreground="#FF555555" Margin="15" >
                             <Button.Background>
-                                <ImageBrush  ImageSource="{Binding SelectedProduct.ProductImageFBitmapImage,UpdateSourceTrigger=PropertyChanged }"></ImageBrush>
-                            </Button.Background>
-                        </Button>
-                        <Button Command="{Binding AddImageCommand}" CommandParameter="SecondImage" Content="+" Height="45" Width="45" DockPanel.Dock="Left" VerticalAlignment="Center" FontSize="24" Foreground="#FF555555" Margin="15,0,0,0" >
-                            <Button.Background>
-                                <ImageBrush ImageSource="{Binding SelectedProduct.ProductImageSBitmapImage,UpdateSourceTrigger=PropertyChanged }"></ImageBrush>
-                            </Button.Background>
-                        </Button>
-                        <Button Command="{Binding AddImageCommand}" CommandParameter="ThirdImage" Content="+" Height="45" Width="45" DockPanel.Dock="Left" VerticalAlignment="Center" FontSize="24" Foreground="#FF555555" Margin="15,0,0,0" >
-                            <Button.Background>
-                                <ImageBrush ImageSource="{Binding SelectedProduct.ProductImageTBitmapImage,UpdateSourceTrigger=PropertyChanged}" ></ImageBrush>
+                                <ImageBrush  ImageSource="{Binding SelectedProduct.ProductImageBitmapImage,UpdateSourceTrigger=PropertyChanged }"></ImageBrush>
                             </Button.Background>
                         </Button>
                     </DockPanel> 

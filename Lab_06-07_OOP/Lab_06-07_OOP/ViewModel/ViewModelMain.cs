@@ -42,7 +42,8 @@ namespace Lab_06_07_OOP.mvvm
         public ViewModel()
         {
             PageSelected = _productsPage;
-            ProductCategory = MainWindow.Market.productcategories.First();
+            if(MainWindow.Market.productcategories.Count() != 0)
+               ProductCategory = MainWindow.Market.productcategories.First();
         }
 
         public ObservableCollection<productcategory> ProductCategories { get; set; } = MainWindow.Market.productcategories.Local;

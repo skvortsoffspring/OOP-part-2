@@ -116,7 +116,7 @@
             </StackPanel>
             
             <StackPanel Grid.Column="3"  Orientation="Horizontal">
-                <Button   Content = "{DynamicResource MyAccount}" Click="ShowFormLogin" FontSize="12"></Button>
+                <Button Content = "{DynamicResource MyAccount}" Click="ShowFormLogin" FontSize="12"></Button>
                 <Button FontSize="12" Width="80"  Content="Settings"></Button>
                 <Button FontSize="12" Width="80" Content="Exit"></Button>
             </StackPanel>

@@ -11,7 +11,7 @@
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("img/interface/delete.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("img/interface/laptop.jpg")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("img/interface/square.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("market.context.tt")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("market.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("model.context.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("model.tt")]
 
 

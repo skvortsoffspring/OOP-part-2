@@ -39,7 +39,7 @@
                         Margin="20" 
                         FontSize="18" 
                         OpacityMask="White" 
-                        Text="Please click the manufacturer links below to find our current inventory.Products ship within 1-2 days and typically arrive in 3-7 days from when payment is received."
+                        Text="Please click the manufacturer links below to find our current inventory.ModelProduct ship within 1-2 days and typically arrive in 3-7 days from when payment is received."
                         Opacity="0.6">
                         <TextBlock.Background>
                             <SolidColorBrush Color="White"/>

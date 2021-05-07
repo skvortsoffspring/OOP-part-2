@@ -12,7 +12,6 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Media.Imaging;
 using Lab_06_07_OOP.Annotations;
-using Lab_06_07_OOP.mvvm;
 using Lab_06_07_OOP.Pages;
 using Lab_06_07_OOP.ServicesClasses;
 
@@ -20,34 +19,27 @@ namespace Lab_06_07_OOP
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class product : INotifyPropertyChanged
     {
         private BitmapImage _productThumbBitmapImage;
-        private BitmapImage _productImageFBitmapImage;
-        private BitmapImage _productImageSBitmapImage;
-        private BitmapImage _productImageTBitmapImage;
+        private BitmapImage _productImageBitmapImage;
         private int? _productCategory;
         private string _productName;
         private int? _productWeight;
-        private string _productShortDesc;
-        private string _productLongDesc;
         private string _productDetails;
         private int? _productStock;
         private double? _productPrice;
         private byte[] _productThumb;
-        private byte[] _productImageF;
-        private byte[] _productImageS;
-        private byte[] _productImageT;
+        private byte[] _productImage;
         private int? _productSubcategory;
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public product()
         {
+            this.comments = new HashSet<comment>();
             this.orderdetails = new HashSet<orderdetail>();
         }
-
-        public int ProductID { get; set; }
+    
         public Nullable<int> ProductCategory
         {
             get
@@ -107,26 +99,7 @@ namespace Lab_06_07_OOP
                 OnPropertyChanged("ProductName");
             }
         }
-        public string ProductShortDesc
-        {
-            get => _productShortDesc;
-            set
-            {
-                _productShortDesc = value;
-                OnPropertyChanged("ProductShortDesc");
-            }
-        }
-
-        public string ProductLongDesc
-        {
-            get => _productLongDesc;
-            set
-            {
-                _productLongDesc = value;
-                OnPropertyChanged("ProductLongDesc");
-            }
-        }
-
+        public Nullable<int> ProductWeight { get; set; }
         public string ProductDetails
         {
             get => _productDetails;
@@ -136,9 +109,6 @@ namespace Lab_06_07_OOP
                 OnPropertyChanged("ProductDetails");
             }
         }
-
-
-
         public BitmapImage ProductThumbBitmapImage
         {
             get { return ServicesConvert.ByteToBitmapImage(ProductThumb); }
@@ -147,20 +117,10 @@ namespace Lab_06_07_OOP
                 _productThumbBitmapImage = ServicesConvert.ByteToBitmapImage(ProductThumb);
             }
         }
-        public BitmapImage ProductImageFBitmapImage
+        public BitmapImage ProductImageBitmapImage
         {
-            get { return ServicesConvert.ByteToBitmapImage(ProductImageF); }
-            set { _productImageFBitmapImage = ServicesConvert.ByteToBitmapImage(ProductImageF); }
-        }
-        public BitmapImage ProductImageSBitmapImage
-        {
-            get { return ServicesConvert.ByteToBitmapImage(ProductImageS); }
-            set { _productImageSBitmapImage = ServicesConvert.ByteToBitmapImage(ProductImageS); }
-        }
-        public BitmapImage ProductImageTBitmapImage
-        {
-            get { return ServicesConvert.ByteToBitmapImage(ProductImageT); }
-            set { _productImageTBitmapImage = ServicesConvert.ByteToBitmapImage(ProductImageT); }
+            get { return ServicesConvert.ByteToBitmapImage(ProductImage); }
+            set { _productImageBitmapImage = ServicesConvert.ByteToBitmapImage(ProductImage); }
         }
         public byte[] ProductThumb
         {
@@ -171,37 +131,15 @@ namespace Lab_06_07_OOP
                 OnPropertyChanged("ProductThumbBitmapImage");
             }
         }
-
-        public byte[] ProductImageF
+        public byte[] ProductImage
         {
-            get => _productImageF;
+            get => _productImage;
             set
             {
-                _productImageF = value;
-                OnPropertyChanged("ProductImageFBitmapImage");
+                _productImage = value;
+                OnPropertyChanged("ProductImageBitmapImage");
             }
         }
-
-        public byte[] ProductImageS
-        {
-            get => _productImageS;
-            set
-            {
-                _productImageS = value;
-                OnPropertyChanged("ProductImageSBitmapImage");
-            }
-        }
-
-        public byte[] ProductImageT
-        {
-            get => _productImageT;
-            set
-            {
-                _productImageT = value;
-                OnPropertyChanged("ProductImageTBitmapImage");
-            }
-        }
-
         public Nullable<int> ProductStock
         {
             get => _productStock;
@@ -211,7 +149,6 @@ namespace Lab_06_07_OOP
                 OnPropertyChanged("ProductStock");
             }
         }
-
         public Nullable<double> ProductPrice
         {
             get => _productPrice;
@@ -223,7 +160,9 @@ namespace Lab_06_07_OOP
 
             }
         }
-
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<comment> comments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<orderdetail> orderdetails { get; set; }
         public virtual productcategory productcategory1 { get; set; }

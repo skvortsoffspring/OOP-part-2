@@ -81,32 +81,36 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="comment.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="ForLab8.xaml.cs">
       <DependentUpon>ForLab8.xaml</DependentUpon>
     </Compile>
     <Compile Include="Loging.xaml.cs">
       <DependentUpon>Loging.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Market.Context.cs">
+    <Compile Include="Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Market.Context.tt</DependentUpon>
+      <DependentUpon>Model.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Market.cs">
+    <Compile Include="Model.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Market.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Market.Designer.cs">
+    <Compile Include="Model.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Market.edmx</DependentUpon>
+      <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\ModelProduct.cs" />
     <Compile Include="order.cs">
-      <DependentUpon>Market.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="orderdetail.cs">
-      <DependentUpon>Market.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Pages\PageHome.xaml.cs">
       <DependentUpon>PageHome.xaml</DependentUpon>
@@ -121,20 +125,20 @@
       <DependentUpon>PageWaranty.xaml</DependentUpon>
     </Compile>
     <Compile Include="product.cs">
-      <DependentUpon>Market.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="productcategory.cs">
-      <DependentUpon>Market.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="productsubcategory.cs">
-      <DependentUpon>Market.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ServicesClasses\Convert.cs" />
     <Compile Include="Commands\Commands.cs" />
     <Compile Include="Commands\ViewModelCommands.cs" />
     <Compile Include="user.cs">
-      <DependentUpon>Market.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\Preview.cs" />
     <Compile Include="ViewModel\ViewModelProducts.cs" />
@@ -184,12 +188,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Market.edmx">
+    <EntityDeploy Include="Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Market.Designer.cs</LastGenOutput>
+      <LastGenOutput>Model.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Market.edmx.diagram">
-      <DependentUpon>Market.edmx</DependentUpon>
+    <None Include="Model.edmx.diagram">
+      <DependentUpon>Model.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -214,15 +218,15 @@
     <Content Include="img\interface\delete.png" />
     <Content Include="img\interface\laptop.jpg" />
     <Content Include="img\interface\square.png" />
-    <Content Include="Market.Context.tt">
+    <Content Include="Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Market.edmx</DependentUpon>
-      <LastGenOutput>Market.Context.cs</LastGenOutput>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Market.tt">
+    <Content Include="Model.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Market.edmx</DependentUpon>
-      <LastGenOutput>Market.cs</LastGenOutput>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>

@@ -30,7 +30,7 @@ namespace Lab_06_07_OOP
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static Entities Market = new();
+        public static MarketEntities Market = new();
         public static ViewModel ViewModel = new();
         private bool _test = true;
         private ResourceDictionary resourceDict;
@@ -39,8 +39,6 @@ namespace Lab_06_07_OOP
         {
             InitializeComponent();
             DataContext = ViewModel;
-            Database.SetInitializer(
-                new DropCreateDatabaseIfModelChanges<Entities>());
             Market.products.Load();
             Market.productcategories.Load();
             Market.productsubcategories.Load();
@@ -96,7 +94,7 @@ namespace Lab_06_07_OOP
             }
             Resources.MergedDictionaries.Add(Dictionary);
                     
-            //QuantityProduct.Content = "Products: " + Market.products.Count();
+            //QuantityProduct.Content = "ModelProduct: " + Market.products.Count();
         }
 
 
