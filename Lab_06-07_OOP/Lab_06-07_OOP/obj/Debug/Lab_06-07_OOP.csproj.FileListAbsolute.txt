@@ -60,3 +60,5 @@ D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\obj\Debug\Pages\Favori
 D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\obj\Debug\Pages\Favorite.baml
 D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\obj\Debug\Pages\Comments.g.cs
 D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\obj\Debug\Pages\Comments.baml
+D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\obj\Debug\Pages\Search.g.cs
+D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\obj\Debug\Pages\Search.baml

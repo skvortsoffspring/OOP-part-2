@@ -120,6 +120,9 @@
     <Compile Include="Pages\Basket.xaml.cs">
       <DependentUpon>Basket.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Search.xaml.cs">
+      <DependentUpon>Search.xaml</DependentUpon>
+    </Compile>
     <Compile Include="product.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -162,6 +165,7 @@
     <Page Include="Pages\PageHome.xaml" />
     <Page Include="Pages\PageProducts.xaml" />
     <Page Include="Pages\Basket.xaml" />
+    <Page Include="Pages\Search.xaml" />
     <Page Include="Resources\Blue.xaml" />
     <Page Include="Resources\Dark.xaml" />
     <Page Include="Resources\OverrideStyles.xaml" />
