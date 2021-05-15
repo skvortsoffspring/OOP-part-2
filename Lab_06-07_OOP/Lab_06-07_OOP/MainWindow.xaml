@@ -3,174 +3,271 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:ui="clr-namespace:Lab_06_07_OOP.UI"
-        xmlns:add="clr-namespace:Lab_06_07_OOP" 
-        xmlns:viewmodel="clr-namespace:Lab_06_07_OOP.mvvm" d:DataContext="{d:DesignInstance Type=viewmodel:ViewModel}"
+        xmlns:viewmodel="clr-namespace:Lab_06_07_OOP.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:ViewModel}"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:cmd="clr-namespace:Lab_06_07_OOP.UI"
+        xmlns:servicesClasses="clr-namespace:Lab_06_07_OOP.ServicesClasses"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="1160" MinWidth="1060" FontSize="18" FontFamily="Times New Roman" VerticalAlignment="Bottom" HorizontalAlignment="Right" MinHeight="400">
-    
+        Title="MainWindow" MinHeight="600" Width="1160" MinWidth="1060" FontSize="18" FontFamily="Times New Roman" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+
     <Window.Resources>
-        <DataTemplate x:Key="Categories">
-            <Label 
-                Margin="20,0,20,0"  
-                Style="{DynamicResource StyleLabelMenu}" 
-                Height="55"
-                Content="{Binding Path=CategoryName}" 
-            />
-        </DataTemplate>
-        
-        <ControlTemplate x:Key="LabelPrice" TargetType="Label">
-            <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="1"
-                    TextBlock.Foreground="WhiteSmoke">
-                <Border.Background>
-                    <LinearGradientBrush>
-                        <GradientStopCollection>
-                            <GradientStop Offset="0" Color="LimeGreen"></GradientStop>
-                            <GradientStop Offset="1" Color="LightBlue"></GradientStop>
-                        </GradientStopCollection>
-                    </LinearGradientBrush>
-                </Border.Background>
-                <ContentPresenter RecognizesAccessKey="True"></ContentPresenter>
-            </Border>
-        </ControlTemplate>
         
     </Window.Resources>
     <Window.CommandBindings>
-        <CommandBinding Command="ui:WindowCommands.ChoseLang" Executed="SetLanguageDictionary" />
-        <CommandBinding Command="ui:WindowCommands.HiddenLogging" Executed="HideLoggingForm" />
+        <CommandBinding Command="cmd:WindowCommands.HiddenLogging" Executed="HideLoggingForm" />
     </Window.CommandBindings>
     
-    <Grid Grid.IsSharedSizeScope="True" x:Name="GridMainXaml" Style="{DynamicResource MainGrid}">
+    <Grid  x:Name="GridMainXaml" Style="{DynamicResource MainGrid}">
+
+
+        
         <!-- registration and logging -->
-       <Grid ZIndex="1" x:Name="Logging" Visibility="Hidden">
+        <Grid ZIndex="1" x:Name="Logging" Visibility="{Binding VisibleFormRegistered}">
            <Grid.Background>
                <SolidColorBrush Color="Black" Opacity="0.8"/>
            </Grid.Background>
+            
            <Button 
                Style="{DynamicResource CloseButton}"
-               Command="ui:WindowCommands.HiddenLogging" 
+               Command="{Binding ShowFormLogin}" 
                Width="40" Height="40"
                VerticalAlignment="Top" 
                HorizontalAlignment="Right" Margin="30" 
                Content="{materialDesign:PackIcon Close}"
            />
-           <Grid Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center">
-               <TabControl FontSize="22">
-                   <TabItem Header="Logging" Padding="5">
+
+            <Grid Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center" Width="250" Background="White">
+                <TabControl FontSize="16" BorderThickness="0" Padding="10"  >
+                   <TabItem Header="Войти" Padding="10" BorderThickness="0">
                        <StackPanel>
-                           <Label>LOGIN or MAIL</Label>
-                           <TextBox MaxLength="30"></TextBox>
-                           <Label>Password</Label>
-                           <PasswordBox Margin="5" MaxLength="20"></PasswordBox> 
+                            <Label>Введите почту</Label>
+                           <TextBox MaxLength="30" Margin="5">
+                               <TextBox.Text>
+                                   <Binding Path="Email">
+                                       <Binding.ValidationRules>
+                                           <DataErrorValidationRule />
+                                       </Binding.ValidationRules>
+                                   </Binding>
+                               </TextBox.Text>
+                           </TextBox>
+                            <Label>Пароль</Label>
+                           <PasswordBox 
+                               Margin="5" 
+                               MaxLength="20" 
+                               servicesClasses:PasswordHelper.Attach="True">
+                               <servicesClasses:PasswordHelper.Password>
+                                   <Binding Path="Password" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay"/>
+                               </servicesClasses:PasswordHelper.Password>
+                           </PasswordBox>
                            <Button 
-                               Style="{DynamicResource StyleButton}" 
+                               Style="{DynamicResource StyleButtonRedLogin}" 
                                Padding="20" 
-                               Width="200" Height="40"  
-                               Content="LOG IN"
+                               Content="Войти"
                                Command="{Binding GoLogging}"
-                               CommandParameter="Logging"
-                               />
+                           />
                        </StackPanel>
                    </TabItem>
-                   <TabItem Header="Registration" Padding="5">
+                    <TabItem Header="Регистрация" Padding="5" BorderThickness="0">
                        <StackPanel>
-                           <Label>LOGIN or MAIL</Label>
-                           <TextBox MaxLength="30" Margin="5"></TextBox>
-                           <Label>Password</Label>
-                           <PasswordBox Margin="5" MaxLength="5"></PasswordBox> 
-                           <PasswordBox Margin="5" MaxLength="5"></PasswordBox>
+                           <Label Foreground="Red" Content="{Binding ErrorMsg, UpdateSourceTrigger=PropertyChanged}"></Label>
+                           <Label  Foreground="#333">Номер телефона</Label>
+                           <TextBox MaxLength="30" Margin="5">
+                               <TextBox.Text>
+                                   <Binding Path="Phone">
+                                       <Binding.ValidationRules>
+                                           <DataErrorValidationRule />
+                                       </Binding.ValidationRules>
+                                   </Binding>
+                               </TextBox.Text>
+                           </TextBox>
+                            <Label Foreground="#333">Электронная почта</Label>
+                            <TextBox MaxLength="30" Margin="5">
+                                <TextBox.Text>
+                                    <Binding Path="Email">
+                                        <Binding.ValidationRules>
+                                            <DataErrorValidationRule />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                            <Label Foreground="#333">Пароль</Label>
+                            <PasswordBox 
+                               Margin="5" 
+                               MaxLength="20"
+                               servicesClasses:PasswordHelper.Attach="True">
+                               <servicesClasses:PasswordHelper.Password>
+                                   <Binding Path="Password" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" ValidatesOnExceptions="True"/>
+                               </servicesClasses:PasswordHelper.Password>
+                           </PasswordBox>
+                            <Label Foreground="#333">Пароль еще раз</Label>
+                           <PasswordBox 
+                               Margin="5" 
+                               MaxLength="20" 
+                               servicesClasses:PasswordHelper.Attach="True">
+                               <servicesClasses:PasswordHelper.Password>
+                                   <Binding Path="PasswordRepeat" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay"/>
+                               </servicesClasses:PasswordHelper.Password>
+                           </PasswordBox>
+                           <CheckBox x:Name="Accepted" Content="Согласен с правилами" Margin="0,20,0,20"/>
                            <Button 
-                               Style="{DynamicResource StyleButton}" 
+                               Style="{DynamicResource StyleButtonRed}" 
                                Padding="20" 
-                               Width="200" Height="40"  
-                               Content="Register"
-                               Command="{Binding GoLogging}"
-                               CommandParameter="Register"
-                               />
+                               Content="Регистрация"
+                               Command="{Binding GoRegister}"
+                           />
                        </StackPanel>
                    </TabItem>
                </TabControl>
            </Grid>
        </Grid>
 
-    <Grid>
-           <!-- split into lines main menu -->
-        <Grid.RowDefinitions>
-            <RowDefinition Height="77"></RowDefinition>
-            <RowDefinition Height="60"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="40"></RowDefinition>
-        </Grid.RowDefinitions>
+        <Grid>
+            <!-- split into lines main menu -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="77"></RowDefinition>
+                <RowDefinition Height="60"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
 
-        <!-- menu account -->
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"></ColumnDefinition>
-                <ColumnDefinition Width="20"></ColumnDefinition>
-                <ColumnDefinition Width="150"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <StackPanel>
-                <ComboBox x:Name="StyleBox"  Width="100" FontSize="12" HorizontalAlignment="Left"/>
-            </StackPanel>
-            
-            <StackPanel Grid.Column="3"  Orientation="Horizontal">
-                <Button Content = "{DynamicResource MyAccount}" Click="ShowFormLogin" FontSize="12"></Button>
-                <Button FontSize="12" Width="80"  Content="Settings"></Button>
-                <Button FontSize="12" Width="80" Content="Exit"></Button>
-            </StackPanel>
-        </Grid>
-       
-        <!-- navi -->
-        <Border Grid.Row="1" BorderBrush="Gray" BorderThickness="0,1,0,1" >
-        <Grid >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="160"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            
-            <ListBox
+            <!-- menu account -->
+            <Grid Grid.Row="0">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="250"></ColumnDefinition>
+                    <ColumnDefinition Width="200"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Column="0" Width="77" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="25,0,0,0">
+                    <Image.Source>
+                        <BitmapImage UriSource="img/interface/logo.png"/>
+                    </Image.Source>
+                </Image>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <TextBox x:Name="StyleBox"  Width="200" Height="30" FontSize="22" HorizontalAlignment="Left" BorderThickness="2"/>
+                    <Button Content="Поиск" Height="30" Style="{DynamicResource ButtonFound}"/>
+                </StackPanel>
+
+                <Label Grid.Column="2" Content="{Binding Email}" HorizontalAlignment="Right"/>
+
+                <StackPanel Grid.Column="3"  Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button 
+                        Command="{Binding ShowFormLogin}" 
+                        FontSize="12" Width="77" 
+                        Background="{x:Null}" 
+                        BorderThickness="0">
+                        <StackPanel >
+                            <materialDesign:PackIcon Kind="Account" HorizontalAlignment="Center" Width="30" Height="Auto" Foreground="#F8515C"></materialDesign:PackIcon>
+                            <Label Content="{Binding InOutString, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Foreground="#F8515C"></Label>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+
+            </Grid>
+
+            <!-- navigation -->
+            <Border Grid.Row="1" BorderBrush="Gray" BorderThickness="0,1,0,1" >
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="160"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <ListBox
+                Grid.Column="0"
                     BorderThickness="0"
-                     SelectedItem="{Binding ProductCategory}" 
-                     Style="{DynamicResource ItemsControlStyle}"  
-                     Grid.Column="0" x:Name="ProductCategories" ItemTemplate="{StaticResource Categories}" 
-                     ItemsSource="{Binding ProductCategories}" 
-                     ScrollViewer.HorizontalScrollBarVisibility="Hidden"  
-                     ScrollViewer.VerticalScrollBarVisibility="Disabled">
-                <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"/>
-                        </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-            </ListBox>
-            
-            <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">
-                <Image Source="img/interface/shopping-cart.png" Margin="10,0,10,0" Width="35" Height="35" VerticalAlignment="Center" HorizontalAlignment="Left" Cursor="Hand"/>
-                <Image Source="img/interface/favorite.png" Margin="10,0,10,0" Width="35" Height="35" VerticalAlignment="Center" HorizontalAlignment="Left" Cursor="Hand"/>
-            </StackPanel>
+                    ItemsSource="{Binding ProductCategories}" 
+                    SelectedItem="{Binding  SelectedCategory, UpdateSourceTrigger=PropertyChanged}" 
+                    >
+                        <ListBox.ItemsPanel >
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock
+                            FontSize="18"
+                            VerticalAlignment="Center"
+                            Margin="20,0,20,0"  
+                            Style="{DynamicResource StyleTextBlockMenu}"
+                            Text="{Binding Path=CategoryName}">
+                                </TextBlock>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">
+                        <Button 
+                            Margin="10,0,10,0" 
+                            VerticalAlignment="Center" 
+                            HorizontalAlignment="Left" 
+                            Command="{Binding SelectPage}"
+                            CommandParameter="basket"
+                            Background="{x:Null}"
+                            BorderBrush="White"
+                        >
+                            <materialDesign:PackIcon Kind="ShoppingBasket" Height="35" Width="35" Foreground="#F8515C"/>
+                        </Button>
+                        <Label Content="{Binding CountProductBasket}"></Label>
+                        
+                        <Button 
+                            Margin="10,0,10,0" 
+                            VerticalAlignment="Center" 
+                            HorizontalAlignment="Left"
+                            Command="{Binding SelectPage}"
+                            CommandParameter="favorite"
+                            Background="{x:Null}"
+                            BorderBrush="White"
+                            >
+                            <materialDesign:PackIcon Kind="Favorite" Height="35" Width="35" Foreground="#F8515C"/>
+                        </Button>
+                        <Label Content="{Binding CountProductFavorite}"></Label>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- window contents -->
+            <Grid Grid.Row="2" Margin="50, 0, 50,0">
+                <!-- products -->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Frame 
+                NavigationUIVisibility="Hidden" 
+                Grid.Column="0"
+                Grid.Row="2" 
+                Content="{Binding PageSelected, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                />
+            </Grid>
         </Grid>
+        <Border
+            Visibility="{Binding ShowComments}"
+            Opacity="0.95"
+             Background="{x:Null}"
+                 BorderBrush="Gray" 
+                 CornerRadius="0"
+                 BorderThickness="2"  
+                 Margin="0,136,0,0" 
+             Width="400"
+             VerticalAlignment="Top"
+             HorizontalAlignment="Center"
+             Height="430"
+                 >
+             <Frame 
+             Panel.ZIndex="2"
+             Background="White"
+             NavigationUIVisibility="Hidden"
+             Content="{Binding PageFrameSelected, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+        />
         </Border>
-
-        <!-- window contents -->
-        <Grid Grid.Row="2" Margin="0,10,0,0">
-
-            <!-- category -->
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="240"></ColumnDefinition>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="190"/>
-            </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="1">
-                <Label Content="{Binding ProductCategory.CategoryName, UpdateSourceTrigger=PropertyChanged}" FontSize="32" Margin="0,0,0,10">
-                    <Label.Background>
-                        <ImageBrush ImageSource="D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\img\interface\square.png" TileMode="Tile"
-                                    ViewportUnits="Absolute" Viewport="0 0 5 5"/>
-                    </Label.Background>
-                </Label>   
-                <Frame  Content="{Binding PageSelected, NotifyOnTargetUpdated=True}"></Frame>
-            </StackPanel>
-        </Grid>
-    </Grid>
     </Grid>
 </Window>

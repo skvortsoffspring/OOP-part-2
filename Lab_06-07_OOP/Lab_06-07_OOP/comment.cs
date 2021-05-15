@@ -7,18 +7,47 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using Lab_06_07_OOP.Annotations;
+
 namespace Lab_06_07_OOP
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class comment
+    public partial class comment : INotifyPropertyChanged
     {
+        private String _comment;
+        private String _commentUser;
         public int CommentID { get; set; }
         public Nullable<int> CommentProductID { get; set; }
         public Nullable<int> CommentUserID { get; set; }
-        public string Comment1 { get; set; }
-    
+
+        public string CommentUser
+        {
+            get => _commentUser;
+            set => _commentUser = value;
+                
+            
+        }
+        public string Comment1
+        {
+            get => _comment;
+            set
+            {
+                _comment = value;
+                OnPropertyChanged("Comment1");
+            }
+        }
+
         public virtual product product { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

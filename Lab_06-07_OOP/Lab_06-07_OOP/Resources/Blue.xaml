@@ -2,6 +2,220 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     >
 
+
+    <Style TargetType="{x:Type ToggleButton}" x:Key="ButtonRadiusFavorite">
+        <Setter Property="Background" Value="White" />
+        <Setter Property="Margin" Value="5"></Setter>
+        <Setter Property="FontSize" Value="40"></Setter>
+        <Setter Property="Foreground" Value="#F8515C"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Border Background="{TemplateBinding Background}"  CornerRadius="10" BorderBrush="#ccc" BorderThickness="0">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Background" Value="DarkGray"/>
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsPressed" Value="true"></Condition>
+                    <Condition Property="IsMouseOver" Value="true"></Condition>
+                </MultiTrigger.Conditions>
+                <MultiTrigger.Setters>
+                    <Setter Property="Background" Value="Gray" />
+                    <Setter Property="Foreground" Value="White"></Setter>
+                </MultiTrigger.Setters>
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>
+    
+    <Style TargetType="{x:Type Button}" x:Key="ButtonFound">
+        <Setter Property="Background" Value="White" />
+        <Setter Property="Margin" Value="5"></Setter>
+        <Setter Property="FontSize" Value="20"></Setter>
+        <Setter Property="Foreground" Value="#F8515C"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}"  CornerRadius="10" BorderBrush="#ccc" BorderThickness="0">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Background" Value="DarkGray"/>
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsPressed" Value="true"></Condition>
+                    <Condition Property="IsMouseOver" Value="true"></Condition>
+                </MultiTrigger.Conditions>
+                <MultiTrigger.Setters>
+                    <Setter Property="Background" Value="Gray" />
+                    <Setter Property="Foreground" Value="White"></Setter>
+                </MultiTrigger.Setters>
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="{x:Type ToggleButton}" x:Key="ButtonRadius">
+        <Setter Property="Background" Value="White" />
+        <Setter Property="Margin" Value="5,2,2,2"></Setter>
+        <Setter Property="FontSize" Value="20"></Setter>
+        <Setter Property="Foreground" Value="#F8515C"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Border Background="{TemplateBinding Background}"  CornerRadius="10" BorderBrush="#ccc" BorderThickness="1">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#F8515C"/>
+                <Setter Property="Foreground" Value="White"></Setter>
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsPressed" Value="true"></Condition>
+                    <Condition Property="IsMouseOver" Value="true"></Condition>
+                </MultiTrigger.Conditions>
+                <MultiTrigger.Setters>
+                    <Setter Property="Background" Value="#E6303A" />
+                    <Setter Property="Foreground" Value="White"></Setter>
+                </MultiTrigger.Setters>
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="{x:Type ToggleButton}" x:Key="ButtonRadiusBasket">
+        <Setter Property="Background" Value="White" />
+        <Setter Property="FontSize" Value="20"></Setter>
+        <Setter Property="Foreground" Value="#F8515C"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Border Background="{TemplateBinding Background}"  CornerRadius="20" BorderBrush="#ccc" BorderThickness="0">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#F8EEEE"/>
+                <Setter Property="Foreground" Value="White"></Setter>
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsPressed" Value="true"></Condition>
+                    <Condition Property="IsMouseOver" Value="true"></Condition>
+                </MultiTrigger.Conditions>
+                <MultiTrigger.Setters>
+                    <Setter Property="Background" Value="#E6303A" />
+                    <Setter Property="Foreground" Value="White"></Setter>
+                </MultiTrigger.Setters>
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="{x:Type ToggleButton}" x:Key="CountButton">
+        <Setter Property="Background" Value="White" />
+        <Setter Property="Margin" Value="0,2,0,2"></Setter>
+        <Setter Property="FontSize" Value="20"></Setter>
+        <Setter Property="Foreground" Value="#F8515C"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Border Background="{TemplateBinding Background}"  CornerRadius="0" BorderBrush="#ccc" BorderThickness="0,1,0,1">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type ToggleButton}" x:Key="ButtonLeftRadius">
+        <Setter Property="Background" Value="White" />
+        <Setter Property="Margin" Value="5,2,0,2"></Setter>
+        <Setter Property="FontSize" Value="20"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Border Background="{TemplateBinding Background}"  CornerRadius="10,0,0,10" BorderBrush="#ccc" BorderThickness="1">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#F8515C"/>
+                <Setter Property="Foreground" Value="White"></Setter>
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsPressed" Value="true"></Condition>
+                    <Condition Property="IsMouseOver" Value="true"></Condition>
+                </MultiTrigger.Conditions>
+                <MultiTrigger.Setters>
+                    <Setter Property="Background" Value="#E6303A" />
+                    <Setter Property="Foreground" Value="White"></Setter>
+                </MultiTrigger.Setters>
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="{x:Type ToggleButton}" x:Key="ButtonRightRadius">
+        <Setter Property="Background" Value="White" />
+        <Setter Property="Margin" Value="0,2,5,2"></Setter>
+        <Setter Property="FontSize" Value="20"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Border Background="{TemplateBinding Background}"  CornerRadius="0,10,10,0" BorderBrush="#ccc" BorderThickness="1">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#F8515C"/>
+                <Setter Property="Foreground" Value="White"></Setter>
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsPressed" Value="true"></Condition>
+                    <Condition Property="IsMouseOver" Value="true"></Condition>
+                </MultiTrigger.Conditions>
+                <MultiTrigger.Setters>
+                    <Setter Property="Background" Value="#E6303A" />
+                    <Setter Property="Foreground" Value="White"></Setter>
+                </MultiTrigger.Setters>
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="Label" TargetType="Label">
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Visibility" Value="Visible"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
     <Style TargetType="StackPanel" >
         <Style.Setters>
             <Setter Property="Background"  Value="White"/>
@@ -27,26 +241,27 @@
         </Style.Setters>
     </Style>
     
-    <Style TargetType="{x:Type Label}" x:Key="StyleLabelMenu">
+    <Style TargetType="{x:Type TextBlock}" x:Key="StyleTextBlockMenu">
         <Setter Property="Background" Value="White"/>
         <Setter Property="Foreground" Value="Black"/>
         <Setter Property="Margin" Value="0"/>
-        <Setter Property="FontSize" Value="16"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="TextDecorations" Value="Underline"/>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" Value="#FF5858"/>
+                <Setter Property="Foreground" Value="#F8515C"/>
+                <Setter Property="TextDecorations" Value="None"/>
             </Trigger>
         </Style.Triggers>
     </Style>
     
-    <Style TargetType="{x:Type Button}" x:Key="StyleButtonOrange">
-        <Setter Property="Background" Value="#FF166FB0"/>
+    <Style TargetType="{x:Type Button}" x:Key="StyleButtonRed">
+        <Setter Property="Background" Value="#F8515C"/>
         <Setter Property="Foreground" Value="White"></Setter>
+        <Setter Property="Height" Value="44"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border Background="{TemplateBinding Background}" BorderBrush="White" BorderThickness="1">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="White" BorderThickness="0">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                 </ControlTemplate>
@@ -54,7 +269,41 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#54B016"/>
+                <Setter Property="Background" Value="#D6323A"/>
+            </Trigger>
+            <DataTrigger Binding="{Binding ElementName=Accepted, Path=IsChecked}"
+                        Value="False">
+                <Setter Property="IsEnabled" Value="false"/>
+            </DataTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsPressed" Value="true"></Condition>
+                    <Condition Property="IsMouseOver" Value="true"></Condition>
+                </MultiTrigger.Conditions>
+                <MultiTrigger.Setters>
+                    <Setter Property="Foreground" Value="Black" />
+                </MultiTrigger.Setters>
+            </MultiTrigger>
+            
+        </Style.Triggers>
+    </Style>
+    
+    <Style TargetType="{x:Type Button}" x:Key="StyleButtonRedLogin">
+        <Setter Property="Background" Value="#F8515C"/>
+        <Setter Property="Foreground" Value="White"></Setter>
+        <Setter Property="Height" Value="44"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="White" BorderThickness="0">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#D6323A"/>
             </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -62,8 +311,7 @@
                     <Condition Property="IsMouseOver" Value="true"></Condition>
                 </MultiTrigger.Conditions>
                 <MultiTrigger.Setters>
-                    <Setter Property="FontSize" Value="14" />
-                    <Setter Property="Foreground" Value="White" />
+                    <Setter Property="Foreground" Value="Black" />
                 </MultiTrigger.Setters>
             </MultiTrigger>
             
@@ -89,5 +337,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+    
+    
 
 </ResourceDictionary>

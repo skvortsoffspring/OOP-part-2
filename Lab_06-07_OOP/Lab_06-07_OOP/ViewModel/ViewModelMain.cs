@@ -1,175 +1,360 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Data.Entity;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Markup;
-using System.Windows.Navigation;
-using Lab_06_07_OOP.Annotations;
-using Lab_06_07_OOP.Pages;
+using System.Windows.Media.Imaging;
+using Lab_06_07_OOP.ServicesClasses;
 using Lab_06_07_OOP.UI;
 using Microsoft.Win32;
 
-namespace Lab_06_07_OOP.mvvm
+namespace Lab_06_07_OOP.ViewModel
 {
-    public class ViewModel : INotifyPropertyChanged
+    public partial class ViewModel : INotifyPropertyChanged
     {
-        private string _login = "";
-        private string _password = ""; 
-        private string _passwordRepeat = "";
-
-        public string PasswordRepeat
-        {
-            get => _passwordRepeat;
-            set => _passwordRepeat = value;
-        }
-
-        private Page _page;
+        
         private productcategory _productCategory;
-        
-        private PageHome _homePage = new();
-        private PageProducts _productsPage = new ();
-        private PageWarranty _warrantyPage = new();
-        
-        private ViewModelCommands _selectPage;
+        private product _selectedProduct = new();
+        private productsubcategory _productSubcategory = new();
+
+        private string _errorString = "";
+        private ViewModelCommands _addProductCommand;
+        private ViewModelCommands _delProductCommand;
+        private ViewModelCommands _addImageCommand;
+        private ViewModelCommands _addCategoryCommand;
+        private ViewModelCommands _delCategoryCommand;
+        private ViewModelCommands _addSubcategoryCommand;
+        private ViewModelCommands _delSubcategoryCommand;
+        private ViewModelCommands _goCategoryCommand;
+        private ViewModelCommands _incDecQuantity;
+
+
+        private ObservableCollection<product> _products = MainWindow.Market.products.Local;
+        public ObservableCollection<productcategory> ProductCategories { get; set; } = MainWindow.Market.productcategories.Local;
+        private ObservableCollection<productsubcategory> _productSubcategories;
+        private BitmapImage _productCategoryBitmapImage;
         private ViewModelCommands _selectCategoryCommand;
         private double _frameOpacity;
+        private productcategory _selectedCategory= new();
+        private productsubcategory _selectedSubcategory = new();
+        private ViewModelCommands _goSubcategoryCommand;
 
         public ViewModel()
         {
-            PageSelected = _productsPage;
-            if(MainWindow.Market.productcategories.Count() != 0)
-               ProductCategory = MainWindow.Market.productcategories.First();
-        }
+            PageSelected = _productsPage = new();
+            _productsPage.DataContext = this;
+            _basket = new();
+            _basket.DataContext = this;
+            _favorite = new();
+            _favorite.DataContext = this;
+            _pageComments = new();         
+            _pageComments.DataContext = this;
+            PageFrameSelected = _pageComments; /////////////////////
 
-        public ObservableCollection<productcategory> ProductCategories { get; set; } = MainWindow.Market.productcategories.Local;
-        private ObservableCollection<productsubcategory> _productSubcategories;
-        private ViewModelCommands _goLogging;
+            if (MainWindow.Market.productcategories.Count() != 0)
+            {
+                ProductCategory = MainWindow.Market.productcategories.First();
+                SelectedCategory = MainWindow.Market.productcategories.First();
+            }
+        }
 
         public ObservableCollection<productsubcategory> ProductSubcategories
         {
             get => _productSubcategories;
             set
             {
-                _productSubcategories = value; 
+                _productSubcategories = value;
                 OnPropertyChanged("ProductSubcategories");
             }
         }
+        public string ErrorString
+        {
+            get => _errorString;
+            set
+            {
+                _errorString = value;
+                OnPropertyChanged("ErrorString");
+            }
+        }
+        
         public productcategory ProductCategory
         {
             get => _productCategory;
             set
             {
                 _productCategory = value;
+                if(_productCategory!=null)
+                    SelectedProduct.ProductCategory = _productCategory.CategoryID;
+                SelectSubCategories(_productCategory);
+                if(SelectedProduct!=null)
+                if (ProductSubcategories.Count != 0 && SelectedProduct.ProductSubcategory == null)
+                    SelectedProduct.ProductSubcategory = ProductSubcategories.First().SubcategoryID;
                 OnPropertyChanged("ProductCategory");
             }
-        }  
-        public double FramaOpacity
+        }
+        public productsubcategory ProductSubcategory
         {
-            get => _frameOpacity;
+            get => _productSubcategory;
             set
             {
-                _frameOpacity = value;
-                OnPropertyChanged("FramaOpacity");
-            } 
+                _productSubcategory = value;
+                if(ProductSubcategory!=null)
+                SelectedProduct.ProductSubcategory = ProductSubcategory.SubcategoryID;
+                OnPropertyChanged("ProductSubcategory");
+            }
         }
-        public string Login
+        private void SelectSubCategories(productcategory category)
         {
-            get => _login;
-            set => _login = value;
+            if(category!=null)
+            ProductSubcategories =
+                new ObservableCollection<productsubcategory>(MainWindow.Market.productsubcategories.Local.Where(p =>
+                    p.SubcategoryCategoryID == category.CategoryID));
         }
-
-        public string Password
+        public product SelectedProduct
         {
-            get => _password;
-            set => _password = value;
-        }
-        public Page PageSelected
-        {
-            get => _page;
+            get => _selectedProduct;
             set
             {
-                _page = value; 
-                OnPropertyChanged("PageSelected");
-            }
-        }
-        public ViewModelCommands SelectPage
-        {
-            get
-            {
-                return _selectPage ??
-                       (_selectPage = new ViewModelCommands(obj =>
-                       {
-                           switch (obj as string)
-                           {
-                               case "products":
-                                   AnimateOpacity(_productsPage);
-                                   break;
-                               case "warranty":
-                                   AnimateOpacity(_warrantyPage);
-                                   break;
-                               default:
-                                   AnimateOpacity(_homePage);
-                                   break;
-                                   
-                           }
-                       }));
-            }
-        }
-        public ViewModelCommands GoLogging
-        {
-            get
-            {
-                return _goLogging ??
-                       (_goLogging = new ViewModelCommands(obj =>
-                       {
-                           
-                       }));
-            }
-        }
-
-       
-        private async void AnimateOpacity(Page page)
-        {
-            await Task.Factory.StartNew(() =>
+                if (value != null)
                 {
-                    for (double i = 1.0; i < 0.0; i -= 0.1)
-                    {
-                        FramaOpacity = i;
-                        Thread.Sleep(50);
-                    }
-
-                    PageSelected = page;
-                    for (double i = 0.0; i < 1.0; i += 0.1)
-                    {
-                        FramaOpacity = i;
-                        Thread.Sleep(50);
-                    }
+                    _selectedProduct = value;
+                    OnPropertyChanged("SelectedProduct");
+                    OnPropertyChanged("ProductCategoryBitmapImage");
                 }
-
-            );
+            }
+        }
+        public productcategory SelectedCategory
+        {
+            get => _selectedCategory;
+            set
+            {
+                _selectedCategory = value;
+                SelectSubCategories(_selectedCategory);
+                GoCategory.Execute(_selectedCategory.CategoryName);
+                OnPropertyChanged("SelectedCategory");
+            }
+        }
+        public productsubcategory SelectedSubcategory
+        {
+            get => _selectedSubcategory;
+            set
+            {
+                _selectedSubcategory = value;
+                GoSubcategory.Execute(_selectedCategory.CategoryName);
+                OnPropertyChanged("SelectedSubcategory");
+            }
+        }
+        public ObservableCollection<product> Products
+        {
+            get => _products;
+            set
+            {
+                _products = value;
+                OnPropertyChanged("Products");
+            }
+        }
+        public BitmapImage ProductCategoryBitmapImage
+        {
+            get
+            {
+                return ProductCategory!=null ? ServicesConvert.ByteToBitmapImage(ProductCategory.CategoryImage) : null;
+            }
+        }
+        public ViewModelCommands AddProductCommand
+        {
+            get
+            {
+                return _addProductCommand ??
+                       (_addProductCommand = new ViewModelCommands(obj =>
+                       {
+                           var product = new product();
+                           if (MainWindow.Market.productcategories.Count() != 0)
+                               product.ProductCategory = MainWindow.Market.productcategories.First().CategoryID;
+                           if (MainWindow.Market.productsubcategories.Count() != 0)
+                               product.ProductCategory = MainWindow.Market.productsubcategories.First().SubcategoryID;
+                           Products.Add(product);
+                           MainWindow.Market.products.Add(product);
+                           MainWindow.Market.SaveChangesAsync();
+                           SelectedProduct = product;
+                       }));
+            }
+        }
+        public ViewModelCommands DelProductCommand
+        {
+            get
+            {
+                return _delProductCommand ??
+                    (_delProductCommand = new ViewModelCommands(obj =>
+                    {
+                        MainWindow.Market.products.Remove(SelectedProduct);
+                        MainWindow.Market.SaveChangesAsync();
+                        Products.Remove(SelectedProduct);
+                    }));
+            }
         }
         public ViewModelCommands AddCategory
         {
             get
             {
-                return _selectCategoryCommand ??
-                       (_selectCategoryCommand = new ViewModelCommands(obj =>
+                return _addCategoryCommand ??
+                       (_addCategoryCommand = new ViewModelCommands(obj =>
                        {
-                           ProductCategory = new productcategory();
                            MainWindow.Market.productcategories.Add(ProductCategory);
+                           ProductCategory = new productcategory();
+                           MainWindow.Market.SaveChangesAsync();
                        }));
             }
         }
-        private void SelectSubCategories()
+        public ViewModelCommands DelCategory
         {
-            ProductSubcategories = 
-                new ObservableCollection<productsubcategory>(MainWindow.Market.productsubcategories.Local.Where(p => 
-                    p.SubcategoryCategoryID == _productCategory.CategoryID));
+            get
+            {
+                return _delCategoryCommand ??
+                       (_delCategoryCommand = new ViewModelCommands(obj =>
+                       {
+                           if (_productCategory != null)
+                           {
+                               foreach (var productsubcategory in MainWindow.Market.productsubcategories)
+                               {
+                                   if (productsubcategory.SubcategoryCategoryID == _productCategory.CategoryID)
+                                       MainWindow.Market.productsubcategories.Remove(productsubcategory);
+                               }
+                               MainWindow.Market.productcategories.Remove(_productCategory);
+                               MainWindow.Market.SaveChangesAsync();
+                           }
+                       }));
+            }
+        }
+        public ViewModelCommands AddSubcategory
+        {
+            get
+            {
+                return _addSubcategoryCommand ??
+                       (_addSubcategoryCommand = new ViewModelCommands(obj =>
+                       {
+                           ProductSubcategory.SubcategoryCategoryID = SelectedProduct.ProductCategory.Value;
+                           MainWindow.Market.productsubcategories.Add(ProductSubcategory);
+                           ProductSubcategory = new productsubcategory();
+                           MainWindow.Market.SaveChangesAsync();
+                           SelectSubCategories(_productCategory);
+                       }));
+            }
+        }
+        public ViewModelCommands DelSubcategory
+        {
+            get
+            {
+                return _delSubcategoryCommand ??
+                       (_delSubcategoryCommand = new ViewModelCommands(obj =>
+                       {
+                           if (_productSubcategory != null)
+                           {
+                               MainWindow.Market.productsubcategories.Remove(_productSubcategory);
+                               MainWindow.Market.SaveChanges();
+                               SelectSubCategories(_productCategory);
+                           }
+                       }));
+            }
+        }
+        public ViewModelCommands AddImageCommand
+        {
+            get
+            {
+                return _addImageCommand ??
+                       (_addImageCommand = new ViewModelCommands(obj =>
+                       {
+                           byte[] binArray = OpenImageDialog();
+                           if (binArray == null) return;
+                           if ((binArray.Length / 1024) > 1024)
+                           {
+                               ErrorString = "Файл больше мегабайта";
+                               return;
+                           }
+                           else
+                           {
+                               ErrorString = "";
+                           }
+
+                           switch (obj as string)
+                           {
+                               case "Image":
+                                   SelectedProduct.ProductImage = binArray;
+                                   break;
+                               case "Category":
+                                   ProductCategory.CategoryImage = binArray;
+                                   break;
+                               default:
+                                   SelectedProduct.ProductThumb = binArray;
+                                   break;
+                           }
+                           MainWindow.Market.SaveChangesAsync();
+                       }));
+            }
+        }
+        public ViewModelCommands GoCategory
+        {
+            get
+            {
+                return _goCategoryCommand ??
+                       (_goCategoryCommand = new ViewModelCommands(obj =>
+                       {
+                           PageSelected = _productsPage;
+                           string category = obj as string;
+                           Products = new ObservableCollection<product>(MainWindow.Market.products.Local.Where(product =>
+                               product.ProductCategory == SelectedCategory.CategoryID));
+                       }));
+            }
+        }
+        public ViewModelCommands IncDecQuantity
+        {
+            get
+            {
+                return _incDecQuantity ??
+                       (_incDecQuantity = new ViewModelCommands(obj =>
+                       {
+                           string operation = obj as string;
+                           switch (operation)
+                           {
+                               case "dec":
+                                   if (SelectedProduct.QuantityInTheOrder > 1)
+                                       SelectedProduct.QuantityInTheOrder--;
+                                   break;
+                               case "inc":
+                                   if (SelectedProduct.QuantityInTheOrder < Int32.MaxValue)
+                                       SelectedProduct.QuantityInTheOrder++;
+                                   break;
+                           }
+                           
+                       }));
+            }
+        }
+        public ViewModelCommands GoSubcategory
+        {
+            get
+            {
+                return _goSubcategoryCommand ??
+                       (_goSubcategoryCommand = new ViewModelCommands(obj =>
+                       {
+                           string category = obj as string;
+                           if(SelectedSubcategory!=null)
+                           Products = new ObservableCollection<product>(MainWindow.Market.products.Local.Where(product =>
+                               product.ProductSubcategory == SelectedSubcategory.SubcategoryID));
+                       }));
+            }
+        }
+        private byte[] OpenImageDialog()
+        {
+            var openFileDialog = new OpenFileDialog { Filter = @"Image files (*.jpg,*.png)|*.jpg;*.png" };
+            byte[] binArray = null;
+            if (openFileDialog.ShowDialog() == true)
+            {
+                binArray = System.IO.File.ReadAllBytes(openFileDialog.FileName);
+            }
+            else
+            {
+                return null;
+            }
+            return binArray;
         }
         public event PropertyChangedEventHandler PropertyChanged;
 

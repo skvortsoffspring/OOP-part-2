@@ -19,27 +19,38 @@ namespace Lab_06_07_OOP
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Collections.ObjectModel;
+
     public partial class product : INotifyPropertyChanged
     {
         private BitmapImage _productThumbBitmapImage;
         private BitmapImage _productImageBitmapImage;
+        private int? _productSubcategory;
         private int? _productCategory;
-        private string _productName;
-        private int? _productWeight;
-        private string _productDetails;
-        private int? _productStock;
-        private double? _productPrice;
         private byte[] _productThumb;
         private byte[] _productImage;
-        private int? _productSubcategory;
+        private string _productName;
+        private string _productDetails;
+        private int? _productWeight;
+        private int? _productStock;
+        private double? _productPrice;
+        private int _quantityInTheOrder = 1;
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public product()
         {
             this.comments = new HashSet<comment>();
             this.orderdetails = new HashSet<orderdetail>();
         }
-    
+        public int QuantityInTheOrder { 
+            get => _quantityInTheOrder;
+            set
+            {
+                _quantityInTheOrder = value;
+                OnPropertyChanged("QuantityInTheOrder");
+            }
+        }
+        public int ProductID { get; set; }
         public Nullable<int> ProductCategory
         {
             get
@@ -66,29 +77,21 @@ namespace Lab_06_07_OOP
         {
             get
             {
-                var productCategory = PageProducts.ViewModelProduct.ProductCategories.Where(productCategory => productCategory.CategoryID == _productCategory).First();
-                return PageProducts.ViewModelProduct.ProductCategories.IndexOf(productCategory);
+                var productCategory = MainWindow.ViewModel.ProductCategories.Where(productCategory => productCategory.CategoryID == _productCategory).First();
+                return MainWindow.ViewModel.ProductCategories.IndexOf(productCategory);
             }
-
-            set
-            {
-                //_productCategory = PageProducts.ViewModelProduct.ProductCategories[(int)value].CategoryID;
-                OnPropertyChanged("ProductCategory");
-            }
+            set { }
         }
         public Nullable<int> ProductSubcategoryMvvm
         {
             get
             {
-                var productSubcategory = PageProducts.ViewModelProduct.ProductSubcategories.Where(p => p.SubcategoryID == _productSubcategory).First();
-                return PageProducts.ViewModelProduct.ProductSubcategories.IndexOf(productSubcategory);
+                productsubcategory productSubcategory = null;
+                if (MainWindow.ViewModel.ProductSubcategories.Count()!=0)
+                    productSubcategory = MainWindow.ViewModel.ProductSubcategories.Where(p => p.SubcategoryID == _productSubcategory).First();
+                return MainWindow.ViewModel.ProductSubcategories.IndexOf(productSubcategory);
             }
-
-            set
-            {
-                //_productCategory = PageProducts.ViewModelProduct.ProductSubcategories[(int)value].SubcategoryID;
-                OnPropertyChanged("ProductSubcategory");
-            }
+            set { }
         }
         public string ProductName
         {
@@ -99,14 +102,23 @@ namespace Lab_06_07_OOP
                 OnPropertyChanged("ProductName");
             }
         }
-        public Nullable<int> ProductWeight { get; set; }
-        public string ProductDetails
+
+        public Nullable<int> ProductWeight
+        {
+            get => _productWeight;
+            set
+            {
+                _productWeight = value; 
+                OnPropertyChanged("ProductWeight");
+            }
+        }
+        public string ProductShortDesc 
         {
             get => _productDetails;
             set
             {
                 _productDetails = value;
-                OnPropertyChanged("ProductDetails");
+                OnPropertyChanged("ProductShortDesc");
             }
         }
         public BitmapImage ProductThumbBitmapImage
@@ -140,6 +152,7 @@ namespace Lab_06_07_OOP
                 OnPropertyChanged("ProductImageBitmapImage");
             }
         }
+
         public Nullable<int> ProductStock
         {
             get => _productStock;

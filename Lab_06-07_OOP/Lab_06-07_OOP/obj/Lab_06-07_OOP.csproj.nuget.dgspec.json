@@ -1,0 +1,82 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\University\\Labs\\OOP part 2\\Lab_06-07_OOP\\Lab_06-07_OOP\\Lab_06-07_OOP.csproj": {}
+  },
+  "projects": {
+    "D:\\University\\Labs\\OOP part 2\\Lab_06-07_OOP\\Lab_06-07_OOP\\Lab_06-07_OOP.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\University\\Labs\\OOP part 2\\Lab_06-07_OOP\\Lab_06-07_OOP\\Lab_06-07_OOP.csproj",
+        "projectName": "Lab_06-07_OOP",
+        "projectPath": "D:\\University\\Labs\\OOP part 2\\Lab_06-07_OOP\\Lab_06-07_OOP\\Lab_06-07_OOP.csproj",
+        "packagesPath": "C:\\Users\\Skvortsoff\\.nuget\\packages\\",
+        "outputPath": "D:\\University\\Labs\\OOP part 2\\Lab_06-07_OOP\\Lab_06-07_OOP\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "configFilePaths": [
+          "C:\\Users\\Skvortsoff\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net472"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net472": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {
+          "dependencies": {
+            "EntityFramework": {
+              "target": "Package",
+              "version": "[6.4.4, )"
+            },
+            "MaterialDesignThemes": {
+              "target": "Package",
+              "version": "[4.0.0, )"
+            },
+            "Microsoft.Windows.SDK.Contracts": {
+              "target": "Package",
+              "version": "[10.0.18362.2005, )"
+            },
+            "ModernWpf.Toolkit.UI": {
+              "target": "Package",
+              "version": "[0.1.0, )"
+            },
+            "ModernWpfUI": {
+              "target": "Package",
+              "version": "[0.9.3-preview.201204.0, )"
+            },
+            "System.ValueTuple": {
+              "target": "Package",
+              "version": "[4.5.0, )"
+            }
+          },
+          "imports": [
+            "uap10.0.18362"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      },
+      "runtimes": {
+        "win": {
+          "#import": []
+        },
+        "win-x64": {
+          "#import": []
+        },
+        "win-x86": {
+          "#import": []
+        }
+      }
+    }
+  }
+}

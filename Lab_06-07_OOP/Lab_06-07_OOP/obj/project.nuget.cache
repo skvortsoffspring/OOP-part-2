@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "dgSpecHash": "IOcZP2tcTOdVv968r6R/bZu7KwSSmLxND/RPiDbiS5V3JIkPdYLDH3kyxx2DvZBTKT33pJWaXFXaz+t+GnjsFw==",
+  "success": true,
+  "projectFilePath": "D:\\University\\Labs\\OOP part 2\\Lab_06-07_OOP\\Lab_06-07_OOP\\Lab_06-07_OOP.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Skvortsoff\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
+    "C:\\Users\\Skvortsoff\\.nuget\\packages\\materialdesigncolors\\2.0.0\\materialdesigncolors.2.0.0.nupkg.sha512",
+    "C:\\Users\\Skvortsoff\\.nuget\\packages\\materialdesignthemes\\4.0.0\\materialdesignthemes.4.0.0.nupkg.sha512",
+    "C:\\Users\\Skvortsoff\\.nuget\\packages\\microsoft.windows.sdk.contracts\\10.0.18362.2005\\microsoft.windows.sdk.contracts.10.0.18362.2005.nupkg.sha512",
+    "C:\\Users\\Skvortsoff\\.nuget\\packages\\modernwpf.toolkit\\0.1.0\\modernwpf.toolkit.0.1.0.nupkg.sha512",
+    "C:\\Users\\Skvortsoff\\.nuget\\packages\\modernwpf.toolkit.ui\\0.1.0\\modernwpf.toolkit.ui.0.1.0.nupkg.sha512",
+    "C:\\Users\\Skvortsoff\\.nuget\\packages\\modernwpfui\\0.9.3-preview.201204.0\\modernwpfui.0.9.3-preview.201204.0.nupkg.sha512",
+    "C:\\Users\\Skvortsoff\\.nuget\\packages\\system.runtime.windowsruntime\\4.6.0\\system.runtime.windowsruntime.4.6.0.nupkg.sha512",
+    "C:\\Users\\Skvortsoff\\.nuget\\packages\\system.runtime.windowsruntime.ui.xaml\\4.6.0\\system.runtime.windowsruntime.ui.xaml.4.6.0.nupkg.sha512",
+    "C:\\Users\\Skvortsoff\\.nuget\\packages\\system.valuetuple\\4.5.0\\system.valuetuple.4.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}
