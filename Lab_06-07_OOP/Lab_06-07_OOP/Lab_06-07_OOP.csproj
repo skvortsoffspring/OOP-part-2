@@ -39,6 +39,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LimitedInput, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Tests\LimitedInput\LimitedInput\bin\Release\net472\LimitedInput.dll</HintPath>
+    </Reference>
     <Reference Include="ModernWpf, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>C:\Users\Skvortsoff\.nuget\packages\modernwpfui\0.9.3-preview.201204.0\lib\net462\ModernWpf.dll</HintPath>
     </Reference>
@@ -46,11 +50,13 @@
     <Reference Include="netstandard" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <HintPath>C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Drawing\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Drawing.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
@@ -76,9 +82,6 @@
     </ApplicationDefinition>
     <Compile Include="comment.cs">
       <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ForLab8.xaml.cs">
-      <DependentUpon>ForLab8.xaml</DependentUpon>
     </Compile>
     <Compile Include="Loging.xaml.cs">
       <DependentUpon>Loging.xaml</DependentUpon>
@@ -108,8 +111,14 @@
     <Compile Include="Pages\Comments.xaml.cs">
       <DependentUpon>Comments.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Delivery.xaml.cs">
+      <DependentUpon>Delivery.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Favorite.xaml.cs">
       <DependentUpon>Favorite.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Order.xaml.cs">
+      <DependentUpon>Order.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\PageHome.xaml.cs">
       <DependentUpon>PageHome.xaml</DependentUpon>
@@ -123,6 +132,7 @@
     <Compile Include="Pages\Search.xaml.cs">
       <DependentUpon>Search.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Patterns\Singleton.cs" />
     <Compile Include="product.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -142,11 +152,13 @@
     </Compile>
     <Compile Include="ViewModel\Comments.cs" />
     <Compile Include="ViewModel\Favorite.cs" />
+    <Compile Include="ViewModel\Order.cs" />
     <Compile Include="ViewModel\PageSelector.cs" />
+    <Compile Include="ViewModel\Search.cs" />
     <Compile Include="ViewModel\ShoppingBasket.cs" />
     <Compile Include="ViewModel\Validator.cs" />
+    <Compile Include="ViewModel\ViewModelDelivery.cs" />
     <Compile Include="ViewModel\ViewModelMain.cs" />
-    <Page Include="ForLab8.xaml" />
     <Page Include="Loging.xaml" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -161,7 +173,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Pages\Comments.xaml" />
+    <Page Include="Pages\Delivery.xaml" />
     <Page Include="Pages\Favorite.xaml" />
+    <Page Include="Pages\Order.xaml" />
     <Page Include="Pages\PageHome.xaml" />
     <Page Include="Pages\PageProducts.xaml" />
     <Page Include="Pages\Basket.xaml" />
@@ -192,6 +206,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Model.edmx.diagram">
       <DependentUpon>Model.edmx</DependentUpon>
     </None>
@@ -231,6 +246,9 @@
     <PackageReference Include="EntityFramework">
       <Version>6.4.4</Version>
     </PackageReference>
+    <PackageReference Include="MaterialDesignColors">
+      <Version>2.0.0</Version>
+    </PackageReference>
     <PackageReference Include="MaterialDesignThemes">
       <Version>4.0.0</Version>
     </PackageReference>
@@ -245,6 +263,11 @@
     </PackageReference>
     <PackageReference Include="System.ValueTuple">
       <Version>4.5.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Legacy2CPSWorkaround" Version="1.0.0">
+      <PrivateAssets>All</PrivateAssets>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,8 +1,300 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    >
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+    <!--#region product (DataTemlate)-->
+    <DataTemplate x:Key= "ProductTemplate">
+        <Grid Background="White" ZIndex="2">
+            <Border Background="White"
+                        BorderBrush="Gray" 
+                        CornerRadius="10"
+                        BorderThickness="1"  
+                        Margin="10" 
+                        Name ="myBorder"
+                >
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect BlurRadius="10" Color="#F8515C" ShadowDepth="0" Opacity="0.9"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="260"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="170"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="45"/>
+                    </Grid.RowDefinitions>
 
+                    <Grid>
+                        <Border Name="Mask"
+                                    Background="White"
+                                    CornerRadius="10,10,0,0">
+                        </Border>
+                        <StackPanel>
+                            <Image Style ="{DynamicResource ImageRadius}" VerticalAlignment="Top" Source="{Binding NotifyOnSourceUpdated=True,  Path=ProductThumbBitmapImage, UpdateSourceTrigger=PropertyChanged}"/>
+                            <StackPanel.OpacityMask>
+                                <VisualBrush Visual="{Binding ElementName=Mask}" />
+                            </StackPanel.OpacityMask>
+                        </StackPanel>
+                    </Grid>
 
+                    <ToggleButton
+                            Grid.Row="0"
+                            Width="40" 
+                            Height="40" 
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Style="{DynamicResource ButtonRadiusFavorite}"
+                            CommandParameter="add"
+                            Command="{Binding DataContext.ActionsFavorite, RelativeSource={RelativeSource AncestorType=Page}}" 
+                            IsChecked="{Binding Path=IsSelected, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" 
+                        >
+                        <materialDesign:PackIcon Kind="FavoritePlus" Width="25" Height="25" Foreground="#F8515C"></materialDesign:PackIcon>
+                    </ToggleButton>
+                    <ToggleButton
+                            Grid.Row="0"
+                            Width="40" 
+                            Height="40" 
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            Style="{DynamicResource ButtonRadiusFavorite}"
+                            Command="{Binding DataContext.FoundComments, RelativeSource={RelativeSource AncestorType=Page}}" 
+                            IsChecked="{Binding Path=IsSelected, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" 
+                        >
+                        <materialDesign:PackIcon Kind="Comment" Width="25" Height="25" Foreground="#F8515C"></materialDesign:PackIcon>
+                    </ToggleButton>
+
+                    <Label Grid.Row="1" Content="{Binding Path=ProductName}" BorderBrush="Gray" BorderThickness="0, 1 ,0,1" FontSize="12" FontWeight="Bold"/>
+                    <Label Grid.Row="2" BorderBrush="Gray" BorderThickness="0, 1 ,0,1" FontSize="10">
+                        <AccessText TextWrapping="WrapWithOverflow" Text="{Binding Path=ProductShortDesc, UpdateSourceTrigger=PropertyChanged}" />
+                    </Label>
+
+                    <Grid Grid.Row="3">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Background="{x:Null}">
+                            <Label Content="{Binding Path=ProductPrice, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Bottom" FontSize="18" FontWeight="Bold" FontStyle="Italic" Margin="0"></Label>
+                            <Label Content="руб" VerticalAlignment="Bottom" FontSize="14" Margin="0"></Label>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Background="{x:Null}">
+                            <Label Content="{Binding Path=ProductWeight, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Bottom" FontSize="12" Margin="0"></Label>
+                            <Label Content="г" VerticalAlignment="Bottom" FontSize="12" Margin="0"></Label>
+                            <Label Content="|" VerticalAlignment="Bottom" FontSize="12" Margin="0"></Label>
+                            <Label Content="{Binding Path=ProductStock, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Bottom" FontSize="12" Margin="0"></Label>
+                            <Label Content="шт" VerticalAlignment="Bottom" FontSize="12" Margin="0"></Label>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Row="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <ToggleButton 
+                                Grid.Column="0" 
+                                IsChecked="{Binding Path=IsSelected, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" 
+                                Command="{Binding DataContext.IncDecQuantity, RelativeSource={RelativeSource AncestorType=Page}}" 
+                                CommandParameter="dec"
+                                Content="-" 
+                                Style="{DynamicResource ButtonLeftRadius}"
+                            />
+                        <ToggleButton 
+                                Grid.Column="1" 
+                                IsChecked="{Binding Path=IsSelected, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}"
+                                Foreground="Gray" 
+                                Content="{Binding QuantityInTheOrder}" 
+                                Style="{DynamicResource CountButton}"
+                            />
+                        <ToggleButton 
+                                Grid.Column="2"
+                                IsChecked="{Binding Path=IsSelected, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" 
+                                Command="{Binding DataContext.IncDecQuantity, RelativeSource={RelativeSource AncestorType=Page}}" 
+                                CommandParameter="inc"
+                                Content="+"
+                                 Style="{DynamicResource ButtonRightRadius}"
+                                />
+                    </Grid>
+                    <ToggleButton 
+                            Grid.Row="5" 
+                            Content="В корзину"
+                            Style="{DynamicResource ButtonRadius}" 
+                            CommandParameter="add"
+                            Command="{Binding DataContext.ActionsBasket, RelativeSource={RelativeSource AncestorType=Page}}" 
+                            IsChecked="{Binding Path=IsSelected, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" 
+                        />
+                </Grid>
+            </Border>
+        </Grid>
+    </DataTemplate>
+    <!--#endregion-->
+    <!--#region Basket Product (DataTemlate)-->
+    <DataTemplate x:Key= "BasketProductTemplate">
+
+        <Grid Background="White" ZIndex="2">
+
+            <Border Background="White"
+                        BorderBrush="Gray" 
+                        CornerRadius="20"
+                        Margin="10" 
+                        Name ="myBorder"
+                        BorderThickness="1"
+                        >
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect BlurRadius="5" Color="#F8515C" ShadowDepth="0" Opacity="0.9"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="180"/>
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="45"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0">
+                        <Border 
+                                Background="White"
+                                CornerRadius="20"
+                                Name="Mask"
+                            >
+                        </Border>
+                        <StackPanel>
+                            <Image Height="45" VerticalAlignment="Top" Source="{Binding NotifyOnSourceUpdated=True,  Path=ProductThumbBitmapImage, UpdateSourceTrigger=PropertyChanged}"/>
+                            <StackPanel.OpacityMask>
+                                <VisualBrush Visual="{Binding ElementName=Mask}" />
+                            </StackPanel.OpacityMask>
+                        </StackPanel>
+                    </Grid>
+
+                    <Label Grid.Column="1" Content="{Binding Path=ProductName}" FontSize="12" FontWeight="Bold"/>
+
+                    <Grid Grid.Column="2">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Background="{x:Null}">
+                            <Label Content="{Binding Path=ProductPrice, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Bottom" FontSize="15" FontWeight="Bold" FontStyle="Italic" Margin="0"></Label>
+                            <Label Content="руб" VerticalAlignment="Bottom" FontSize="10" Margin="0"></Label>
+                        </StackPanel>
+                    </Grid>
+
+                    <ToggleButton 
+                            Grid.Column="3" 
+                            Style="{DynamicResource ButtonRadiusBasket}" 
+                            CommandParameter="del"
+                            Command="{Binding DataContext.ActionsBasket, RelativeSource={RelativeSource AncestorType=Page}}" 
+                            IsChecked="{Binding Path=IsSelected, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" 
+                        >
+                        <materialDesign:PackIcon Kind="Delete" Height="35" Width="35" Foreground="#F8515C"/>
+                    </ToggleButton>
+
+                </Grid>
+            </Border>
+        </Grid>
+    </DataTemplate>
+    <!--#endregion-->
+    <!--#region Favorite Product (DataTemlate)-->
+    <DataTemplate x:Key= "FavoriteProductTemplate">
+        <Grid Background="White" ZIndex="2">
+            <Border Background="White"
+                        BorderBrush="Gray" 
+                        CornerRadius="20"
+                        Margin="10" 
+                        Name ="myBorder"
+                        BorderThickness="1"
+                        >
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect BlurRadius="5" Color="#F8515C" ShadowDepth="0" Opacity="0.9"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="67"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="45"/>
+                        <ColumnDefinition Width="45"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="45"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Column="0">
+                        <Border 
+                                Name="Mask"
+                                Background="White"
+                                CornerRadius="20"
+                            >
+                        </Border>
+                        <StackPanel>
+                            <Image Height="45" Style ="{DynamicResource ImageRadius}" VerticalAlignment="Top" Source="{Binding NotifyOnSourceUpdated=True,  Path=ProductThumbBitmapImage, UpdateSourceTrigger=PropertyChanged}"/>
+                            <StackPanel.OpacityMask>
+                                <VisualBrush Visual="{Binding ElementName=Mask}" />
+                            </StackPanel.OpacityMask>
+                        </StackPanel>
+                    </Grid>
+
+                    <Label Grid.Column="1" Content="{Binding Path=ProductName}" FontSize="12" FontWeight="Bold"/>
+
+                    <Grid Grid.Column="1">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Background="{x:Null}">
+                            <Label Content="{Binding Path=ProductPrice, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Bottom" FontSize="15" FontWeight="Bold" FontStyle="Italic" Margin="0"></Label>
+                            <Label Content="руб" VerticalAlignment="Bottom" FontSize="10" Margin="0"></Label>
+                        </StackPanel>
+                    </Grid>
+
+                    <ToggleButton 
+                            Grid.Column="3" 
+                            Style="{DynamicResource ButtonRadiusBasket}" 
+                            CommandParameter="add"
+                            Command="{Binding DataContext.ActionsBasket, RelativeSource={RelativeSource AncestorType=Page}}" 
+                            IsChecked="{Binding Path=IsSelected, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" 
+                        >
+                        <materialDesign:PackIcon Kind="BasketPlus" Height="35" Width="35" Foreground="#F8515C"/>
+                    </ToggleButton>
+                    <ToggleButton 
+                            Grid.Column="4" 
+                            Style="{DynamicResource ButtonRadiusBasket}" 
+                            CommandParameter="del"
+                            Command="{Binding DataContext.ActionsFavorite, RelativeSource={RelativeSource AncestorType=Page}}" 
+                            IsChecked="{Binding Path=IsSelected, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" 
+                        >
+                        <materialDesign:PackIcon Kind="Delete" Height="35" Width="35" Foreground="#F8515C"/>
+                    </ToggleButton>
+
+                </Grid>
+            </Border>
+        </Grid>
+    </DataTemplate>
+    <!--#endregion-->
+    <!--#region Favorite Button -->
     <Style TargetType="{x:Type ToggleButton}" x:Key="ButtonRadiusFavorite">
         <Setter Property="Background" Value="White" />
         <Setter Property="Margin" Value="5"></Setter>
@@ -34,39 +326,8 @@
             </MultiTrigger>
         </Style.Triggers>
     </Style>
-    
-    <Style TargetType="{x:Type Button}" x:Key="ButtonFound">
-        <Setter Property="Background" Value="White" />
-        <Setter Property="Margin" Value="5"></Setter>
-        <Setter Property="FontSize" Value="20"></Setter>
-        <Setter Property="Foreground" Value="#F8515C"></Setter>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Button}">
-                    <Border Background="{TemplateBinding Background}"  CornerRadius="10" BorderBrush="#ccc" BorderThickness="0">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" Value="White"/>
-                <Setter Property="Background" Value="DarkGray"/>
-            </Trigger>
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="IsPressed" Value="true"></Condition>
-                    <Condition Property="IsMouseOver" Value="true"></Condition>
-                </MultiTrigger.Conditions>
-                <MultiTrigger.Setters>
-                    <Setter Property="Background" Value="Gray" />
-                    <Setter Property="Foreground" Value="White"></Setter>
-                </MultiTrigger.Setters>
-            </MultiTrigger>
-        </Style.Triggers>
-    </Style>
-
+    <!--#endregion-->
+    <!--#region Button Radius-->
     <Style TargetType="{x:Type ToggleButton}" x:Key="ButtonRadius">
         <Setter Property="Background" Value="White" />
         <Setter Property="Margin" Value="5,2,2,2"></Setter>
@@ -98,7 +359,8 @@
             </MultiTrigger>
         </Style.Triggers>
     </Style>
-
+    <!--#endregion-->
+    <!--#region Button Basket-->
     <Style TargetType="{x:Type ToggleButton}" x:Key="ButtonRadiusBasket">
         <Setter Property="Background" Value="White" />
         <Setter Property="FontSize" Value="20"></Setter>
@@ -129,23 +391,8 @@
             </MultiTrigger>
         </Style.Triggers>
     </Style>
-
-    <Style TargetType="{x:Type ToggleButton}" x:Key="CountButton">
-        <Setter Property="Background" Value="White" />
-        <Setter Property="Margin" Value="0,2,0,2"></Setter>
-        <Setter Property="FontSize" Value="20"></Setter>
-        <Setter Property="Foreground" Value="#F8515C"></Setter>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <Border Background="{TemplateBinding Background}"  CornerRadius="0" BorderBrush="#ccc" BorderThickness="0,1,0,1">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
+    <!--#endregion-->
+    <!--#region Button Radius Left (-)-->
     <Style TargetType="{x:Type ToggleButton}" x:Key="ButtonLeftRadius">
         <Setter Property="Background" Value="White" />
         <Setter Property="Margin" Value="5,2,0,2"></Setter>
@@ -176,7 +423,8 @@
             </MultiTrigger>
         </Style.Triggers>
     </Style>
-
+    <!--#endregion-->
+    <!--#region Button Radius Right (+)-->
     <Style TargetType="{x:Type ToggleButton}" x:Key="ButtonRightRadius">
         <Setter Property="Background" Value="White" />
         <Setter Property="Margin" Value="0,2,5,2"></Setter>
@@ -207,40 +455,45 @@
             </MultiTrigger>
         </Style.Triggers>
     </Style>
-
-    <Style x:Key="Label" TargetType="Label">
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Visibility" Value="Visible"/>
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-    
+    <!--#endregion-->
+    <!--#region StackPanel-->
     <Style TargetType="StackPanel" >
         <Style.Setters>
             <Setter Property="Background"  Value="White"/>
         </Style.Setters>
     </Style>
-    
+    <!--#endregion-->
+    <!--#region ListBox-->
     <Style TargetType="ListBox">
         <Style.Setters>
             <Setter Property="Background" Value="White"></Setter>
         </Style.Setters>
     </Style>
-    
-    <Style x:Key="MainGrid" TargetType="Grid">
-        <Style.Setters>
-            <Setter Property="Background" Value="White"/>
-        </Style.Setters>
+    <!--#endregion-->
+    <!--#region Count Product to Basket-->
+    <Style TargetType="{x:Type ToggleButton}" x:Key="CountButton">
+        <Setter Property="Background" Value="White" />
+        <Setter Property="Margin" Value="0,2,0,2"></Setter>
+        <Setter Property="FontSize" Value="20"></Setter>
+        <Setter Property="Foreground" Value="#F8515C"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Border Background="{TemplateBinding Background}"  CornerRadius="0" BorderBrush="#ccc" BorderThickness="0,1,0,1">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
-    
     <Style x:Key="TextBlockStyle" TargetType="TextBlock">
         <Style.Setters>
             <Setter Property="Background" Value="White" />
             <Setter Property="Foreground" Value="Gray" />
         </Style.Setters>
     </Style>
-    
+    <!--#endregion-->
+    <!--#region Text Block Navi-->
     <Style TargetType="{x:Type TextBlock}" x:Key="StyleTextBlockMenu">
         <Setter Property="Background" Value="White"/>
         <Setter Property="Foreground" Value="Black"/>
@@ -253,7 +506,8 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    
+    <!--#endregion -->
+    <!--#region Butoon Red-->
     <Style TargetType="{x:Type Button}" x:Key="StyleButtonRed">
         <Setter Property="Background" Value="#F8515C"/>
         <Setter Property="Foreground" Value="White"></Setter>
@@ -287,7 +541,8 @@
             
         </Style.Triggers>
     </Style>
-    
+    <!--#endregion-->
+    <!--#region Button Red for Log In-->
     <Style TargetType="{x:Type Button}" x:Key="StyleButtonRedLogin">
         <Setter Property="Background" Value="#F8515C"/>
         <Setter Property="Foreground" Value="White"></Setter>
@@ -317,7 +572,8 @@
             
         </Style.Triggers>
     </Style>
-    
+    <!--#endregion-->
+    <!--#region Button Close-->
     <Style TargetType="{x:Type Button}" x:Key="CloseButton">
         <Setter Property="Background" Value="White"/>
         <Setter Property="Foreground" Value="Black"></Setter>
@@ -337,7 +593,5 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    
-    
-
+    <!--#endregion-->
 </ResourceDictionary>

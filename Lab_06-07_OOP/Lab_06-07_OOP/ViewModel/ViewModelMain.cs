@@ -3,7 +3,9 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Media.Imaging;
+using Lab_06_07_OOP.Pages;
 using Lab_06_07_OOP.ServicesClasses;
 using Lab_06_07_OOP.UI;
 using Microsoft.Win32;
@@ -16,7 +18,8 @@ namespace Lab_06_07_OOP.ViewModel
         private productcategory _productCategory;
         private product _selectedProduct = new();
         private productsubcategory _productSubcategory = new();
-
+        private Visibility _showFrame = Visibility.Hidden;
+        
         private string _errorString = "";
         private ViewModelCommands _addProductCommand;
         private ViewModelCommands _delProductCommand;
@@ -27,21 +30,20 @@ namespace Lab_06_07_OOP.ViewModel
         private ViewModelCommands _delSubcategoryCommand;
         private ViewModelCommands _goCategoryCommand;
         private ViewModelCommands _incDecQuantity;
+        private ViewModelCommands _hiddenProduct;
+        private ViewModelCommands _showHiddenedProduct;
 
 
         private ObservableCollection<product> _products = MainWindow.Market.products.Local;
-        public ObservableCollection<productcategory> ProductCategories { get; set; } = MainWindow.Market.productcategories.Local;
+        public  ObservableCollection<productcategory> ProductCategories { get; set; } = MainWindow.Market.productcategories.Local;
         private ObservableCollection<productsubcategory> _productSubcategories;
-        private BitmapImage _productCategoryBitmapImage;
-        private ViewModelCommands _selectCategoryCommand;
-        private double _frameOpacity;
         private productcategory _selectedCategory= new();
         private productsubcategory _selectedSubcategory = new();
         private ViewModelCommands _goSubcategoryCommand;
 
         public ViewModel()
         {
-            PageSelected = _productsPage = new();
+            PageSelected = _productsPage = new PageProducts();
             _productsPage.DataContext = this;
             _basket = new();
             _basket.DataContext = this;
@@ -49,12 +51,26 @@ namespace Lab_06_07_OOP.ViewModel
             _favorite.DataContext = this;
             _pageComments = new();         
             _pageComments.DataContext = this;
-            PageFrameSelected = _pageComments; /////////////////////
+            _searchPage = new();
+            _searchPage.DataContext = this;
+            _orderPage = new();
+            _orderPage.DataContext = this;
+
 
             if (MainWindow.Market.productcategories.Count() != 0)
             {
                 ProductCategory = MainWindow.Market.productcategories.First();
                 SelectedCategory = MainWindow.Market.productcategories.First();
+            }
+        }
+        
+        public Visibility ShowFrame
+        {
+            get => _showFrame;
+            set
+            {
+                _showFrame = value;
+                OnPropertyChanged("ShowFrame");
             }
         }
 
@@ -167,15 +183,15 @@ namespace Lab_06_07_OOP.ViewModel
                 return _addProductCommand ??
                        (_addProductCommand = new ViewModelCommands(obj =>
                        {
-                           var product = new product();
-                           if (MainWindow.Market.productcategories.Count() != 0)
-                               product.ProductCategory = MainWindow.Market.productcategories.First().CategoryID;
-                           if (MainWindow.Market.productsubcategories.Count() != 0)
-                               product.ProductCategory = MainWindow.Market.productsubcategories.First().SubcategoryID;
-                           Products.Add(product);
-                           MainWindow.Market.products.Add(product);
-                           MainWindow.Market.SaveChangesAsync();
-                           SelectedProduct = product;
+                            var product = new product();
+                            //if (MainWindow.Market.productcategories.Count() != 0)
+                            //    product.ProductCategory = MainWindow.Market.productcategories.First().CategoryID;
+                            //if (MainWindow.Market.productsubcategories.Count() != 0)
+                            //    product.ProductCategory = MainWindow.Market.productsubcategories.First().SubcategoryID;
+                            Products.Add(product);
+                            MainWindow.Market.products.Add(product);
+                            MainWindow.Market.SaveChanges();
+                            SelectedProduct = product;
                        }));
             }
         }
@@ -186,8 +202,19 @@ namespace Lab_06_07_OOP.ViewModel
                 return _delProductCommand ??
                     (_delProductCommand = new ViewModelCommands(obj =>
                     {
+                        foreach (var orderdetail in MainWindow.Market.orderdetails)
+                        {
+                            if (orderdetail.DetailsProductID != null && orderdetail.DetailsProductID.Value == SelectedProduct.ProductID)
+                                orderdetail.DetailsProductID = null;
+                        }
+
+                        foreach (var comment in MainWindow.Market.comments)
+                        {
+                            if (SelectedProduct.ProductID == comment.CommentProductID)
+                                MainWindow.Market.comments.Remove(comment);
+                        }
                         MainWindow.Market.products.Remove(SelectedProduct);
-                        MainWindow.Market.SaveChangesAsync();
+                        MainWindow.Market.SaveChanges();
                         Products.Remove(SelectedProduct);
                     }));
             }
@@ -199,9 +226,13 @@ namespace Lab_06_07_OOP.ViewModel
                 return _addCategoryCommand ??
                        (_addCategoryCommand = new ViewModelCommands(obj =>
                        {
-                           MainWindow.Market.productcategories.Add(ProductCategory);
-                           ProductCategory = new productcategory();
-                           MainWindow.Market.SaveChangesAsync();
+                           if (ProductCategory != null)
+                           {
+                               ProductCategory = new productcategory();
+                               ProductCategory.CategoryName = "Новая";
+                               MainWindow.Market.productcategories.Add(ProductCategory);
+                               MainWindow.Market.SaveChangesAsync();
+                           }
                        }));
             }
         }
@@ -232,11 +263,15 @@ namespace Lab_06_07_OOP.ViewModel
                 return _addSubcategoryCommand ??
                        (_addSubcategoryCommand = new ViewModelCommands(obj =>
                        {
-                           ProductSubcategory.SubcategoryCategoryID = SelectedProduct.ProductCategory.Value;
-                           MainWindow.Market.productsubcategories.Add(ProductSubcategory);
-                           ProductSubcategory = new productsubcategory();
-                           MainWindow.Market.SaveChangesAsync();
-                           SelectSubCategories(_productCategory);
+                           if (SelectedProduct.ProductCategory != null)
+                           {
+                               ProductSubcategory.SubcategoryCategoryID = SelectedProduct.ProductCategory.Value;
+                               ProductSubcategory.SubcategoryName = "Новая";
+                               MainWindow.Market.productsubcategories.Add(ProductSubcategory);
+                               ProductSubcategory = new productsubcategory();
+                               MainWindow.Market.SaveChangesAsync();
+                               SelectSubCategories(_productCategory);
+                           }
                        }));
             }
         }
@@ -249,6 +284,12 @@ namespace Lab_06_07_OOP.ViewModel
                        {
                            if (_productSubcategory != null)
                            {
+                               foreach (var product in MainWindow.Market.products)
+                               {
+                                   if(product.ProductSubcategory != null)
+                                   if (product.ProductSubcategory.Value == _productSubcategory.SubcategoryID)
+                                       product.ProductSubcategory  = null;
+                               }
                                MainWindow.Market.productsubcategories.Remove(_productSubcategory);
                                MainWindow.Market.SaveChanges();
                                SelectSubCategories(_productCategory);
@@ -339,6 +380,32 @@ namespace Lab_06_07_OOP.ViewModel
                            if(SelectedSubcategory!=null)
                            Products = new ObservableCollection<product>(MainWindow.Market.products.Local.Where(product =>
                                product.ProductSubcategory == SelectedSubcategory.SubcategoryID));
+                       }));
+            }
+        }
+        public ViewModelCommands HiddenProduct
+        {
+            get
+            {
+                return _hiddenProduct ??
+                       (_hiddenProduct = new ViewModelCommands(obj =>
+                       {
+                           if (SelectedProduct != null)
+                           {
+                               SelectedProduct.ProductSubcategory = null;
+                               SelectedProduct.ProductCategory = null;
+                           }
+                       }));
+            }
+        }        
+        public ViewModelCommands ShowHiddenedProduct
+        {
+            get
+            {
+                return _showHiddenedProduct ??
+                       (_showHiddenedProduct = new ViewModelCommands(obj =>
+                       {
+                           Products = new ObservableCollection<product>(MainWindow.Market.products.Local.Where(p => p.ProductCategory == null));
                        }));
             }
         }

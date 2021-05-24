@@ -1,8 +1,15 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=C_003A_005CUsers_005CSkvortsoff_005Csource_005Crepos_005CLimitetInput_005CLimitetInput_005Cbin_005CDebug_005Cnet5_002E0_002Dwindows_005CLimitetInput_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=C_003A_005CUsers_005CSkvortsoff_005Csource_005Crepos_005CLimitetInput_005CLimitetInput_005Cbin_005CRelease_005Cnet5_002E0_002Dwindows_005Cref_005CLimitetInput_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005CUniversity_005CLabs_005COOP_0020part_00202_005CLab_005F06_002D07_005FOOP_005CLab_005F06_002D07_005FOOP_005Cbin_005CDebug_005CLimitetInput_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005CUniversity_005CLabs_005COOP_0020part_00202_005CLab_005F06_002D07_005FOOP_005CLab_005F06_002D07_005FOOP_005CLimitetInput_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005CUniversity_005CTests_005CLimitedInput_005CLimitedInput_005Cbin_005CRelease_005Cnet472_005CLimitedInput_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005CUniversity_005CTests_005CLimitedInput_005CLimitedInput_005Cbin_005CRelease_005Cnet5_002E0_002Dwindows_005Cref_005CLimitedInput_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:String x:Key="/Default/CodeInspection/PencilsConfiguration/ActualSeverity/@EntryValue">WARNING</s:String>
 	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;&#xD;
   &lt;Assembly Path="C:\Users\Skvortsoff\.nuget\packages\microsoft.toolkit.uwp.ui\7.0.1\lib\uap10.0.17763\Microsoft.Toolkit.Uwp.UI.dll" /&gt;&#xD;
   &lt;Assembly Path="C:\Users\Skvortsoff\.nuget\packages\microsoft.toolkit.uwp.ui.controls.input\7.0.1\lib\uap10.0.17763\Microsoft.Toolkit.Uwp.UI.Controls.Input.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\mscorlib.dll" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String>
 	<s:Boolean x:Key="/Default/Environment/Hierarchy/EntityFrameworkOptions/IsAlreadyNotifiedAboutEntityFramework/@EntryValue">True</s:Boolean>
 	

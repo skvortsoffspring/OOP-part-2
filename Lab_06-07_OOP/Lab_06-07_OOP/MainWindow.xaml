@@ -40,6 +40,7 @@
                 <TabControl FontSize="16" BorderThickness="0" Padding="10"  >
                    <TabItem Header="Войти" Padding="10" BorderThickness="0">
                        <StackPanel>
+                            <Label Foreground="Red" Content="{Binding ErrorMsg, UpdateSourceTrigger=PropertyChanged}"></Label>
                             <Label>Введите почту</Label>
                            <TextBox MaxLength="30" Margin="5">
                                <TextBox.Text>
@@ -67,6 +68,7 @@
                            />
                        </StackPanel>
                    </TabItem>
+                    
                     <TabItem Header="Регистрация" Padding="5" BorderThickness="0">
                        <StackPanel>
                            <Label Foreground="Red" Content="{Binding ErrorMsg, UpdateSourceTrigger=PropertyChanged}"></Label>
@@ -96,8 +98,12 @@
                                MaxLength="20"
                                servicesClasses:PasswordHelper.Attach="True">
                                <servicesClasses:PasswordHelper.Password>
-                                   <Binding Path="Password" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" ValidatesOnExceptions="True"/>
-                               </servicesClasses:PasswordHelper.Password>
+                                    <Binding Path="Password" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" ValidatesOnExceptions="True">
+                                        <Binding.ValidationRules>
+                                            <DataErrorValidationRule />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </servicesClasses:PasswordHelper.Password>
                            </PasswordBox>
                             <Label Foreground="#333">Пароль еще раз</Label>
                            <PasswordBox 
@@ -105,8 +111,12 @@
                                MaxLength="20" 
                                servicesClasses:PasswordHelper.Attach="True">
                                <servicesClasses:PasswordHelper.Password>
-                                   <Binding Path="PasswordRepeat" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay"/>
-                               </servicesClasses:PasswordHelper.Password>
+                                    <Binding Path="PasswordRepeat" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                                        <Binding.ValidationRules>
+                                            <DataErrorValidationRule />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </servicesClasses:PasswordHelper.Password>
                            </PasswordBox>
                            <CheckBox x:Name="Accepted" Content="Согласен с правилами" Margin="0,20,0,20"/>
                            <Button 
@@ -146,8 +156,8 @@
                 </Image>
 
                 <StackPanel Grid.Column="1" Orientation="Horizontal">
-                    <TextBox x:Name="StyleBox"  Width="200" Height="30" FontSize="22" HorizontalAlignment="Left" BorderThickness="2"/>
-                    <Button Content="Поиск" Height="30" Style="{DynamicResource ButtonFound}"/>
+                    <TextBox x:Name="StyleBox" Text="{Binding FieldSearch, UpdateSourceTrigger=PropertyChanged}" Width="200" Height="30" FontSize="22" HorizontalAlignment="Left" BorderThickness="2"/>
+                    <Label Content="Поиск продукта" Height="30"/>
                 </StackPanel>
 
                 <Label Grid.Column="2" Content="{Binding Email}" HorizontalAlignment="Right"/>
@@ -193,7 +203,7 @@
                             VerticalAlignment="Center"
                             Margin="20,0,20,0"  
                             Style="{DynamicResource StyleTextBlockMenu}"
-                            Text="{Binding Path=CategoryName}">
+                            Text="{Binding Path=CategoryName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                                 </TextBlock>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
@@ -250,7 +260,7 @@
             </Grid>
         </Grid>
         <Border
-            Visibility="{Binding ShowComments}"
+            Visibility="{Binding ShowFrame}"
             Opacity="0.95"
              Background="{x:Null}"
                  BorderBrush="Gray" 

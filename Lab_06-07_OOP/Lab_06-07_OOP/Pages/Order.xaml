@@ -1,0 +1,78 @@
+﻿<Page x:Class="Lab_06_07_OOP.Pages.Order"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:viewmodel="clr-namespace:Lab_06_07_OOP.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:ViewModel}"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+
+      xmlns:local="clr-namespace:Lab_06_07_OOP.Pages"
+      mc:Ignorable="d"
+      >
+    <Grid Margin="5">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="110"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="65"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Border Name="Mask"
+                        Background="White"
+                        CornerRadius="10"
+                        BorderThickness="1">
+            </Border>
+            <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left">
+                <StackPanel.OpacityMask>
+                    <VisualBrush Visual="{Binding ElementName=Mask}" />
+                </StackPanel.OpacityMask>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label 
+                    HorizontalAlignment="Left"
+                    Content="Адрес доставки" 
+                    FontSize="32"
+                    Margin="0,0,0,10">
+                    </Label>
+                    <ToggleButton 
+                        Width="40" 
+                        Height="40" 
+                        Margin="20,0,0,0"
+                        VerticalAlignment="Center"
+                        Style="{DynamicResource ButtonRadiusFavorite}"
+                        CommandParameter="close"
+                        Command="{Binding DataContext.FoundComments, RelativeSource={RelativeSource AncestorType=Page}}">
+                        <ToggleButton.Content>
+                            <materialDesign:PackIcon Kind="Close" Width="25" Height="25" Foreground="#F8515C"></materialDesign:PackIcon>
+                        </ToggleButton.Content>
+                    </ToggleButton>
+                </StackPanel>
+                <StackPanel Height="50" Orientation="Horizontal">
+                    <Label Content="Цена за все: " FontSize="20" Margin="0,0,0,0" VerticalAlignment="Center"/>
+                    <TextBox Margin="21,0,20,0" Background="{x:Null}" BorderThickness="0" FontSize="20" VerticalAlignment="Center" Text="{Binding PurchasePrice, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <StackPanel Grid.Row="1">
+            <Label Content="Страна"/>
+            <TextBox Text="{Binding OrderCountry}" MaxLength="50"/>
+            <Label Content="Город"/>
+            <TextBox Text="{Binding OrderCity}" MaxLength="50"/>
+            <Label Content="Адрес"/>
+            <TextBox Text="{Binding OrderAddress}" MaxLength="50"/>
+        </StackPanel>
+
+        <Grid  Grid.Row="2">
+            <ToggleButton 
+                Height="60"
+                Width="200"
+                VerticalAlignment="Bottom"
+                Command="{Binding DataContext.ArrangeBasket, RelativeSource={RelativeSource AncestorType=Page}}" 
+                Content="Оформить заказ"
+                Style="{DynamicResource ButtonRadius}"
+            />
+        </Grid>
+    </Grid>
+</Page>

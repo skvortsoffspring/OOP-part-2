@@ -77,7 +77,7 @@ namespace Lab_06_07_OOP
         {
             get
             {
-                var productCategory = MainWindow.ViewModel.ProductCategories.Where(productCategory => productCategory.CategoryID == _productCategory).First();
+                var productCategory = MainWindow.ViewModel.ProductCategories.Where(p => p.CategoryID == _productCategory).FirstOrDefault();
                 return MainWindow.ViewModel.ProductCategories.IndexOf(productCategory);
             }
             set { }
@@ -87,7 +87,7 @@ namespace Lab_06_07_OOP
             get
             {
                 productsubcategory productSubcategory = null;
-                if (MainWindow.ViewModel.ProductSubcategories.Count()!=0)
+                if (MainWindow.ViewModel.ProductSubcategories.Count()!=0 && _productSubcategory!=null)
                     productSubcategory = MainWindow.ViewModel.ProductSubcategories.Where(p => p.SubcategoryID == _productSubcategory).First();
                 return MainWindow.ViewModel.ProductSubcategories.IndexOf(productSubcategory);
             }

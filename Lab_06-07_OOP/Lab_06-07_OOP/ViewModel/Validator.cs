@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Media;
 using Lab_06_07_OOP.UI;
 
 namespace Lab_06_07_OOP.ViewModel
@@ -12,9 +11,9 @@ namespace Lab_06_07_OOP.ViewModel
     {
         private bool _first  = true;
         private string _errorMsg;
-        private string _email = "skvortsoff@mail.com";
+        private string _email = "";
         private string _phone = "";
-        private string _password = "garik1987";
+        private string _password = "";
         private string _passwordRepeat = "";
         private string _inOutString = "Войти";
         private ViewModelCommands _goLogging;
@@ -107,33 +106,52 @@ namespace Lab_06_07_OOP.ViewModel
                 switch (columnName)
                 {
                     case "Email":
-                        if (
-                            !Regex.IsMatch(Email,
+                        if (string.IsNullOrEmpty(Email))
+                        {
+                            ErrorMsg = "";
+                            return ErrorMsg;
+                        }
+                        if (!Regex.IsMatch(Email,
                                 @"^[^@\s]+@[^@\s]+\.[^@\s]+$",
                                 RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)))
                             ErrorMsg = "Неверный формат почты";
                         break;
                     case "Password":
-                        if (Password.Length < 8 || Password != PasswordRepeat)
-                            ErrorMsg = "Не меньше 8 символов или не совпадают";
+                        if (string.IsNullOrEmpty(Password))
+                        {
+                            ErrorMsg = "";
+                            return ErrorMsg;
+                        }
+                        if (Password.Length < 8)
+                            ErrorMsg = "Пароль меньше 8 символов";
                         break;
                     case "PasswordRepeat":
-                        if (PasswordRepeat.Length < 8 || Password != PasswordRepeat)
-                            ErrorMsg = "Не меньше 8 символов или не совпадают";
-                        ErrorMsg = "";
+                        if (string.IsNullOrEmpty(PasswordRepeat))
+                        {
+                            ErrorMsg = "";
+                            return ErrorMsg;
+                        }
+                        if(PasswordRepeat.Length < 8)
+                        {
+                            ErrorMsg = "Пароль меньше 8 символов";
+                            return ErrorMsg;
+                        }
+                        if (Password != PasswordRepeat)
+                            ErrorMsg = "Пароли не совпадают";
                         break;
                     case "Phone":
-                        if(!Regex.IsMatch(Phone,
-                            @"^((\375)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$",
+                        if (string.IsNullOrEmpty(Phone))
+                        {
+                            ErrorMsg = "";
+                            return ErrorMsg;
+                        }
+                        if (!Regex.IsMatch(Phone,
+                            @"^(\+375)\((29|25|44|33)\)(\d{3})(\-\d{2})(\-\d{2})$",
                             RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)))
-                            ErrorMsg = "Неверный формат (375xxxxxxxx)";
+                            ErrorMsg = "+375(xx)xxx-xx-xx";
                         break;
                 }
-                if(_first)
-                {
-                    ErrorMsg = ""; 
-                    _first = false;
-                }
+                
                 return ErrorMsg;
             }
            
@@ -148,7 +166,7 @@ namespace Lab_06_07_OOP.ViewModel
                            user user = new user();
                            user.UserEmail = _email;
                            var foundUser =
-                               MainWindow.Market.users.SqlQuery(
+                                MainWindow.Market.users.SqlQuery(
                                    "select * from users where UserEmail = '"+ Email +"' and UserPassword = '" + Password.GetHashCode() + "'").ToList();
                            if (foundUser.Count!=0)
                            {
@@ -158,7 +176,7 @@ namespace Lab_06_07_OOP.ViewModel
                                 MainWindow.Role = user.Role;
                                 InOutString = "Выйти";
                                 MainWindow.Entered = true;
-                                ShowAdminPanel();
+                                CheckRole();
                                 VisibleFormRegistered = Visibility.Hidden;
                            }
                        }));
@@ -173,10 +191,16 @@ namespace Lab_06_07_OOP.ViewModel
                        {
                            if (Password == PasswordRepeat && Password.Length!=0 && ErrorMsg=="")
                            {
-                               user user = new user();
+                               var user = new user();
                                user.UserEmail = _email;
                                user.UserPassword = _password.GetHashCode().ToString();
-                               user.UserPhone = Decimal.Parse(_phone);
+                               var phone = string.Empty;
+                               foreach (var c in _phone)
+                               {
+                                   if (char.IsDigit(c))
+                                       phone += c;
+                               }
+                               user.UserPhone = Decimal.Parse(phone);
                                user.UserRegistrationDate = DateTime.Now;
                                user.Role = 0;
                                MainWindow.Market.users.Add(user);
@@ -217,27 +241,19 @@ namespace Lab_06_07_OOP.ViewModel
             }
         } 
 
-        private void ShowAdminPanel()
+        private void CheckRole()
         {
             if (MainWindow.Role == 1)
             {
                 AdminPanel = 400.0;
             }
+            else if (MainWindow.Role == 2)
+            {
+                SelectPage.Execute("delivery");
+            }
             else
             {
                 AdminPanel = 0.0;
-            }
-        }
-
-        public void ShowCommentPanel()
-        {
-            if (MainWindow.Entered)
-            {
-                SizeBoxComment = 80.0;
-            }
-            else
-            {
-                SizeBoxComment = 0.0;
             }
         }
     }

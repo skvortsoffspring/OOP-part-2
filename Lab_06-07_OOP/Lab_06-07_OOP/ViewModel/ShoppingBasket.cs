@@ -13,7 +13,6 @@ namespace Lab_06_07_OOP.ViewModel
         private int _countProductBasket;
         private double _purchasePrice;
         private ViewModelCommands _actionsBasket;
-        private ViewModelCommands _arrangeBasket;
 
         public ObservableCollection<product> ShoppingBasket
         {
@@ -46,7 +45,7 @@ namespace Lab_06_07_OOP.ViewModel
                 OnPropertyChanged("CountProductBasket");
             }
         }
-        public void AddProductBasket()
+        private void AddProductBasket()
         {
             if (SelectedProduct != null)
                 for (int i = 0; i < SelectedProduct.QuantityInTheOrder; i++)
@@ -58,7 +57,7 @@ namespace Lab_06_07_OOP.ViewModel
                 }
             CountProductBasket = ShoppingBasket.Count;
         }
-        public void DelPProductBasket()
+        private void DelPProductBasket()
         {
             if (SelectedProduct != null)
                     ShoppingBasket.Remove(SelectedProduct);
@@ -86,38 +85,6 @@ namespace Lab_06_07_OOP.ViewModel
                        }));
             }
         }
-        public ViewModelCommands ArrangeBasket
-        {
-            get
-            {
-                return _arrangeBasket ??
-                       (_arrangeBasket = new ViewModelCommands(obj =>
-                       {
-                           if (!MainWindow.Entered)
-                           {
-                                MessageBox.Show("Войдите для завершения покупки");
-                                return;
-                           }
-                              
-                           if (ShoppingBasket.Count != 0)
-                           { 
-                               order order = new();
-                               order.OrderUserID = UserID;
-                               order.OrderDate = DateTime.Now;
-                               order.OrderAmount = _purchasePrice;
-                               foreach (var product in ShoppingBasket)
-                               {
-                                   orderdetail orderdetail = new();
-                                   orderdetail.DetailsProductID = product.ProductID;
-                                   order.orderdetails.Add(orderdetail);
-                               }
-                               MainWindow.Market.orders.Add(order);
-                               MainWindow.Market.SaveChanges();
-                               ShoppingBasket.Clear();
-                               PurchasePrice = 0.0;
-                           }
-                       }));
-            }
-        }
+       
     }
 }

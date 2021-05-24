@@ -26,7 +26,7 @@ namespace Lab_06_07_OOP
 
             Closed += (sender, args) =>
             {
-                Market.SaveChanges();
+                Market.SaveChangesAsync();
             };
 
             List<string> styles = new List<string> { "Blue", "Dark" };

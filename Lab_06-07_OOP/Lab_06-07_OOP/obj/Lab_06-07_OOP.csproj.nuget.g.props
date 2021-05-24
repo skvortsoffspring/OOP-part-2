@@ -17,6 +17,7 @@
   </PropertyGroup>
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <Import Project="$(NuGetPackageRoot)microsoft.windows.sdk.contracts\10.0.18362.2005\build\Microsoft.Windows.SDK.Contracts.props" Condition="Exists('$(NuGetPackageRoot)microsoft.windows.sdk.contracts\10.0.18362.2005\build\Microsoft.Windows.SDK.Contracts.props')" />
+    <Import Project="$(NuGetPackageRoot)legacy2cpsworkaround\1.0.0\build\netstandard1.0\Legacy2CPSWorkaround.props" Condition="Exists('$(NuGetPackageRoot)legacy2cpsworkaround\1.0.0\build\netstandard1.0\Legacy2CPSWorkaround.props')" />
     <Import Project="$(NuGetPackageRoot)entityframework\6.4.4\buildTransitive\EntityFramework.props" Condition="Exists('$(NuGetPackageRoot)entityframework\6.4.4\buildTransitive\EntityFramework.props')" />
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">

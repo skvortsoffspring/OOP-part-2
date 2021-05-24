@@ -8,89 +8,15 @@
       xmlns:local="clr-namespace:Lab_06_07_OOP.Pages"
       mc:Ignorable="d"
       Title="Basket">
-    <Page.Resources>
-        <DataTemplate x:Key= "ProductTemplate">
-
-            <Grid Background="White" ZIndex="2">
-
-                <Border Background="White"
-                        BorderBrush="Gray" 
-                        CornerRadius="20"
-                        Margin="10" 
-                        Name ="myBorder"
-                        BorderThickness="1"
-                        >
-                    <Border.Style>
-                        <Style TargetType="Border">
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Effect">
-                                        <Setter.Value>
-                                            <DropShadowEffect BlurRadius="5" Color="#F8515C" ShadowDepth="0" Opacity="0.9"/>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Border.Style>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="52"/>
-                            <ColumnDefinition Width="180"/>
-                            <ColumnDefinition Width="70"/>
-                            <ColumnDefinition Width="45"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="40"/>
-                        </Grid.RowDefinitions>
-
-                        <Grid>
-                            <Border 
-                                Name="Mask"
-                                Background="White"
-                                CornerRadius="20"
-                            >
-                            </Border>
-                            <StackPanel>
-                                <Image Width="52" Style ="{DynamicResource ImageRadius}" VerticalAlignment="Top" Source="{Binding NotifyOnSourceUpdated=True,  Path=ProductThumbBitmapImage, UpdateSourceTrigger=PropertyChanged}"/>
-                                <StackPanel.OpacityMask>
-                                    <VisualBrush Visual="{Binding ElementName=Mask}" />
-                                </StackPanel.OpacityMask>
-                            </StackPanel>
-                        </Grid>
-
-                        <Label Grid.Column="1" Content="{Binding Path=ProductName}" FontSize="12" FontWeight="Bold"/>
-
-                        <Grid Grid.Column="2">
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Background="{x:Null}">
-                                <Label Content="{Binding Path=ProductPrice, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Bottom" FontSize="15" FontWeight="Bold" FontStyle="Italic" Margin="0"></Label>
-                                <Label Content="руб" VerticalAlignment="Bottom" FontSize="10" Margin="0"></Label>
-                            </StackPanel>
-                        </Grid>
-
-                        <ToggleButton 
-                            Grid.Column="3" 
-                            Style="{DynamicResource ButtonRadiusBasket}" 
-                            CommandParameter="del"
-                            Command="{Binding DataContext.ActionsBasket, RelativeSource={RelativeSource AncestorType=Page}}" 
-                            IsChecked="{Binding Path=IsSelected, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" 
-                        >
-                            <materialDesign:PackIcon Kind="Delete" Height="35" Width="35" Foreground="#F8515C"/>
-                        </ToggleButton>
-
-                    </Grid>
-                </Border>
-            </Grid>
-        </DataTemplate>
-
-    </Page.Resources>
 
     <Grid Margin="5">
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="110"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="65"/>
         </Grid.RowDefinitions>
+        
         <Grid Grid.Row="0">
             <Border Name="Mask"
                         Background="White"
@@ -101,12 +27,27 @@
                 <StackPanel.OpacityMask>
                     <VisualBrush Visual="{Binding ElementName=Mask}" />
                 </StackPanel.OpacityMask>
-                <Label 
-                    HorizontalAlignment="Left"
-                    Content="Корзина" 
-                    FontSize="32"
-                    Margin="0,0,0,10">
-                </Label>
+                
+                <StackPanel Orientation="Horizontal">
+                    <Label 
+                        HorizontalAlignment="Left"
+                        Content="Корзина" 
+                        FontSize="32"
+                        Margin="0,0,0,10">
+                    </Label>
+                    <ToggleButton 
+                        Width="40" 
+                        Height="40" 
+                        Margin="210,0,0,0"
+                        VerticalAlignment="Center"
+                        Style="{DynamicResource ButtonRadiusFavorite}"
+                        CommandParameter="close"
+                        Command="{Binding DataContext.FoundComments, RelativeSource={RelativeSource AncestorType=Page}}">
+                        <ToggleButton.Content>
+                            <materialDesign:PackIcon Kind="Close" Width="25" Height="25" Foreground="#F8515C"></materialDesign:PackIcon>
+                        </ToggleButton.Content>
+                    </ToggleButton>
+                </StackPanel>
                 <StackPanel Height="50" Orientation="Horizontal">
                     <Label Content="Цена за все: " FontSize="20" Margin="0,0,0,0" VerticalAlignment="Center"/>
                     <TextBox Margin="21,0,20,0" Background="{x:Null}" BorderThickness="0" FontSize="20" VerticalAlignment="Center" Text="{Binding PurchasePrice, UpdateSourceTrigger=PropertyChanged}"></TextBox>
@@ -116,7 +57,7 @@
 
         <ListBox
             Grid.Row="1"
-                ItemTemplate="{StaticResource ProductTemplate}" 
+                ItemTemplate="{DynamicResource BasketProductTemplate}" 
                 SelectedItem="{Binding SelectedProduct}" 
                 VerticalAlignment="Top"
                 BorderThickness="0" 
@@ -134,7 +75,8 @@
                 Height="60"
                 Width="200"
                 VerticalAlignment="Bottom"
-                Command="{Binding DataContext.ArrangeBasket, RelativeSource={RelativeSource AncestorType=Page}}" 
+                CommandParameter="order"
+                Command="{Binding DataContext.SelectPage, RelativeSource={RelativeSource AncestorType=Page}}" 
                 Content="Оформить заказ"
                 Style="{DynamicResource ButtonRadius}"
             />

@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Lab_06_07_OOP.UI.WindowCommands">
+    <Position X="9" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Commands\Commands.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_06_07_OOP.UI.ViewModelCommands">
+    <Position X="9" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAQAAEAEAABAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Commands\ViewModelCommands.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Lab_06_07_OOP.products" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAIkBAEABAAAEAAgIgAAiBAAkAAAIQQAAgAggAAIECA=</HashCode>
+      <FileName>Models\ModelProduct.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.231" />
+  </Class>
+  <Class Name="Lab_06_07_OOP.MainWindow" BaseTypeListCollapsed="true">
+    <Position X="12.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAEAAAAQCAkAAABQAAAIAAAAAAAAA=</HashCode>
+      <FileName>MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Lab_06_07_OOP.comment" BaseTypeListCollapsed="true">
+    <Position X="17.75" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAgAAAQEgAEAAAAIAAAAAAAgABAAAAgAAAAQAAAAAA=</HashCode>
+      <FileName>comment.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Lab_06_07_OOP.order">
+    <Position X="12.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAABQBAAAAEAAABAACAAAggAAAAAAAAAAAAAAAAQg=</HashCode>
+      <FileName>order.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_06_07_OOP.orderdetail">
+    <Position X="16" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAgAAAAAAAAAAAAAACAAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>orderdetail.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_06_07_OOP.product" BaseTypeListCollapsed="true">
+    <Position X="10.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>FAIkBAEABAAAEAAgIgAAiBABkAAAIQUAAgAggAAIECA=</HashCode>
+      <FileName>product.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Lab_06_07_OOP.productsubcategory">
+    <Position X="2" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAAAQAAAABAAAAAAAAAACBAAAAAA=</HashCode>
+      <FileName>productsubcategory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_06_07_OOP.user">
+    <Position X="3.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABACAAAAYAEAAEACgAAAAAAAAAAAgECAIAAAA=</HashCode>
+      <FileName>user.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_06_07_OOP.productcategory" BaseTypeListCollapsed="true">
+    <Position X="3.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAABAAAAAIAAAAAAAgCAAAAAAAAAABgEAAAA=</HashCode>
+      <FileName>productcategory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Lab_06_07_OOP.MarketEntities">
+    <Position X="2" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAwAAABAAAAEAAAAAAAAAAAEAAAAAAAAAAABgAAAAA=</HashCode>
+      <FileName>Model.Context.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_06_07_OOP.Pages.Basket" BaseTypeListCollapsed="true">
+    <Position X="2" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pages\Basket.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Lab_06_07_OOP.Pages.Search" BaseTypeListCollapsed="true">
+    <Position X="14.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pages\Search.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Lab_06_07_OOP.Pages.Order" BaseTypeListCollapsed="true">
+    <Position X="3.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pages\Order.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Lab_06_07_OOP.ServicesClasses.ServicesConvert">
+    <Position X="14.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>ServicesClasses\Convert.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_06_07_OOP.ServicesClasses.PasswordHelper">
+    <Position X="16" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAIQAgEBAEAAAAAAIAAABAAAAAAgAAAICA=</HashCode>
+      <FileName>ServicesClasses\PasswordHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_06_07_OOP.ViewModel.ViewModel" BaseTypeListCollapsed="true">
+    <Position X="7.25" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>Kc6JyyZHnCaWrVQQ7hRiACjAiGrCoZXiBuZ0LG4kMD0=</HashCode>
+      <FileName>ViewModel\Comments.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

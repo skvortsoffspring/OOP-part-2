@@ -37,10 +37,10 @@ using Lab_06_07_OOP.UI;
             CountProductFavorite = ShoppingFavorite.Count;
         }
 
-        public void DelPProductFavorite()
+        public void DelProductFavorite()
         {
             if (SelectedProduct != null)
-                ShoppingBasket.Remove(SelectedProduct);
+                ShoppingFavorite.Remove(SelectedProduct);
             CountProductFavorite = ShoppingFavorite.Count;
         }
         
@@ -57,7 +57,7 @@ using Lab_06_07_OOP.UI;
                                    AddProductFavorite();
                                    break;
                                case "del":
-                                   DelPProductFavorite();
+                                   DelProductFavorite();
                                    break;
                            }
                        }));

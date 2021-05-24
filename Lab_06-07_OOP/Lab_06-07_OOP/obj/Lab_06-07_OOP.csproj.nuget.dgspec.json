@@ -38,6 +38,15 @@
               "target": "Package",
               "version": "[6.4.4, )"
             },
+            "Legacy2CPSWorkaround": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
+            "MaterialDesignColors": {
+              "target": "Package",
+              "version": "[2.0.0, )"
+            },
             "MaterialDesignThemes": {
               "target": "Package",
               "version": "[4.0.0, )"

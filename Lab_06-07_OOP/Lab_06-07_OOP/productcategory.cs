@@ -7,12 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Collections.Specialized;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using Lab_06_07_OOP.Annotations;
+
 namespace Lab_06_07_OOP
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class productcategory
+    public partial class productcategory : INotifyPropertyChanged
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public productcategory()
@@ -20,14 +25,31 @@ namespace Lab_06_07_OOP
             this.products = new HashSet<product>();
             this.productsubcategories = new HashSet<productsubcategory>();
         }
-    
+
+        private string _categoryName;
         public int CategoryID { get; set; }
-        public string CategoryName { get; set; }
+        public string CategoryName
+        {
+            get => _categoryName;
+            set
+            {
+                _categoryName = value;
+                OnPropertyChanged("CategoryName");
+            } 
+        }
         public byte[] CategoryImage { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<product> products { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<productsubcategory> productsubcategories { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }
