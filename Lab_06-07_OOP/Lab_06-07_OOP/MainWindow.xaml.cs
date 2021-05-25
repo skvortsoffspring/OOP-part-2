@@ -29,19 +29,19 @@ namespace Lab_06_07_OOP
                 Market.SaveChangesAsync();
             };
 
-            List<string> styles = new List<string> { "Blue", "Dark" };
-            //StyleBox.SelectionChanged += ThemeChange;
-            //StyleBox.ItemsSource = styles;
-            //StyleBox.SelectedItem = "Blue";
-            ThemeChange(null, null);
+            List<string> styles = new List<string> { "Blue", "Red" };
+            StyleBox.SelectionChanged += ThemeChange;
+            StyleBox.ItemsSource = styles;
+            StyleBox.SelectedItem = "Red";
         }
 
         private void ThemeChange(object sender, SelectionChangedEventArgs e)
         {
-            //string style = StyleBox.SelectedItem as string;
-            var uri = new Uri("Resources/" + "Blue" + ".xaml", UriKind.Relative);
-            if (resourceDict != null) Application.Current.Resources.Remove(resourceDict);
-            resourceDict = Application.LoadComponent(uri) as ResourceDictionary;
+            string style = StyleBox.SelectedItem as string;
+            var uri = new Uri("Resources/" + style + ".xaml", UriKind.Relative);
+            var uriOverride = new Uri("Resources/" + style + ".xaml", UriKind.Relative);
+            ResourceDictionary resourceDict = Application.LoadComponent(uri) as ResourceDictionary;
+            Application.Current.Resources.Clear();
             Application.Current.Resources.MergedDictionaries.Add(resourceDict);
         }
 

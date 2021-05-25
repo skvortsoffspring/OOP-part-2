@@ -7,18 +7,38 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using Lab_06_07_OOP.Annotations;
+
 namespace Lab_06_07_OOP
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class orderdetail
+    public partial class orderdetail : INotifyPropertyChanged
     {
+        private product _detailsNameProduct;
         public int DetailsID { get; set; }
         public Nullable<int> DetailsOrderID { get; set; }
         public Nullable<int> DetailsProductID { get; set; }
-    
+        public product DetailsProduct
+        {
+            get => _detailsNameProduct;
+            set
+            {
+                _detailsNameProduct = value;
+                OnPropertyChanged("DetailsProduct");
+            }
+        }
         public virtual order order { get; set; }
         public virtual product product { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

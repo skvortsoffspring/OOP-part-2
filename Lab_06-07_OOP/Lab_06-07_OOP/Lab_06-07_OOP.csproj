@@ -39,6 +39,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CustomLibrary, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\Tests\CustomLibrary\CustomLibrary\bin\Debug\net472\CustomLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="LimitedInput, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Tests\LimitedInput\LimitedInput\bin\Release\net472\LimitedInput.dll</HintPath>
@@ -132,7 +135,7 @@
     <Compile Include="Pages\Search.xaml.cs">
       <DependentUpon>Search.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Patterns\Singleton.cs" />
+    <Compile Include="Patterns\Memento.cs" />
     <Compile Include="product.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -180,9 +183,8 @@
     <Page Include="Pages\PageProducts.xaml" />
     <Page Include="Pages\Basket.xaml" />
     <Page Include="Pages\Search.xaml" />
+    <Page Include="Resources\Red.xaml" />
     <Page Include="Resources\Blue.xaml" />
-    <Page Include="Resources\Dark.xaml" />
-    <Page Include="Resources\OverrideStyles.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

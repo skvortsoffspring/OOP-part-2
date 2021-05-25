@@ -5,12 +5,10 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:viewmodel="clr-namespace:Lab_06_07_OOP.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:ViewModel}"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-      xmlns:custom="clr-namespace:Custom;assembly=LimitedInput"
       mc:Ignorable="d"
       Title="ModelProduct">
 
     <Grid>
-
         <Grid.RowDefinitions>
             <RowDefinition Height="100"></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -21,6 +19,7 @@
         </Grid.ColumnDefinitions>
         <Border Grid.Row="0" Grid.Column="0" BorderThickness="0,0,0,1" BorderBrush="Gray">
         <StackPanel >
+            
             <Label  Content="{Binding SelectedCategory.CategoryName, UpdateSourceTrigger=PropertyChanged}" FontSize="32"/>
 
             <ListBox
@@ -81,11 +80,30 @@
         
         <!-- BackPanel Admin -->
         <ScrollViewer  Grid.Column="1" Grid.Row="1"   VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Disabled">
+            <Grid>
             <StackPanel>
-
-                <Grid>
-                    <custom:LimitedInput x:Name="LimitedInput" Title="alsdlka" MaxLength="60" Height="60"/>
-                </Grid>
+                <StackPanel Orientation="Horizontal">
+                    <Button Margin="3"
+                            Command="{Binding History}"
+                            CommandParameter="undo"
+                            >
+                        <Button.Content>
+                            <materialDesign:PackIcon Width="25" Height="25" Foreground="#F8515C" Margin="5" Kind="Undo"></materialDesign:PackIcon>
+                        </Button.Content>
+                    </Button>
+                    <Button Margin="3"
+                            Command="{Binding History}"
+                            CommandParameter="redo"
+                            >
+                        <Button.Content>
+                            <materialDesign:PackIcon Width="25" Height="25" Foreground="#F8515C" Margin="5" Kind="Redo"></materialDesign:PackIcon>
+                        </Button.Content>
+                    </Button>
+                </StackPanel>
+                
+                <!-- <Grid> -->
+                <!--     <custom:LimitedInput x:Name="LimitedInput" Title="alsdlka" MaxLength="60" Height="60"/> -->
+                <!-- </Grid> -->
                 <Label  Content="Название продукта" HorizontalAlignment="Left" Height="26" Width="240" Margin="10,0,10,0" Foreground="#FF555555" />
 
                 <TextBox Text="{Binding SelectedProduct.ProductName, UpdateSourceTrigger=PropertyChanged}"  MaxLength="50"  TextWrapping="NoWrap"  HorizontalAlignment="Left" Height="20"  Width="360" UndoLimit="50"/>
@@ -196,6 +214,7 @@
                 </StackPanel>
                 
             </StackPanel>
+                </Grid>
         </ScrollViewer>
     </Grid>
 </Page>

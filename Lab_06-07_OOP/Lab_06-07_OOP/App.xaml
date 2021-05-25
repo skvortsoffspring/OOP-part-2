@@ -6,7 +6,7 @@
              <!--StartupUri="MainWindow.xaml">-->
 
     <Application.Resources>
-        <ResourceDictionary Source="Resources/OverrideStyles.xaml"></ResourceDictionary>
+
     </Application.Resources>
 
 </Application>

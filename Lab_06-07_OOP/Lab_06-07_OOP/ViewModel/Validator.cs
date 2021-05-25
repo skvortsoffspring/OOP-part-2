@@ -2,14 +2,16 @@
 using System.ComponentModel;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Windows;
+using Lab_06_07_OOP.Patterns;
 using Lab_06_07_OOP.UI;
 
 namespace Lab_06_07_OOP.ViewModel
 {
     public partial class ViewModel : IDataErrorInfo
     {
-        private bool _first  = true;
+        private Memento _memento;
         private string _errorMsg;
         private string _email = "";
         private string _phone = "";
@@ -22,6 +24,8 @@ namespace Lab_06_07_OOP.ViewModel
         private double _sizeBoxComment = 0.0;
         private IDataErrorInfo _dataErrorInfoImplementation;
         private ViewModelCommands _showFormLogin;
+        private TimerCallback _timerCallback;
+        private Timer _timer;
         private Visibility _visibleFormRegistered = Visibility.Hidden;
         public string Error => _dataErrorInfoImplementation.Error;
         public string UserEmail { get; set; }
@@ -230,7 +234,7 @@ namespace Lab_06_07_OOP.ViewModel
                                InOutString = "Войти";
                                UserEmail = "";
                                MainWindow.Role = 0;
-
+                               CheckRole();
                            }
                            else
                            {
@@ -246,13 +250,21 @@ namespace Lab_06_07_OOP.ViewModel
             if (MainWindow.Role == 1)
             {
                 AdminPanel = 400.0;
+                _memento = new Memento(SelectedProduct);
+                _timerCallback = _memento.Backup;
+                _timer = new Timer(_timerCallback, 0, 0, 5000);
             }
             else if (MainWindow.Role == 2)
             {
+                if(_timer!=null)
+                    _timer.Dispose();
+                AdminPanel = 400.0;
                 SelectPage.Execute("delivery");
             }
             else
             {
+                if(_timer!=null)
+                    _timer.Dispose();
                 AdminPanel = 0.0;
             }
         }

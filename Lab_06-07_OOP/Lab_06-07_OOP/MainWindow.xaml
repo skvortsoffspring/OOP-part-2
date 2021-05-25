@@ -7,20 +7,15 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:cmd="clr-namespace:Lab_06_07_OOP.UI"
         xmlns:servicesClasses="clr-namespace:Lab_06_07_OOP.ServicesClasses"
+        xmlns:customLibrary="clr-namespace:CustomLibrary;assembly=CustomLibrary"
         mc:Ignorable="d"
         Title="MainWindow" MinHeight="600" Width="1160" MinWidth="1060" FontSize="18" FontFamily="Times New Roman" VerticalAlignment="Bottom" HorizontalAlignment="Right">
-
-    <Window.Resources>
-        
-    </Window.Resources>
+    
     <Window.CommandBindings>
         <CommandBinding Command="cmd:WindowCommands.HiddenLogging" Executed="HideLoggingForm" />
     </Window.CommandBindings>
     
     <Grid  x:Name="GridMainXaml" Style="{DynamicResource MainGrid}">
-
-
-        
         <!-- registration and logging -->
         <Grid ZIndex="1" x:Name="Logging" Visibility="{Binding VisibleFormRegistered}">
            <Grid.Background>
@@ -156,25 +151,25 @@
                 </Image>
 
                 <StackPanel Grid.Column="1" Orientation="Horizontal">
-                    <TextBox x:Name="StyleBox" Text="{Binding FieldSearch, UpdateSourceTrigger=PropertyChanged}" Width="200" Height="30" FontSize="22" HorizontalAlignment="Left" BorderThickness="2"/>
+                    <customLibrary:CustomControl1 FontSize="22" HorizontalAlignment="Left" BorderThickness="2"/>
                     <Label Content="Поиск продукта" Height="30"/>
                 </StackPanel>
 
                 <Label Grid.Column="2" Content="{Binding Email}" HorizontalAlignment="Right"/>
-
-                <StackPanel Grid.Column="3"  Orientation="Horizontal" HorizontalAlignment="Right">
+                <ComboBox Grid.Column="2" Height="18" FontSize="10" x:Name="StyleBox"/>
+               
+                    <StackPanel Grid.Column="3"  Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button 
                         Command="{Binding ShowFormLogin}" 
                         FontSize="12" Width="77" 
                         Background="{x:Null}" 
                         BorderThickness="0">
-                        <StackPanel >
-                            <materialDesign:PackIcon Kind="Account" HorizontalAlignment="Center" Width="30" Height="Auto" Foreground="#F8515C"></materialDesign:PackIcon>
+                        <StackPanel>
+                            <materialDesign:PackIcon Kind="Account" HorizontalAlignment="Center" Width="30" Height="Auto" Style="{DynamicResource StyleIcons}"></materialDesign:PackIcon>
                             <Label Content="{Binding InOutString, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Foreground="#F8515C"></Label>
                         </StackPanel>
                     </Button>
                 </StackPanel>
-
             </Grid>
 
             <!-- navigation -->
@@ -219,7 +214,7 @@
                             Background="{x:Null}"
                             BorderBrush="White"
                         >
-                            <materialDesign:PackIcon Kind="ShoppingBasket" Height="35" Width="35" Foreground="#F8515C"/>
+                            <materialDesign:PackIcon Kind="ShoppingBasket" Height="35" Width="35" Style="{DynamicResource StyleIcons}"/>
                         </Button>
                         <Label Content="{Binding CountProductBasket}"></Label>
                         
@@ -232,7 +227,7 @@
                             Background="{x:Null}"
                             BorderBrush="White"
                             >
-                            <materialDesign:PackIcon Kind="Favorite" Height="35" Width="35" Foreground="#F8515C"/>
+                            <materialDesign:PackIcon Kind="Favorite" Height="35" Width="35" Style="{DynamicResource StyleIcons}"/>
                         </Button>
                         <Label Content="{Binding CountProductFavorite}"></Label>
                     </StackPanel>

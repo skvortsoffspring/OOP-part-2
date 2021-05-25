@@ -4,7 +4,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+
 using Lab_06_07_OOP.Pages;
 using Lab_06_07_OOP.ServicesClasses;
 using Lab_06_07_OOP.UI;
@@ -14,6 +16,8 @@ namespace Lab_06_07_OOP.ViewModel
 {
     public partial class ViewModel : INotifyPropertyChanged
     {
+        public Button _undo = new ();
+        public Button _redo = new ();
         
         private productcategory _productCategory;
         private product _selectedProduct = new();
@@ -32,6 +36,7 @@ namespace Lab_06_07_OOP.ViewModel
         private ViewModelCommands _incDecQuantity;
         private ViewModelCommands _hiddenProduct;
         private ViewModelCommands _showHiddenedProduct;
+        private ViewModelCommands _history;
 
 
         private ObservableCollection<product> _products = MainWindow.Market.products.Local;
@@ -49,14 +54,13 @@ namespace Lab_06_07_OOP.ViewModel
             _basket.DataContext = this;
             _favorite = new();
             _favorite.DataContext = this;
-            _pageComments = new();         
+            _pageComments = new();
             _pageComments.DataContext = this;
             _searchPage = new();
             _searchPage.DataContext = this;
             _orderPage = new();
             _orderPage.DataContext = this;
-
-
+            
             if (MainWindow.Market.productcategories.Count() != 0)
             {
                 ProductCategory = MainWindow.Market.productcategories.First();
@@ -146,7 +150,8 @@ namespace Lab_06_07_OOP.ViewModel
             {
                 _selectedCategory = value;
                 SelectSubCategories(_selectedCategory);
-                GoCategory.Execute(_selectedCategory.CategoryName);
+                if(_selectedCategory!=null)
+                    GoCategory.Execute(_selectedCategory.CategoryName);
                 OnPropertyChanged("SelectedCategory");
             }
         }
@@ -343,6 +348,25 @@ namespace Lab_06_07_OOP.ViewModel
                            string category = obj as string;
                            Products = new ObservableCollection<product>(MainWindow.Market.products.Local.Where(product =>
                                product.ProductCategory == SelectedCategory.CategoryID));
+                       }));
+            }
+        }        
+        public ViewModelCommands History
+        {
+            get
+            {
+                return _history ??
+                       (_history = new ViewModelCommands(obj =>
+                       {
+                           switch (obj as string)
+                           {
+                               case "undo" :
+                                   _memento.Undo();
+                                   break;
+                               case "redo":
+                                   _memento.Redo();
+                                   break;
+                           }
                        }));
             }
         }

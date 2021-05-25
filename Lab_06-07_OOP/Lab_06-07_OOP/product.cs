@@ -173,7 +173,34 @@ namespace Lab_06_07_OOP
 
             }
         }
-    
+
+        public  bool Check(product _product)
+        {
+            if (this._productName != _product._productName)
+                return false;
+            else if (this._productDetails != _product._productDetails)
+                return false;
+            else if (this.ProductShortDesc != _product._productDetails)
+                return false;
+            else if (this._productCategory != _product._productCategory)
+                return false;
+            else if (this._productSubcategory != _product._productSubcategory)
+                return false;
+            else if (this._productImage != _product._productImage)
+                return false;
+            else if (this._productPrice != _product._productPrice)
+                return false;
+            else if(this._productStock != _product.ProductStock)
+                return false;
+            else
+                return true;
+
+        }
+        public product ShallowCopy()
+        {
+            return (product) this.MemberwiseClone();
+        }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<comment> comments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
