@@ -66,3 +66,5 @@ D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\obj\Debug\Resources\Bl
 D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\obj\Debug\Resources\Red.baml
 D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\bin\Debug\CustomLibrary.dll
 D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\bin\Debug\CustomLibrary.pdb
+D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\obj\Debug\DeliveryWindow.g.cs
+D:\University\Labs\OOP part 2\Lab_06-07_OOP\Lab_06-07_OOP\obj\Debug\DeliveryWindow.baml

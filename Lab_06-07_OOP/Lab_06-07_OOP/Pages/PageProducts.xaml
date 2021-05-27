@@ -123,9 +123,10 @@
                               ItemsSource="{Binding ProductCategories}" 
                               HorizontalAlignment="Left" 
                               Height="26" 
-                              VerticalAlignment="Top" 
+                              VerticalAlignment="Top"
                               Width="360"
                               />
+                              
                     <StackPanel Orientation="Horizontal">
                     <TextBox Text="{Binding ProductCategory.CategoryName}" Width="308"></TextBox>
                     <Button Command="{Binding AddCategory, UpdateSourceTrigger=PropertyChanged}" Width="26" Height="26" Foreground="#FF555555" HorizontalAlignment="Left"  VerticalAlignment="Top" Content="+" FontSize="18" Padding="0"></Button>

@@ -19,7 +19,7 @@
         <StackPanel Grid.Row="0">
             <DatePicker 
                 Name="datePicker"
-                SelectedDate="{Binding Date, Mode=OneWayToSource}"
+                SelectedDate="{Binding Date.Now, Mode=TwoWay}"
                 SelectedDateFormat="Short"
                 Margin="139,58,0,0" 
                 VerticalAlignment="Top" 
@@ -37,7 +37,6 @@
             
             <ListBox.ItemTemplate >
                 <DataTemplate >
-                    
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition/>
@@ -59,12 +58,12 @@
                             </StackPanel>
                         </StackPanel>
 
-                        <DataGrid Grid.Row="1" ItemsSource="{Binding orderdetails}" AutoGenerateColumns="False" >
+                        <DataGrid Grid.Row="1" IsReadOnly = "True" ItemsSource="{Binding orderdetails}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False">
                             <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Название продукта"  Binding="{Binding DetailsProduct.ProductName}"/>
-                                <DataGridTextColumn Header="В лоте шт." Binding="{Binding DetailsProduct.QuantityInTheOrder}"/>
-                                <DataGridTextColumn Header="Вес" Binding="{Binding DetailsProduct.ProductWeight}"/>
-                                <DataGridTextColumn Header="Цена" Binding="{Binding DetailsProduct.ProductPrice}"/>
+                                <DataGridTextColumn Header="Название продукта" Binding="{Binding DetailsProduct.ProductName}" IsReadOnly="True" CanUserReorder="False" />
+                                <DataGridTextColumn Header="В лоте шт." Binding="{Binding DetailsProduct.QuantityInTheOrder}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Вес" Binding="{Binding DetailsProduct.ProductWeight}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Цена" Binding="{Binding DetailsProduct.ProductPrice}" IsReadOnly="True"/>
                             </DataGrid.Columns>
                         </DataGrid>
                         

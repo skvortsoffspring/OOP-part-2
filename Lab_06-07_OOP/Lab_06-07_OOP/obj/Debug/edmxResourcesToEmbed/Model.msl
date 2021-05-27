@@ -28,7 +28,7 @@
           <ScalarProperty Name="OrderCountry" ColumnName="OrderCountry" />
           <ScalarProperty Name="OrderCity" ColumnName="OrderCity" />
           <ScalarProperty Name="OrderAddress" ColumnName="OrderAddress" />
-          <ScalarProperty Name="OrderZip" ColumnName="OrderZip" />
+          <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
           <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
           <ScalarProperty Name="OrderTrackingNumber" ColumnName="OrderTrackingNumber" />
           <ScalarProperty Name="OrderAmount" ColumnName="OrderAmount" />

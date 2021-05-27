@@ -31,7 +31,7 @@
           <Property Name="OrderCountry" Type="varchar" MaxLength="20" />
           <Property Name="OrderCity" Type="varchar" MaxLength="50" />
           <Property Name="OrderAddress" Type="varchar" MaxLength="50" />
-          <Property Name="OrderZip" Type="char" MaxLength="6" />
+          <Property Name="OrderStatus" Type="tinyint" />
           <Property Name="OrderDate" Type="date" />
           <Property Name="OrderTrackingNumber" Type="varchar" MaxLength="30" />
           <Property Name="OrderAmount" Type="float" />
@@ -239,7 +239,7 @@
           <Property Name="OrderCountry" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="OrderCity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="OrderAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="OrderZip" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="OrderStatus" Type="Byte" />
           <Property Name="OrderDate" Type="DateTime" Precision="0" />
           <Property Name="OrderTrackingNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="OrderAmount" Type="Double" />
@@ -458,7 +458,7 @@
                 <ScalarProperty Name="OrderCountry" ColumnName="OrderCountry" />
                 <ScalarProperty Name="OrderCity" ColumnName="OrderCity" />
                 <ScalarProperty Name="OrderAddress" ColumnName="OrderAddress" />
-                <ScalarProperty Name="OrderZip" ColumnName="OrderZip" />
+                <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
                 <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
                 <ScalarProperty Name="OrderTrackingNumber" ColumnName="OrderTrackingNumber" />
                 <ScalarProperty Name="OrderAmount" ColumnName="OrderAmount" />

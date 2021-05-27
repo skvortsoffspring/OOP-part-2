@@ -169,9 +169,11 @@ namespace Lab_06_07_OOP.ViewModel
                        {
                            user user = new user();
                            user.UserEmail = _email;
+
                            var foundUser =
                                 MainWindow.Market.users.SqlQuery(
                                    "select * from users where UserEmail = '"+ Email +"' and UserPassword = '" + Password.GetHashCode() + "'").ToList();
+
                            if (foundUser.Count!=0)
                            {
                                 user = foundUser.First() ;
@@ -182,6 +184,10 @@ namespace Lab_06_07_OOP.ViewModel
                                 MainWindow.Entered = true;
                                 CheckRole();
                                 VisibleFormRegistered = Visibility.Hidden;
+                           }
+                           else
+                           {
+                               ErrorMsg = "Неверный логин или пароль";
                            }
                        }));
             }
@@ -199,11 +205,13 @@ namespace Lab_06_07_OOP.ViewModel
                                user.UserEmail = _email;
                                user.UserPassword = _password.GetHashCode().ToString();
                                var phone = string.Empty;
+
                                foreach (var c in _phone)
                                {
                                    if (char.IsDigit(c))
                                        phone += c;
                                }
+
                                user.UserPhone = Decimal.Parse(phone);
                                user.UserRegistrationDate = DateTime.Now;
                                user.Role = 0;

@@ -11,16 +11,27 @@ namespace Lab_06_07_OOP
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Collections.ObjectModel;
+
     public partial class order
     {
         private user _orderUser;
-
+        private ObservableCollection<orderdetail> _orderDetails;
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public order()
         {
             this.orderdetails = new HashSet<orderdetail>();
         }
+        
+        public ObservableCollection<orderdetail> OrderDetails
+        {
+            get => _orderDetails;
+            set
+            {
+                _orderDetails ??= new ObservableCollection<orderdetail>(orderdetails);
+            }
+        }
+
         public user OrderUser
         {
             get => _orderUser;
@@ -31,7 +42,7 @@ namespace Lab_06_07_OOP
         public string OrderCountry { get; set; }
         public string OrderCity { get; set; }
         public string OrderAddress { get; set; }
-        public string OrderZip { get; set; }
+        public Nullable<byte> OrderStatus { get; set; }
         public Nullable<System.DateTime> OrderDate { get; set; }
         public string OrderTrackingNumber { get; set; }
         public Nullable<double> OrderAmount { get; set; }

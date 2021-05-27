@@ -63,8 +63,9 @@ namespace Lab_06_07_OOP.ViewModel
                                       PageFrameSelected = _pageComments;
                                       break;  
                                   case "delivery":
-                                      _delivery = new Delivery();
-                                      PageSelected = _delivery;
+                                      Application.Current.MainWindow.Visibility = Visibility.Hidden;
+                                      DeliveryWindow deliveryWindow = new();
+                                      deliveryWindow.Show();
                                       break; 
                                   default:
                                       if(_homePage==null)

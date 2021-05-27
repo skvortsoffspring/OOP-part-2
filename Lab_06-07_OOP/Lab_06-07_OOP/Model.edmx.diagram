@@ -7,7 +7,7 @@
       <Diagram DiagramId="16e08075c8b64845b9842df6f415bce6" Name="Diagram1">
         <EntityTypeShape EntityType="MarketModel.comment" Width="1.5" PointX="7.5" PointY="6.375" IsExpanded="true" />
         <EntityTypeShape EntityType="MarketModel.orderdetail" Width="1.5" PointX="7.5" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MarketModel.order" Width="1.5" PointX="4.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarketModel.order" Width="1.5" PointX="4.875" PointY="0.625" IsExpanded="true" />
         <EntityTypeShape EntityType="MarketModel.productcategory" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="MarketModel.product" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="MarketModel.productsubcategory" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />

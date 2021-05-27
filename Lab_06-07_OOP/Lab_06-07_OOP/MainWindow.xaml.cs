@@ -19,6 +19,7 @@ namespace Lab_06_07_OOP
         {
             InitializeComponent();
             Market.products.Load();
+            Market.orders.Load();
             Market.productcategories.Load();
             Market.productsubcategories.Load();
             Market.comments.Load();
@@ -26,7 +27,7 @@ namespace Lab_06_07_OOP
 
             Closed += (sender, args) =>
             {
-                Market.SaveChangesAsync();
+                Market.SaveChanges();
             };
 
             List<string> styles = new List<string> { "Blue", "Red" };

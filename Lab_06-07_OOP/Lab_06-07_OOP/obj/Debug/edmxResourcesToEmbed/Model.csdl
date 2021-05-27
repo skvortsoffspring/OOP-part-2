@@ -29,7 +29,7 @@
     <Property Name="OrderCountry" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="OrderCity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="OrderAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="OrderZip" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+    <Property Name="OrderStatus" Type="Byte" />
     <Property Name="OrderDate" Type="DateTime" Precision="0" />
     <Property Name="OrderTrackingNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="OrderAmount" Type="Double" />

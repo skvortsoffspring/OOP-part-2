@@ -26,7 +26,7 @@
     <Property Name="OrderCountry" Type="varchar" MaxLength="20" />
     <Property Name="OrderCity" Type="varchar" MaxLength="50" />
     <Property Name="OrderAddress" Type="varchar" MaxLength="50" />
-    <Property Name="OrderZip" Type="char" MaxLength="6" />
+    <Property Name="OrderStatus" Type="tinyint" />
     <Property Name="OrderDate" Type="date" />
     <Property Name="OrderTrackingNumber" Type="varchar" MaxLength="30" />
     <Property Name="OrderAmount" Type="float" />

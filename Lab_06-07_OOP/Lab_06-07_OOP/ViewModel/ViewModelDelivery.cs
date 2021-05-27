@@ -10,20 +10,24 @@ using Lab_06_07_OOP.UI;
 
 namespace Lab_06_07_OOP.ViewModel
 {
-    public class ListDeliviry
-    {
-        private string _productName;
-        private string _productCategory;
-        private string _productSubcategory;
-        private double _productPrice;
-    }
+    
     public class ViewModelDelivery : INotifyPropertyChanged
     {
         private ObservableCollection<order> _orders;
-        private DateTime _date = DateTime.Now;
+        private DateTime _date;
         private string _dateCulture = string.Empty;
-        private ViewModelCommands _foundOrders;
+        private ViewModelCommands _delProductCommand;
         private ObservableCollection<orderdetail> _orderDetails = new (MainWindow.Market.orderdetails);
+
+        public ViewModelDelivery()
+        {
+            Date = DateTime.Now;
+            foreach (var orderdetail in Orderdetails)
+            {
+                orderdetail.DetailsProduct = MainWindow.Market.products
+                    .Where(p => p.ProductID == orderdetail.DetailsProductID).First();
+            }
+        }
 
         public DateTime Date
         { 
@@ -33,7 +37,7 @@ namespace Lab_06_07_OOP.ViewModel
                 _date = value;
                 DateCulture = _date.ToString("dddd dd MMMM",
                   CultureInfo.CreateSpecificCulture("ru-RU"));
-                FoundOrders.Execute("");
+                SortToDate();
                 OnPropertyChanged("Date");
             }
         }
@@ -66,31 +70,39 @@ namespace Lab_06_07_OOP.ViewModel
             }
         }
 
-        public ViewModelCommands FoundOrders
+       private void  SortToDate(){
+           Orders = new ObservableCollection<order>(
+               MainWindow.Market.orders.Local.Where(o => o.OrderDate == _date.Date));
+                           
+
+
+           foreach (var order in Orders)
+           {
+               order.OrderUser =
+                   MainWindow.Market.users.SqlQuery(
+                       "select * from Market.dbo.users where UserID = '" + order.OrderUserID +"' ").First();
+           }
+           
+                           
+        }
+        public ViewModelCommands DeleteProduct
         {
             get
             {
-                return _foundOrders ??
-                       (_foundOrders = new ViewModelCommands(obj =>
-                       {
-                           Orders = new ObservableCollection<order>(
-                               MainWindow.Market.orders.Where(o => o.OrderDate == _date.Date));
-                           
-                       foreach (var orderdetail in Orderdetails)
-                           {
-                               orderdetail.DetailsProduct = MainWindow.Market.products
-                                   .Where(p => p.ProductID == orderdetail.DetailsProductID).First();
-                           }
-
-                       foreach (var order in Orders)
-                       {
-                           order.OrderUser =
-                               MainWindow.Market.users.SqlQuery(
-                                   "select * from Market.dbo.users where UserID = '" + order.OrderUserID +"' ").First();
-
-                       }
-
-                       }));
+                return _delProductCommand ??
+                    (_delProductCommand = new ViewModelCommands(obj =>
+                    {
+                        orderdetail _orderdetail = obj as orderdetail;
+                        if(_orderdetail != null)
+                        {
+                            order _order = _orderdetail.order;
+                            _order.OrderAmount -= _orderdetail.product.ProductPrice;
+                            MainWindow.Market.orderdetails.Remove(_orderdetail);
+                            if (_order.orderdetails.Count == 0)
+                                MainWindow.Market.orders.Remove(_order);
+                            SortToDate();
+                        }
+                    }));
             }
         }
 

@@ -1,0 +1,88 @@
+﻿<Window x:Class="Lab_06_07_OOP.DeliveryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab_06_07_OOP"
+        mc:Ignorable="d"
+        Title="DeliveryWindow" Height="700" Width="450" MinHeight="300" MinWidth="450" MaxWidth="520">
+    <Grid ScrollViewer.VerticalScrollBarVisibility="Visible">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+            <StackPanel Orientation="Horizontal">
+                <Label Grid.Row="0" Content="Доставка" FontSize="22" Padding="10,0,0,10"/>
+                <TextBlock FontSize="22" FontStyle="Italic" Margin="20,0,0,0" Text="{Binding DateCulture, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Выберите дату заказов " FontSize="18" VerticalAlignment="Center" Padding="10,0,0,10"/>
+                <DatePicker 
+                Name="datePicker"
+                SelectedDate="{Binding Date, Mode=TwoWay}"
+                SelectedDateFormat="Short"
+                VerticalAlignment="Top" 
+                Width="120"
+                />
+            </StackPanel>
+        </StackPanel>
+
+        <ListBox Grid.Row="1" ItemsSource="{Binding Orders}">
+            <ListBox.ItemsPanel >
+                <ItemsPanelTemplate>
+                    <StackPanel Margin="0,20,0,20" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+
+            <ListBox.ItemTemplate >
+                <DataTemplate >
+                    <Border BorderThickness="1" BorderBrush="Gray" Margin="10" Padding="3">
+                    <Grid Margin="0,10,0,10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Адрес: " FontSize="16" VerticalAlignment="Bottom"/>
+                                <TextBlock Text="{Binding OrderCountry}" FontSize="14" VerticalAlignment="Bottom"/>
+                                <TextBlock Text=", " FontSize="14" VerticalAlignment="Bottom"/>
+                                <TextBlock Text="{Binding OrderCity}" FontSize="14" VerticalAlignment="Bottom"/>
+                                <TextBlock Text=", " FontSize="14" Padding="5"/>
+                                 <TextBlock Text="{Binding OrderAddress}" FontSize="14" VerticalAlignment="Bottom"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding OrderUser.UserPhone}" FontSize="14" VerticalAlignment="Bottom"/>
+                            </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Стоимость:" FontSize="16" Padding="5" VerticalAlignment="Bottom"/>
+                                <TextBlock Text="{Binding OrderAmount}" FontSize="14" Padding="5" VerticalAlignment="Bottom"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                            <DataGrid SelectedItem="SelectedOrderDetails" Grid.Row="1" ItemsSource="{Binding orderdetails, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" AutoGenerateColumns="False" IsReadOnly="True">
+                            <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Название продукта"  Binding="{Binding DetailsProduct.ProductName}" IsReadOnly="True"/>
+                                    <DataGridTextColumn Header="В лоте шт." Binding="{Binding DetailsProduct.QuantityInTheOrder}" IsReadOnly="True"/>
+                                    <DataGridTextColumn Header="Вес" Binding="{Binding DetailsProduct.ProductWeight}" IsReadOnly="True"/>
+                                    <DataGridTextColumn Header="Цена" Binding="{Binding DetailsProduct.ProductPrice}" IsReadOnly="True"/>
+                                    <DataGridTemplateColumn>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button Content="Удалить" Command="{Binding DataContext.DeleteProduct, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding}"></Button>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                        </DataGrid>
+
+                    </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</Window>

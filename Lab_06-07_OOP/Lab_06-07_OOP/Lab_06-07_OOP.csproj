@@ -86,6 +86,9 @@
     <Compile Include="comment.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="DeliveryWindow.xaml.cs">
+      <DependentUpon>DeliveryWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Loging.xaml.cs">
       <DependentUpon>Loging.xaml</DependentUpon>
     </Compile>
@@ -162,6 +165,10 @@
     <Compile Include="ViewModel\Validator.cs" />
     <Compile Include="ViewModel\ViewModelDelivery.cs" />
     <Compile Include="ViewModel\ViewModelMain.cs" />
+    <Page Include="DeliveryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Loging.xaml" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -235,6 +242,7 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="Model.edmx.sql" />
     <Content Include="Model.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>
